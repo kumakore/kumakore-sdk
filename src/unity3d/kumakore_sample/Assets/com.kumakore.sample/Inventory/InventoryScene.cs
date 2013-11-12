@@ -20,19 +20,19 @@ public class InventoryScene : MonoBehaviour {
 	}
 	
 	void OnGUI () {
-		if(kumakore.user ().hasSessionId()) {
+		if(kumakore.user ().hasId()) {
 			// Buttons / actions
 			if(GUI.Button (new Rect(10,10,200,60),"Load inventory")) kumakore.user ().inventory().get().async (delegate(ActionInventoryGet action) {
 				Debug.Log ("Inventory loaded");
 			});
-			if(GUI.Button (new Rect(10,80,200,60),"Load App products")) kumakore.productList ().get ().async (delegate(ActionAppProductListGet action) {
+			if(GUI.Button (new Rect(10,80,200,60),"Load App products")) kumakore.products().get ().async (delegate(ActionAppProductListGet action) {
 				Debug.Log ("Products loaded");
 			});
-			if(kumakore.productList().Count > 0) {
-				if(GUI.Button (new Rect(10,150,200,60),"Buy random")) kumakore.productList().buyItem(kumakore.productList()[Random.Range (0,kumakore.productList ().Count)].getProductId (),1).async (delegate(ActionAppBuyItem action) {
+			if(kumakore.products().Count > 0) {
+				if(GUI.Button (new Rect(10,150,200,60),"Buy random")) kumakore.products().buyItem(kumakore.products()[Random.Range (0,kumakore.products ().Count)].getProductId (),1).async (delegate(ActionAppBuyItem action) {
 					Debug.Log ("Item purchased");
 				});
-				if(GUI.Button (new Rect(10,230,200,60),"Add random")) kumakore.user().inventory().addItem(kumakore.productList()[Random.Range (0,kumakore.productList ().Count)].getProductId(),1).async (delegate(ActionInventoryAdd action) {
+				if(GUI.Button (new Rect(10,230,200,60),"Add random")) kumakore.user().inventory().addItem(kumakore.products()[Random.Range (0,kumakore.products ().Count)].getProductId(),1).async (delegate(ActionInventoryAdd action) {
 					Debug.Log ("Item added");
 				});
 			}
@@ -45,9 +45,9 @@ public class InventoryScene : MonoBehaviour {
 				GUI.Label (new Rect(400,75+min,300,40),"Quantity: " + item.getQuantity ());
 			}
 			GUI.Box (new Rect(5,310,305,365),"App products");
-			for(int ii=0; ii< kumakore.productList().Count; ii++) {
+			for(int ii=0; ii< kumakore.products().Count; ii++) {
 				int min = 310+ii * 120;
-				Product prod = kumakore.productList()[ii];
+				Product prod = kumakore.products()[ii];
 				GUI.Label (new Rect(10,30+min,300,40),"Name: " + prod.getName ());
 				int jj = 1;
 				IDictionary<string, int> costs = prod.getCostInItems ();

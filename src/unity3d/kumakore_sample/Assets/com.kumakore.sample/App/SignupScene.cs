@@ -20,7 +20,7 @@ public class SignupScene : MonoBehaviour {
 	}
 	
 	void OnGUI () {
-		if(kumakore.user ().hasSessionId()) {
+		if(kumakore.user ().hasId()) {
 			GUI.Label (new Rect(10,20,400,60),"Continue with sign up providing the following info");
 			GUI.Box (new Rect(5,80,415,345),"Update user info");
 			username = GUI.TextField (new Rect(10,115,400,60),username);

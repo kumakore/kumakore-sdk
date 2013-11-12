@@ -38,7 +38,7 @@ public class MatchListScene : MonoBehaviour {
 	}
 	
 	void OnGUI () {
-		if(kumakore.user ().hasSessionId()) {
+		if(kumakore.user ().hasId()) {
 			if(currentMatch == null) {
 				// List matches
 				if(finishedCurrentMatches && finishedCompletedMatches) {
