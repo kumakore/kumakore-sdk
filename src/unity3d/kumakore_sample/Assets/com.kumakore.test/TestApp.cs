@@ -87,7 +87,7 @@ namespace com.kumakore.test
         {
             app().logInfo("Async: Info").async(delegate(ActionAppLog action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 
@@ -99,7 +99,7 @@ namespace com.kumakore.test
         {
             app().logDebug("Async: Debug").async(delegate(ActionAppLog action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 
@@ -111,7 +111,7 @@ namespace com.kumakore.test
         {
             app().logWarning("Async: Warning").async(delegate(ActionAppLog action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 
@@ -123,7 +123,7 @@ namespace com.kumakore.test
         {
             app().logError("Async: Error").async(delegate(ActionAppLog action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 
@@ -135,7 +135,7 @@ namespace com.kumakore.test
         {
             app().logCritical("Async: Critical").async(delegate(ActionAppLog action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 
@@ -155,7 +155,7 @@ namespace com.kumakore.test
             String email = "email_async_" + Guid.NewGuid().ToString() + "@email.com";
             app().signup(email).async(delegate(ActionAppSignup action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 
@@ -175,7 +175,7 @@ namespace com.kumakore.test
             String userName = "username_async_" + Guid.NewGuid().ToString();
             app().signup(userName).async(delegate(ActionAppSignup action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 
@@ -187,7 +187,7 @@ namespace com.kumakore.test
         {
             app().getUserId(TEST_USERNAME).sync(delegate(ActionAppGetUserId action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Assert.IsFalse(String.IsNullOrEmpty(action.getUserId()), "userId is null or empty");
             });
         }
@@ -197,7 +197,7 @@ namespace com.kumakore.test
         {
             app().getUserId(TEST_USERNAME).async(delegate(ActionAppGetUserId action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Assert.IsFalse(String.IsNullOrEmpty(action.getUserId()), "userId is null or empty");
                 Release();
             });
@@ -216,7 +216,7 @@ namespace com.kumakore.test
         {
             app().passwordReset(VALID_TEST_EMAIL).async(delegate(ActionAppUserPasswordReset action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 
@@ -226,14 +226,14 @@ namespace com.kumakore.test
 		[Test]
 		public void SyncSignin() {
 			app ().signin (VALID_TEST_EMAIL,VALID_TEST_PASSWORD).sync (delegate(ActionAppSignin action) {
-				Assert.AreEqual(StatusCodes.SUCCESS,action.getStatusCode());
+				Assert.AreEqual(StatusCodes.SUCCESS,action.getCode());
 			});
 		}
 		
 		[Test]
 		public void AsyncSignin() {
 			app ().signin (VALID_TEST_EMAIL,VALID_TEST_PASSWORD).async (delegate(ActionAppSignin action) {
-				Assert.AreEqual(StatusCodes.SUCCESS,action.getStatusCode());
+				Assert.AreEqual(StatusCodes.SUCCESS,action.getCode());
 				Release ();
 			});
 			Wait ();
@@ -244,7 +244,7 @@ namespace com.kumakore.test
         {
             app().facebookConnectAccount(TEST_FACEBOOK_TOKEN).sync(delegate(ActionFacebookConnectAccount action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
         }
 
@@ -253,7 +253,7 @@ namespace com.kumakore.test
         {
             app().facebookConnectAccount(TEST_FACEBOOK_TOKEN).async(delegate(ActionFacebookConnectAccount action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 
@@ -265,7 +265,7 @@ namespace com.kumakore.test
         {
             app().facebookLogin(TEST_FACEBOOK_TOKEN).sync(delegate(ActionFacebookLogin action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
         }
 
@@ -274,7 +274,7 @@ namespace com.kumakore.test
         {
             app().facebookLogin(TEST_FACEBOOK_TOKEN).async(delegate(ActionFacebookLogin action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 
@@ -286,7 +286,7 @@ namespace com.kumakore.test
         {
             app().facebookRemoveAccount().sync(delegate(ActionFacebookRemoveAccount action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
         }
 
@@ -295,7 +295,7 @@ namespace com.kumakore.test
         {
             app().facebookRemoveAccount().async(delegate(ActionFacebookRemoveAccount action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 
@@ -307,7 +307,7 @@ namespace com.kumakore.test
         {
             app().rewards().get ().sync(delegate(ActionAppGetRewards action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
         }
 
@@ -316,7 +316,7 @@ namespace com.kumakore.test
         {
             app().rewards().get().async(delegate(ActionAppGetRewards action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 

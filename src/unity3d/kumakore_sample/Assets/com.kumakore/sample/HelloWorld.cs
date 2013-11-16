@@ -32,7 +32,7 @@ public class HelloWorld : MonoBehaviour {
 			
 		print("signup -> " + usernameOrEmail);
 		_app.signup(usernameOrEmail).sync (delegate(ActionAppSignup action) {
-			StatusCodes status = action.getStatusCode();
+			StatusCodes status = action.getCode();
 			String statusMsg = action.getStatusMessage();
 			
 			if (status == StatusCodes.SUCCESS) {
@@ -62,7 +62,7 @@ public class HelloWorld : MonoBehaviour {
 		
 		print("signin -> " + usernameOrEmail);
 		_app.signin(usernameOrEmail, password).sync(delegate(ActionAppSignin action) {
-			StatusCodes status = action.getStatusCode();
+			StatusCodes status = action.getCode();
 			String statusMsg = action.getStatusMessage();
 			
 			if (status == StatusCodes.SUCCESS) {
@@ -84,7 +84,7 @@ public class HelloWorld : MonoBehaviour {
 		
 		print("signout -> " + _app.user().getName());
 		_app.user().signout().sync(delegate(ActionUserSignout action) {
-			StatusCodes status = action.getStatusCode();
+			StatusCodes status = action.getCode();
 			String statusMsg = action.getStatusMessage();
 			
 			if (status == StatusCodes.SUCCESS) {

@@ -36,7 +36,7 @@ namespace com.kumakore.test
         {
             app().user().get().sync(delegate(ActionUserGet action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
         }
 
@@ -45,7 +45,7 @@ namespace com.kumakore.test
         {
             app().user().get().async(delegate(ActionUserGet action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 
@@ -57,7 +57,7 @@ namespace com.kumakore.test
         {
             app().user().update("carlos_3","kiffen1011@h.com","pass").sync(delegate(ActionUserUpdate action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
         }
 
@@ -66,7 +66,7 @@ namespace com.kumakore.test
         {
             app().user().update("carlos_2","kiffen1011@hotmail.com","password").async(delegate(ActionUserUpdate action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 
@@ -78,7 +78,7 @@ namespace com.kumakore.test
         {
             app().user().getFacebookFriends().get(TEST_FACEBOOK_TOKEN).sync(delegate(ActionFacebookGetFriends action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
         }
 
@@ -87,7 +87,7 @@ namespace com.kumakore.test
         {
             app().user().getFacebookFriends().get(TEST_FACEBOOK_TOKEN).async(delegate(ActionFacebookGetFriends action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 

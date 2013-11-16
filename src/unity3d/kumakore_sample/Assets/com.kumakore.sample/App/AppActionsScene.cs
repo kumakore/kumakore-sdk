@@ -65,6 +65,6 @@ public class AppActionsScene : MonoBehaviour {
 		message = "Facebook Remove delegate: " + action.getStatusMessage ();
 	}
 	public void LogDelegate(ActionAppLog action) {
-		message = "Log delegate: " + action.getStatusCode();
+		message = "Log delegate: " + action.getCode();
 	}
 }

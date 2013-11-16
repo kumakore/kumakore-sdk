@@ -43,12 +43,12 @@ namespace com.kumakore.test
         {
 			app().user().datastore().get(DATASTORE_TYPE,DATASTORE_NAME).sync(delegate(ActionDatastoreGet action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
 				IDictionary<String,Object> db = new Dictionary<String,Object>();
 				db.Add (DATASTORE_FIELD,"a");
 				app().user().datastore().update (DATASTORE_TYPE,DATASTORE_NAME,db).sync(delegate(ActionDatastoreUpdate a)
 	            {
-	                Assert.AreEqual(StatusCodes.SUCCESS, a.getStatusCode());
+	                Assert.AreEqual(StatusCodes.SUCCESS, a.getCode());
 					foreach(KeyValuePair<String,DatastoreObject> d in app ().user ().datastore()) {
 						Kumakore.LOG (LogLevels.WARNING,"",d.Key + " - " + d.Value.getData().Count);
 					}
@@ -62,12 +62,12 @@ namespace com.kumakore.test
         {
             app().user().datastore().get(DATASTORE_TYPE,DATASTORE_NAME).async(delegate(ActionDatastoreGet action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
 				IDictionary<String,Object> db = new Dictionary<String,Object>();
 				db.Add (DATASTORE_FIELD,"b");
             	app().user().datastore().update (DATASTORE_TYPE,DATASTORE_NAME,db).async(delegate(ActionDatastoreUpdate a)
 	            {
-	                Assert.AreEqual(StatusCodes.SUCCESS, a.getStatusCode());
+	                Assert.AreEqual(StatusCodes.SUCCESS, a.getCode());
 					foreach(KeyValuePair<String,DatastoreObject> d in app ().user ().datastore()) {
 						Kumakore.LOG (LogLevels.WARNING,"",d.Key + " - " + d.Value.getData().Count);
 					}
@@ -85,7 +85,7 @@ namespace com.kumakore.test
         {
             app().user().datastore().delete (DATASTORE_TYPE,DATASTORE_NAME).sync(delegate(ActionDatastoreDelete action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
         }
 
@@ -94,7 +94,7 @@ namespace com.kumakore.test
         {
             app().user().datastore().delete (DATASTORE_TYPE,DATASTORE_NAME).async(delegate(ActionDatastoreDelete action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 
@@ -106,7 +106,7 @@ namespace com.kumakore.test
         {
             app().user().datastore().create(DATASTORE_TYPE,DATASTORE_NAME, new Dictionary<String,Object>()).async(delegate(ActionDatastoreCreate action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 
@@ -118,7 +118,7 @@ namespace com.kumakore.test
         {
             app().user().datastore().get (DATASTORE_TYPE).sync(delegate(ActionDatastoreGet action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
         }
 
@@ -127,7 +127,7 @@ namespace com.kumakore.test
         {
             app().user().datastore().get (DATASTORE_TYPE).async(delegate(ActionDatastoreGet action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 

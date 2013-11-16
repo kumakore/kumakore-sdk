@@ -42,7 +42,7 @@ namespace com.kumakore.test
         {
             app().leaderboards().get().sync(delegate(ActionLeaderboardListGet action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
         }
 
@@ -51,7 +51,7 @@ namespace com.kumakore.test
         {
             app().leaderboards().get().async(delegate(ActionLeaderboardListGet action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 
@@ -63,7 +63,7 @@ namespace com.kumakore.test
         {
             app().leaderboards()[0].getMembsCenteredOnUser(3).sync(delegate(ActionLeaderboardMemberListGet action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
         }
 
@@ -72,7 +72,7 @@ namespace com.kumakore.test
         {
             app().leaderboards()[0].getMembsCenteredOnUser(3).async(delegate(ActionLeaderboardMemberListGet action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 
@@ -84,7 +84,7 @@ namespace com.kumakore.test
         {
             app().leaderboards()[0].getMembsGivenRange(0,3).sync(delegate(ActionLeaderboardMemberListGet action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
         }
 
@@ -93,7 +93,7 @@ namespace com.kumakore.test
         {
             app().leaderboards()[0].getMembsGivenRange(0,3).async(delegate(ActionLeaderboardMemberListGet action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 
@@ -105,7 +105,7 @@ namespace com.kumakore.test
         {
             app().leaderboards()[0].getFriends().sync(delegate(ActionLeaderboardMemberListGet action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
         }
 
@@ -114,7 +114,7 @@ namespace com.kumakore.test
         {
             app().leaderboards()[0].getFriends().async(delegate(ActionLeaderboardMemberListGet action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 
@@ -126,7 +126,7 @@ namespace com.kumakore.test
         {
             app().leaderboards()[0].getUserRank().sync(delegate(ActionUserRankOnLeaderboard action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
         }
 
@@ -135,7 +135,7 @@ namespace com.kumakore.test
         {
             app().leaderboards()[0].getUserRank().async(delegate(ActionUserRankOnLeaderboard action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 
@@ -147,7 +147,7 @@ namespace com.kumakore.test
         {
             app().leaderboards()[0].setUserScore(1).sync(delegate(ActionSetUserScore action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
         }
 
@@ -156,7 +156,7 @@ namespace com.kumakore.test
         {
             app().leaderboards()[0].setUserScore(2).async(delegate(ActionSetUserScore action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 

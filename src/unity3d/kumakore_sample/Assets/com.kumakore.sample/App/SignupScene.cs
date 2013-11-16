@@ -43,20 +43,22 @@ public class SignupScene : MonoBehaviour {
 	// DELEGATES
 	public void SignupDelegate(ActionAppSignup action) {
 		message = "Signup delegate: " + action.getStatusMessage();
-		if(action.getStatusCode() == StatusCodes.SUCCESS && !string.IsNullOrEmpty(username)) {
+		if(action.getCode() == StatusCodes.SUCCESS && !string.IsNullOrEmpty(username)) {
 			kumakore.user().update().setName(username).async();
 		}
 	}
+	
 	public void SigninDelegate(ActionAppSignin action) {
 		message = "Signin delegate: " + action.getStatusMessage();
 	}
+	
 	public void UserUpdateDelegate(ActionUserUpdate action) {
-		if(action.getStatusCode() == StatusCodes.SUCCESS)
+		if(action.getCode() == StatusCodes.SUCCESS)
 			message = "Update user delegate: " + kumakore.user ().getName () + ", " + kumakore.user ().getEmail();
 		else message = "Update user delegate: " + action.getStatusMessage();
 	}
 	public void GetUserIdDelegate(ActionAppGetUserId action) {
-		if(action.getStatusCode() == StatusCodes.SUCCESS) {
+		if(action.getCode() == StatusCodes.SUCCESS) {
 			message = "Get User Id delegate: " + action.getUserId();
 		} else {
 			message = "Get User Id delegate: " + action.getStatusMessage();

@@ -56,7 +56,7 @@ public class UserScene : MonoBehaviour {
 		message = "Signin delegate: " + action.getStatusMessage();
 	}
 	public void GetUserDelegate(ActionUserGet action) {
-		if(action.getStatusCode() == StatusCodes.SUCCESS)
+		if(action.getCode() == StatusCodes.SUCCESS)
 			message = "Get user delegate: " + kumakore.user ().getName () + ", " + kumakore.user ().getEmail();
 		else message = "Get user delegate: " + action.getStatusMessage();
 	}

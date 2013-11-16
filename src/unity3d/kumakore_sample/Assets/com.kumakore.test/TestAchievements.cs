@@ -36,7 +36,7 @@ namespace com.kumakore.test
         {
             app().achievements().get().sync(delegate(ActionAppAchievementListGet action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
         }
 
@@ -45,7 +45,7 @@ namespace com.kumakore.test
         {
             app().achievements().get().async(delegate(ActionAppAchievementListGet action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 
@@ -57,7 +57,7 @@ namespace com.kumakore.test
         {
             app().user ().achievements().get().sync(delegate(ActionUserAchievementListGet action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
         }
 
@@ -66,7 +66,7 @@ namespace com.kumakore.test
         {
             app().user().achievements().get().async(delegate(ActionUserAchievementListGet action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 
@@ -79,7 +79,7 @@ namespace com.kumakore.test
 			AppAchievement achievement = app ().achievements()[0];
 			app().user().achievements().set (achievement.getName (),(Double)1.0).sync(delegate(ActionUserAchievementSet action)
             {
-				Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+				Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
         }
 
@@ -89,7 +89,7 @@ namespace com.kumakore.test
             AppAchievement achievement = app ().achievements()[0];
 			app().user().achievements().set(achievement.getName(),(Double)2.0).async(delegate(ActionUserAchievementSet action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 

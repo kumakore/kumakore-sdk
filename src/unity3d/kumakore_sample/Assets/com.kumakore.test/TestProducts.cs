@@ -37,7 +37,7 @@ namespace com.kumakore.test
         {
             app().products().get().sync(delegate(ActionAppProductListGet action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
         }
 
@@ -46,7 +46,7 @@ namespace com.kumakore.test
         {
             app().products().get().async(delegate(ActionAppProductListGet action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 
@@ -58,7 +58,7 @@ namespace com.kumakore.test
         {
             app().products().buyItem(VALID_PRODUCT_ID,1).sync(delegate(ActionAppBuyItem action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
         }
 
@@ -67,7 +67,7 @@ namespace com.kumakore.test
         {
             app().products().buyItem(VALID_PRODUCT_ID,1).async(delegate(ActionAppBuyItem action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 

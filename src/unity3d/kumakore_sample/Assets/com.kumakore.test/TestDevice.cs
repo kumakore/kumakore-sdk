@@ -39,7 +39,7 @@ namespace com.kumakore.test
         {
             app().user().device().mute().sync (delegate(ActionDeviceMute action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
         }
 
@@ -48,7 +48,7 @@ namespace com.kumakore.test
         {
             app().user().device().mute().async (delegate(ActionDeviceMute action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 
@@ -60,7 +60,7 @@ namespace com.kumakore.test
         {
             app().user().device().unmute().sync (delegate(ActionDeviceUnmute action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
         }
 
@@ -69,7 +69,7 @@ namespace com.kumakore.test
         {
             app().user().device().unmute().async (delegate(ActionDeviceUnmute action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 
@@ -81,7 +81,7 @@ namespace com.kumakore.test
         {
             app().user().device().register("123456789").async (delegate(ActionDeviceRegister action, String token)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 
@@ -93,7 +93,7 @@ namespace com.kumakore.test
         {
             app().user().device().unregister().sync (delegate(ActionDeviceUnregister action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
         }
 
@@ -102,7 +102,7 @@ namespace com.kumakore.test
         {
             app().user().device().unregister().async (delegate(ActionDeviceUnregister action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 
@@ -114,7 +114,7 @@ namespace com.kumakore.test
         {
             app().user().device().setDeviceBadge(1).sync (delegate(ActionDeviceSetBadge action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
         }
 
@@ -123,7 +123,7 @@ namespace com.kumakore.test
         {
             app().user().device().setDeviceBadge(2).async (delegate(ActionDeviceSetBadge action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 

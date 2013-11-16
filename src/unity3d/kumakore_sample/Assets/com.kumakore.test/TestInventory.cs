@@ -35,7 +35,7 @@ namespace com.kumakore.test
         {
             app().user().inventory().addItem(ITEM_NAME,10).sync(delegate(ActionInventoryAdd action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
         }
 
@@ -44,7 +44,7 @@ namespace com.kumakore.test
         {
             app().user().inventory().addItem(ITEM_NAME,2).async(delegate(ActionInventoryAdd action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 
@@ -56,7 +56,7 @@ namespace com.kumakore.test
         {
             app().user().inventory().removeItem(ITEM_NAME,1).sync(delegate(ActionInventoryRemove action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
         }
 
@@ -65,7 +65,7 @@ namespace com.kumakore.test
         {
             app().user().inventory().removeItem(ITEM_NAME,2).async(delegate(ActionInventoryRemove action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getStatusCode());
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 
