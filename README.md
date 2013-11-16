@@ -1,5 +1,5 @@
 # Android and .NET SDK Overview
-The Kumakore SDK for Android and .NET (C# and Unity compatible) is based on the builder pattern software design, which enables construction of complex objects.
+The Kumakore SDK for Android and .NET (C# and Unity compatible). 
 
 <!-- <img src="diagram.jpg" alt="Drawing" style="width: 600px;" align="middle"/>
 -->
@@ -31,7 +31,7 @@ Here's an example of a synchronous signup call.
 
 	ActionAppSignup signup = _app.signup(email);
 	signup.sync();
-	if(signup.getStatusCode() == StatusCodes.SUCCESS) {
+	if(signup.getCode() == StatusCodes.SUCCESS) {
 		//Do something
 	}
 	
@@ -48,7 +48,7 @@ We could also have simplified this to
 Alteratively the result of the API call could have been handled using a delegate passed to the sync function. Here is an example using signin.
 
 	_app.signin(email, password).sync(delegate(ActionAppSignin action) {
-		if(action.getStatusCode() == StatusCodes.SUCCESS) {
+		if(action.getCode() == StatusCodes.SUCCESS) {
 			//Do something
 		}
 	});
@@ -59,7 +59,7 @@ The delegate gets a signin action object where you can query the status of the r
 You can also make asynchronous (non-blocking) calls. This executes the API request in the background and allows the client application to continue (e.g. render a spinner). Here's an example using signin again with a delegate.
 
 	_app.signin(email, password).async(delegate(ActionAppSignin action) {
-		if(action.getStatusCode() == StatusCodes.SUCCESS) {
+		if(action.getCode() == StatusCodes.SUCCESS) {
 			//Do something
 		}
 	});
@@ -72,13 +72,21 @@ In general you want to provide a delegate to handle the return, but we can also 
 	ActionAppSignup signup = _app.signup(email);
 	signup.async();
 	
-	while (signup.getStatusCode() == StatusCodes.UNKNOWN) {
+	while (signup.getCode() == StatusCodes.UNKNOWN) {
 		//Draw spinner
 	}
 	
-	if(signup.getStatusCode() == StatusCodes.SUCCESS) {
+	if(signup.getCode() == StatusCodes.SUCCESS) {
 		//Go to main menu
 	}
+
+###5) The SDK uses on the builder pattern for various Actions to enable construction of complex objects.
+
+	// simple params
+	_app.user().update(usernameOrEmail, password).sync();
+	// builder params
+	_app.user().update().setName(name).setEmail(email).setPassword(password).sync();
+
 
 ###Actions
 You have now been exposed to the use of actions to communicate with the Kumakore service. Every server operation will have an individual action object. To stress the point again, the client retrieves data through the app or user data space and issues requests through actions. 
@@ -137,7 +145,7 @@ With current matches you can also drill down a level to matches that are your or
 
 ###Creating a match
 	current.createRandomMatch().async(delegate(ActionMatchCreateRandom action){
-		if(action.getStatusCode() == StatusCodes.SUCCESS) {
+		if(action.getCode() == StatusCodes.SUCCESS) {
 			//do something
 		}
 	});
