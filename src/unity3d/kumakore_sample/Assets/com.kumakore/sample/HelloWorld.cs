@@ -4,23 +4,26 @@ using com.kumakore;
 using System;
 
 public class HelloWorld : MonoBehaviour {
-	
-	const string API_KEY = "292c9e31e5187c58b58f5f8588edc92d"; //sample
-	const int DASHBOARD_VERSION = 1375571696;
-	const string APP_VERISON = "0.0";
-	const string EMAIL = "test@sinuouscode.com";
-	const string PASSWORD = "test";
-	
-	KumakoreApp _app;
-	
+
+	private static readonly String TAG = typeof(HelloWorld).Name;
+	private const string API_KEY = "292c9e31e5187c58b58f5f8588edc92d"; //sample
+	private const int DASHBOARD_VERSION = 1375571696;
+	private const string APP_VERISON = "0.0";
+	private const string EMAIL = "test@sinuouscode.com";
+	private const string PASSWORD = "test";
+
+	private KumakoreApp _app;
+
 	// Use this for initialization
-	void Start () {
+	private void Start() {
 		_app = new KumakoreApp(API_KEY, DASHBOARD_VERSION);
-		
+
+		_app.load(Kumakore.BuildPrefPath(API_KEY));
+
 		//signout();
-		
-		if(_app.user().hasSessionId()) {
-			print (_app.user().getName() + " already signed in.");		
+
+		if (_app.user().hasSessionId()) {
+			Kumakore.LOGI(TAG, _app.user().getName() + " already signed in.");
 		} else {
 			// could be not logged in or
 			// we need to create an account			
@@ -28,76 +31,65 @@ public class HelloWorld : MonoBehaviour {
 		}
 	}
 	
+	private void OnDestroy() {
+		_app.save(Kumakore.BuildPrefPath(API_KEY));		
+	}
+
 	private void signup(String usernameOrEmail) {
-			
-		print("signup -> " + usernameOrEmail);
-		_app.signup(usernameOrEmail).sync (delegate(ActionAppSignup action) {
-			StatusCodes status = action.getCode();
-			String statusMsg = action.getStatusMessage();
-			
-			if (status == StatusCodes.SUCCESS) {
-				print (_app.user().getName() + " signed in.");
+
+		Kumakore.LOGI(TAG, "signup -> " + usernameOrEmail);
+		_app.signup(usernameOrEmail).sync(delegate(ActionAppSignup action) {
+
+			if (action.getCode() == StatusCodes.SUCCESS) {
+				Kumakore.LOGI(TAG, _app.user().getName() + " signed in.");
 				return;
-			} else if (status == StatusCodes.USER_SIGNUP_ERROR) {
-				if (statusMsg.Contains("name: is already taken")) {
+			} else if (action.getCode() == StatusCodes.USER_SIGNUP_ERROR) {
+				if (action.hasFlags(StatusFlags.USER_SIGNUP_NAME_TAKEN)) {
 					signin(usernameOrEmail, PASSWORD);
 					return;
-				} else if (statusMsg.Contains("email: is already taken")) {
+				} else if (action.hasFlags(StatusFlags.USER_SIGNUP_EMAIL_TAKEN)) {
 					signin(usernameOrEmail, PASSWORD);
 					return;
-				} else if (statusMsg.Contains("email: is invalid")) {
+				} else if (action.hasFlags(StatusFlags.USER_SIGNUP_EMAIL_INVALID)) {
 					// ...					
-				} else if (statusMsg.Contains("name: is invalid")) {
+				} else if (action.hasFlags(StatusFlags.USER_SIGNUP_NAME_INVALID)) {
 					// ...					
-				} else {
-					// ...					
-				}				
-			} 
-			
-			Debug.LogError (statusMsg);	
-		});		
+				}
+			}
+
+			Kumakore.LOGE(TAG, action.getStatusMessage());
+		});
 	}
-	
+
 	private void signin(String usernameOrEmail, String password) {
-		
-		print("signin -> " + usernameOrEmail);
+
+		Kumakore.LOGI(TAG, "signin -> " + usernameOrEmail);
 		_app.signin(usernameOrEmail, password).sync(delegate(ActionAppSignin action) {
-			StatusCodes status = action.getCode();
-			String statusMsg = action.getStatusMessage();
-			
-			if (status == StatusCodes.SUCCESS) {
-				print (_app.user().getName() + " signed in.");
+
+			if (action.getCode() == StatusCodes.SUCCESS) {
+				Kumakore.LOGI(TAG, _app.user().getName() + " signed in.");
 				return;
-			} else if (status == StatusCodes.USER_SIGNIN_ERROR) {
-				if (statusMsg.Contains("No user match")) {
-					statusMsg = "Username/Email or Password did not match.";
-				} else {
-					
-				}				
-			} 
-			
-			Debug.LogError (statusMsg);	
+			} else if (action.getCode() == StatusCodes.USER_SIGNIN_ERROR) {
+				if (action.hasFlags(StatusFlags.USER_SIGNIN_NAME_EMAIL_PASSWORD_INVALID)) {
+					// ..
+				} 
+			}
+
+			Kumakore.LOGE(TAG, action.getStatusMessage());
 		});
 	}
-	
+
 	private void signout() {
-		
-		print("signout -> " + _app.user().getName());
+
+		Kumakore.LOGI(TAG, "signout -> " + _app.user().getName());
 		_app.user().signout().sync(delegate(ActionUserSignout action) {
-			StatusCodes status = action.getCode();
-			String statusMsg = action.getStatusMessage();
-			
-			if (status == StatusCodes.SUCCESS) {
-				print (_app.user().getName() + " signed out.");
+
+			if (action.getCode() == StatusCodes.SUCCESS) {
+				Kumakore.LOGI(TAG, _app.user().getName() + " signed out.");
 				return;
-			} 
-			
-			Debug.LogError (statusMsg);	
+			}
+
+			Kumakore.LOGE(TAG, action.getStatusMessage());
 		});
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 }
