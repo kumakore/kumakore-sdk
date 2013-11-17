@@ -16,11 +16,24 @@ When retrieving data from the server, the client will again create and send an a
 
 The important thing to remember is that server communication happens through the action objects
 
-## Initialzing the SDK
+## SDK startup and shutdown
 By now you should have read general documentation and know that an app will have an app key, dashboard version, and potentially an app version. The SDK first needs to be initialized with these values
-
 ```
-KumakoreApp _app = new KumakoreApp(api_key, dashboard);
+// startup
+//
+KumakoreApp app = new KumakoreApp(API_KEY, DASHBOARD_VERSION);
+```
+
+Then load KumakoreApp state. BuildPrefPath(path) is a static helper to build a safe path to save data depending on the platform.
+```
+
+app.load(Kumakore.BuildPrefPath(API_KEY));
+```
+
+During the application lifecycle, or before it ends, save the KumakoreApp state for loading in the future.
+```
+// shutdown
+app.save(Kumakore.BuildPrefPath(API_KEY));
 ```
 
 From here you can begin calling app level data like achievements.
@@ -32,7 +45,7 @@ Even using the action objects there are multiple ways of interacting with the Ku
 Here's an example of a synchronous signup call.
 
 ```
-ActionAppSignup signup = _app.signup(email);
+ActionAppSignup signup = app.signup(email);
 signup.sync();
 if(signup.getCode() == StatusCodes.SUCCESS) {
 	//Do something
@@ -44,7 +57,7 @@ A signup action object is created with an email. Then sync() makes a syncrhonous
 We could also have simplified this to
 
 ```
-if(_app.signup(email).sync() == StatusCodes.SUCCESS) {
+if(app.signup(email).sync() == StatusCodes.SUCCESS) {
 	//Do something
 }
 ```
@@ -53,7 +66,7 @@ if(_app.signup(email).sync() == StatusCodes.SUCCESS) {
 Alteratively the result of the API call could have been handled using a delegate passed to the sync function. Here is an example using signin.
 
 ```
-_app.signin(email, password).sync(delegate(ActionAppSignin action) {
+app.signin(email, password).sync(delegate(ActionAppSignin action) {
 	if(action.getCode() == StatusCodes.SUCCESS) {
 		//Do something
 	}
@@ -66,7 +79,7 @@ The delegate gets a signin action object where you can query the status of the r
 You can also make asynchronous (non-blocking) calls. This executes the API request in the background and allows the client application to continue (e.g. render a spinner). Here's an example using signin again with a delegate.
 
 ```
-_app.signin(email, password).async(delegate(ActionAppSignin action) {
+app.signin(email, password).async(delegate(ActionAppSignin action) {
 	if(action.getCode() == StatusCodes.SUCCESS) {
 		//Do something
 	}
@@ -79,7 +92,7 @@ Aside form the using the async() call the difference is that the application wil
 In general you want to provide a delegate to handle the return, but we can also handle this by querying the action itself
 
 ```
-ActionAppSignup signup = _app.signup(email);
+ActionAppSignup signup = app.signup(email);
 signup.async();
 
 while (signup.getCode() == StatusCodes.UNKNOWN) {
@@ -95,9 +108,9 @@ if(signup.getCode() == StatusCodes.SUCCESS) {
 
 ```
 // simple params
-_app.user().update(usernameOrEmail, password).sync();
+app.user().update(usernameOrEmail, password).sync();
 // builder params
-_app.user().update().setName(name).setEmail(email).setPassword(password).sync();
+app.user().update().setName(name).setEmail(email).setPassword(password).sync();
 ```
 
 ###Actions
@@ -106,15 +119,15 @@ You have now been exposed to the use of actions to communicate with the Kumakore
 In the following example, the application needs to list the app achievements.
 
 ```
-for(int i=0; i< _app.achievements().Count; i++) {
-	print( _app.achievements()[i].getName() );
+for(int i=0; i< app.achievements().Count; i++) {
+	print( app.achievements()[i].getName() );
 }
 ```
 
 achievements() returns the internal list of achievements. However, when the app is first opened, the internal list is empty, so the application must request the achievements from the Kumakore service.
 
 ```
-ActionAppAchievementListGet a = _app.achievements().get();
+ActionAppAchievementListGet a = app.achievements().get();
 a.sync();
 ```
 
@@ -123,7 +136,7 @@ When the request returns, the action will handle the return data by copying it i
 Again the above call could be formed multiple ways. Here is an equivalent call.
 
 ```
-_app.achievements().get().sync();
+app.achievements().get().sync();
 ```
 
 Remember the sync() or async() happens on the action.
@@ -132,7 +145,7 @@ Remember the sync() or async() happens on the action.
 Here's a more complex example of buying multple items. The SDK provides a purchase function that allows you to pass in a Dictionary of products. However, using the builder pattern, you can construct a complex action.
 
 ```
-ActionAppBuyItem a = _app.products().buyItem();
+ActionAppBuyItem a = app.products().buyItem();
 a.includeItem("laser", 1);
 a.includeItem("shield", 2);
 a.sync();
@@ -141,7 +154,7 @@ a.sync();
 Which is also equivalent to
 
 ```
-_app.productList().buyItem().includeItem("laser"", 1).includeItem("shield", 2).sync();
+app.productList().buyItem().includeItem("laser"", 1).includeItem("shield", 2).sync();
 ```
 
 ###Further information
@@ -154,8 +167,8 @@ Matches are the core of application gameplay, so this section will spend some ti
 A user will have match lists stored in MatchCurrentList and MatchCompletedList objects corresponding to the user's active matches and completed mathces respectively. You can retrieve them through
 
 ```
-MatchCurrentList current = _app.user().getCurrentMatches();
-MatchCompletedList completed = _app.user().getCompletedMatches();
+MatchCurrentList current = app.user().getCurrentMatches();
+MatchCompletedList completed = app.user().getCompletedMatches();
 ```
 
 Again, the lists will be empty if the state of the user's matches have not been retrieved from the server. In this case, actions are used to fetch data into these lists.
