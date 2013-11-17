@@ -20,13 +20,10 @@ The important thing to remember is that server communication happens through the
 By now you should have read general documentation and know that an app will have an app key, dashboard version, and potentially an app version. The SDK first needs to be initialized with these values
 ```
 // startup
-//
 KumakoreApp app = new KumakoreApp(API_KEY, DASHBOARD_VERSION);
-```
 
-Then load KumakoreApp state. BuildPrefPath(path) is a static helper to build a safe path to save data depending on the platform.
-```
-
+// load KumakoreApp state.
+// BuildPrefPath(path) is a static helper to build a safe path to save data depending on the platform.
 app.load(Kumakore.BuildPrefPath(API_KEY));
 ```
 
