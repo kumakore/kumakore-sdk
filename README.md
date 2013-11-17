@@ -16,7 +16,7 @@ When retrieving data from the server, the client will again create and send an a
 
 The important thing to remember is that server communication happens through the action objects
 
-## SDK startup and shutdown
+## Kumakore SDK startup and shutdown
 By now you should have read general documentation and know that an app will have an app key, dashboard version, and potentially an app version. The SDK first needs to be initialized with these values
 ```
 // startup
@@ -33,9 +33,9 @@ During the application lifecycle, or before it ends, save the KumakoreApp state 
 app.save(Kumakore.BuildPrefPath(API_KEY));
 ```
 
-From here you can begin calling app level data like achievements.
+From here you can begin calling app level data like user, leaderboards, achievements, ...
 
-## Making API calls
+## Making Kumakore API calls
 Even using the action objects there are multiple ways of interacting with the Kumakore Service. 
 
 ###1) Basic synchronous call
