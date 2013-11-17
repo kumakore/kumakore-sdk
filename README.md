@@ -19,7 +19,9 @@ The important thing to remember is that server communication happens through the
 ## Initialzing the SDK
 By now you should have read general documentation and know that an app will have an app key, dashboard version, and potentially an app version. The SDK first needs to be initialized with these values
 
-	KumakoreApp _app = new KumakoreApp(api_key, dashboard);
+'''
+KumakoreApp _app = new KumakoreApp(api_key, dashboard);
+'''
 
 From here you can begin calling app level data like achievements.
 
