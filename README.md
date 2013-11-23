@@ -23,14 +23,13 @@ By now you should have read general documentation and know that an app will have
 KumakoreApp app = new KumakoreApp(API_KEY, DASHBOARD_VERSION);
 
 // load KumakoreApp state.
-// BuildPrefPath(path) is a static helper to build a safe path to save data depending on the platform.
-app.load(Kumakore.BuildPrefPath(API_KEY));
+app.load();
 ```
 
 During the application lifecycle, or before it ends, save the KumakoreApp state for loading in the future.
 ```
 // shutdown
-app.save(Kumakore.BuildPrefPath(API_KEY));
+app.save();
 ```
 
 From here you can begin calling app level data like user, leaderboards, achievements, ...
