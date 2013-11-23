@@ -18,8 +18,10 @@ public class HelloWorld : MonoBehaviour {
 	private void Start() {
 		_app = new KumakoreApp(API_KEY, DASHBOARD_VERSION);
 
-		_app.load(Kumakore.BuildPrefPath(API_KEY));
+		_app.delete();
 
+		_app.load();
+		
 		//signout();
 
 		if (_app.user().hasSessionId()) {
@@ -30,9 +32,9 @@ public class HelloWorld : MonoBehaviour {
 			signup(EMAIL);
 		}
 	}
-	
+
 	private void OnDestroy() {
-		_app.save(Kumakore.BuildPrefPath(API_KEY));		
+		_app.save();
 	}
 
 	private void signup(String usernameOrEmail) {
@@ -44,15 +46,15 @@ public class HelloWorld : MonoBehaviour {
 				Kumakore.LOGI(TAG, _app.user().getName() + " signed in.");
 				return;
 			} else if (action.getCode() == StatusCodes.USER_SIGNUP_ERROR) {
-				if (action.hasFlags(StatusFlags.USER_SIGNUP_NAME_TAKEN)) {
+				if (action.hasFlags(StatusFlags.USER_NAME_TAKEN)) {
 					signin(usernameOrEmail, PASSWORD);
 					return;
-				} else if (action.hasFlags(StatusFlags.USER_SIGNUP_EMAIL_TAKEN)) {
+				} else if (action.hasFlags(StatusFlags.USER_EMAIL_TAKEN)) {
 					signin(usernameOrEmail, PASSWORD);
 					return;
-				} else if (action.hasFlags(StatusFlags.USER_SIGNUP_EMAIL_INVALID)) {
+				} else if (action.hasFlags(StatusFlags.USER_EMAIL_INVALID)) {
 					// ...					
-				} else if (action.hasFlags(StatusFlags.USER_SIGNUP_NAME_INVALID)) {
+				} else if (action.hasFlags(StatusFlags.USER_NAME_INVALID)) {
 					// ...					
 				}
 			}
