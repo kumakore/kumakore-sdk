@@ -9,3 +9,10 @@ Temp/
 
 *.userprefs
 *.pref
+
+*.csproj.user
+
+*.csproj.user.meta
+Properties.meta
+bin.meta
+obj.meta
