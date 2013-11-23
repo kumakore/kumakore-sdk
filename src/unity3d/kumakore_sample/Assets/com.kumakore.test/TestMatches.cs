@@ -9,7 +9,7 @@ namespace com.kumakore.test
     [TestFixture]
 	public class TestMatches : TestBase
     {
-		private readonly static String VALID_RIVAL = "carlos";
+		//private readonly static String VALID_RIVAL = "carlos";
 		
 	    public static void All()
         {
@@ -17,7 +17,7 @@ namespace com.kumakore.test
             matches.setup();
 			
 			// test currentMatch
-			matches.SyncCreateNewMatch();
+			/*matches.SyncCreateNewMatch();
 			matches.SyncGetMatchCurrentList();
 			matches.SyncCloseMatch();
 			
@@ -30,17 +30,10 @@ namespace com.kumakore.test
 			matches.AsyncGetStatus();
 			matches.SyncGetMoves();
 			matches.AsyncGetMoves();
-			//matches.SyncSendMoves();
-			//matches.SyncSelectItems();
-			//matches.SyncResign();
 			
 			matches.AsyncCreateRandomMatch();
-			//matches.AsyncSendMoves();
-			//matches.AsyncSelectItems();
-			//matches.AsyncResign();
-			// completed matches
 			matches.SyncGetMatchCompletedList();
-			matches.AsyncGetMatchCompletedList();
+			matches.AsyncGetMatchCompletedList();*/
 			
         }
 		
@@ -52,7 +45,7 @@ namespace com.kumakore.test
 		}
 		
 		
-		[Test]
+		/*[Test]
         public void SyncCreateNewMatch()
         {
 			app ().user ().currentMatch().createNewMatch(VALID_RIVAL).sync (delegate(ActionMatchCreateNew action) {
@@ -183,7 +176,7 @@ namespace com.kumakore.test
             });
 
             Wait();
-        }
+        }*/
 		
 		/*[Test]
         public void SyncSendMoves()

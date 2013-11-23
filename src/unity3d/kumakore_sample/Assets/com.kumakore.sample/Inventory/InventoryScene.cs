@@ -20,7 +20,7 @@ public class InventoryScene : MonoBehaviour {
 	}
 	
 	void OnGUI () {
-		if(kumakore.user ().hasId()) {
+		if(kumakore.user ().hasSessionId()) {
 			// Buttons / actions
 			if(GUI.Button (new Rect(10,10,200,60),"Load inventory")) kumakore.user ().inventory().get().async (delegate(ActionInventoryGet action) {
 				Debug.Log ("Inventory loaded");

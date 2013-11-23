@@ -22,7 +22,7 @@ public class AppActionsScene : MonoBehaviour {
 	
 	void OnGUI () {
 		// User sign in GUI
-		if(kumakore.user ().hasId()) {
+		if(kumakore.user ().hasSessionId()) {
 			GUI.Label(new Rect(10,10,400,60),"Signed in");
 			// Facebook actions
 			if(GUI.Button(new Rect(10,90,200,60),"Facebook login")) kumakore.facebookLogin(fbToken).async (FacebookLoginDelegate);

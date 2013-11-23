@@ -20,7 +20,7 @@ public class AchievementsScene : MonoBehaviour {
 	}
 	
 	void OnGUI () {
-		if(kumakore.user ().hasId()) {
+		if(kumakore.user ().hasSessionId()) {
 			// Buttons / actions
 			if(GUI.Button (new Rect(10,10,200,60),"Load app achievements")) kumakore.achievements ().get ().sync (delegate(ActionAppAchievementListGet action) {
 				Debug.Log ("App achievements loaded");

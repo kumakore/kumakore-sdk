@@ -20,7 +20,7 @@ public class SignupScene : MonoBehaviour {
 	}
 	
 	void OnGUI () {
-		if(kumakore.user ().hasId()) {
+		if(kumakore.user ().hasSessionId()) {
 			GUI.Label (new Rect(10,20,400,60),"Continue with sign up providing the following info");
 			GUI.Box (new Rect(5,80,415,345),"Update user info");
 			username = GUI.TextField (new Rect(10,115,400,60),username);
@@ -47,11 +47,9 @@ public class SignupScene : MonoBehaviour {
 			kumakore.user().update().setName(username).async();
 		}
 	}
-	
 	public void SigninDelegate(ActionAppSignin action) {
 		message = "Signin delegate: " + action.getStatusMessage();
 	}
-	
 	public void UserUpdateDelegate(ActionUserUpdate action) {
 		if(action.getCode() == StatusCodes.SUCCESS)
 			message = "Update user delegate: " + kumakore.user ().getName () + ", " + kumakore.user ().getEmail();

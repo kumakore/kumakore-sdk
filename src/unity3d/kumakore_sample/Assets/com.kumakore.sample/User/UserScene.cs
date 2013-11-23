@@ -20,7 +20,7 @@ public class UserScene : MonoBehaviour {
 	}
 	
 	void OnGUI () {
-		if(kumakore.user ().hasId()) {
+		if(kumakore.user ().hasSessionId()) {
 			// User info actions
 			GUI.Label(new Rect(10,10,400,60),"Signed in");
 			if(GUI.Button (new Rect(10,90,200,60),"Load user")) kumakore.user ().get ().sync(GetUserDelegate);
@@ -36,7 +36,7 @@ public class UserScene : MonoBehaviour {
 																			"facebookID:"+kumakore.user ().getFacebookId() + "|" +
 																			"id:"+kumakore.user ().getId() + "|" +
 																			"name:"+kumakore.user ().getName()+ "|" +
-																			//"sessionID:"+kumakore.user ().getSessionId()+ "|" + //SESSION is internal
+																			"sessionID:"+kumakore.user ().getSessionId()+ "|" +
 																			"push enabled:"+kumakore.user ().getPushEnabled();
 				
 		} else {
