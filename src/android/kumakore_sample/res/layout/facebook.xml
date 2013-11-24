@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_matchInfo"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".DemoFacebook" >
+
+    <android.widget.Space
+        android:id="@+id/space1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btnGetFriends"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Get Friends" />
+
+    <ListView
+        android:id="@+id/friendsListView"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_weight="0.19"
+        android:choiceMode="singleChoice" >
+    </ListView>
+
+    <Button
+        android:id="@+id/btnStartFaceMatch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start Match" />
+
+    <Button
+        android:id="@+id/btnFacebookConnect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Connect Account" />
+
+    <Button
+        android:id="@+id/btnRemoveFace"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Remove FB Account" />
+
+    <Button
+        android:id="@+id/btnFBLogout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Facebook Log out" />
+
+</LinearLayout>

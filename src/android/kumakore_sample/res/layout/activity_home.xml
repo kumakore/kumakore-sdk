@@ -1,0 +1,50 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:orientation="vertical"
+    tools:context=".HomeActivity" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="26dp"
+        android:gravity="center"
+        android:text="@string/home_title"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+    
+    <Button 
+        android:id="@+id/btnUser"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/user_settings"
+        android:layout_marginBottom="40dp"
+        />
+
+    <Button 
+        android:id="@+id/btnAchivement"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/achivements"
+        android:layout_marginBottom="40dp"
+        />    
+    
+    <Button 
+        android:id="@+id/btnInventory"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/inventory_and_store"
+        android:layout_marginBottom="40dp"
+        />    
+    
+    <Button 
+        android:id="@+id/btnMatch"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/matches"
+        android:layout_marginBottom="40dp"
+        />
+</LinearLayout>
