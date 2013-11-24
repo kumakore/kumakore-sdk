@@ -2,7 +2,6 @@ package com.kumakore.sample.test;
 
 import android.util.Log;
 
-import com.google.android.gms.internal.ap;
 import com.kumakore.ActionOpenMatchMap;
 import com.kumakore.ActionMatchCreateNew;
 import com.kumakore.ActionClosedMatchMap;
