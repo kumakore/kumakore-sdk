@@ -66,10 +66,11 @@ if(app.signup(email).sync() == StatusCodes.SUCCESS) {
 }
 ```
 
-###2) Using Delegates
+###2) Using callbacks (delegates for .NET and interfaces for Java)
 Alteratively the result of the API call could have been handled using a delegate passed to the sync function. Here is an example using signin.
 
-```
+```csharp
+// C#
 app.signin(email, password).sync(delegate(ActionAppSignin action) {
 	if(action.getCode() == StatusCodes.SUCCESS) {
 		//Do something
@@ -77,15 +78,40 @@ app.signin(email, password).sync(delegate(ActionAppSignin action) {
 });
 ```
 
-The delegate gets a signin action object where you can query the status of the request. Of course a synchronous call isn't a very interesting use of a delegate.
+```java
+// Java
+app().signin(email, password).sync(new ActionAppSignin.IKumakore() {
+	@Override
+	public void onActionAppSignin(ActionAppSignin action) {
+		if (action.getStatusCode() == StatusCodes.SUCCESS) {
+			//Do something
+		}
+	}
+});
+```
+
+The callback gets a signin action object where you can query the status of the action's execution. Of course a synchronous call isn't a very interesting use of a callback.
 
 ###3) Asynchronous call
-You can also make asynchronous (non-blocking) calls. This executes the API request in the background and allows the client application to continue (e.g. render a spinner). Here's an example using signin again with a delegate.
+You can also make asynchronous (non-blocking) calls. This executes the API request in the background and allows the client application to continue (e.g. render a spinner). Here's an example using signin again with a callback.
 
-```
+```csharp
+// C#
 app.signin(email, password).async(delegate(ActionAppSignin action) {
 	if(action.getCode() == StatusCodes.SUCCESS) {
 		//Do something
+	}
+});
+```
+
+```java
+// Java
+app().signin(email, password).async(new ActionAppSignin.IKumakore() {
+	@Override
+	public void onActionAppSignin(ActionAppSignin action) {
+		if (action.getStatusCode() == StatusCodes.SUCCESS) {
+			//Do something
+		}
 	}
 });
 ```
