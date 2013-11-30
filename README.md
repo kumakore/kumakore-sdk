@@ -18,19 +18,26 @@ The important thing to remember is that server communication happens through the
 
 ## Kumakore SDK startup and shutdown
 By now you should have read general documentation and know that an app will have an app key, dashboard version, and potentially an app version. The SDK first needs to be initialized with these values
-```
+```csharp
+// C#
 // startup
 KumakoreApp app = new KumakoreApp(API_KEY, DASHBOARD_VERSION);
 
 // load KumakoreApp state.
-// BuildPrefPath(path) is a static helper to build a safe path to save data depending on the platform.
-app.load(Kumakore.BuildPrefPath(API_KEY));
+app.load();
+```
+
+```java
+// Java
+// startup
+KumakoreApp app = new KumakoreApp(API_KEY, DASHBOARD_VERSION);
 ```
 
 During the application lifecycle, or before it ends, save the KumakoreApp state for loading in the future.
-```
+```csharp
+// C#
 // shutdown
-app.save(Kumakore.BuildPrefPath(API_KEY));
+app.save();
 ```
 
 From here you can begin calling app level data like user, leaderboards, achievements, ...
@@ -59,10 +66,11 @@ if(app.signup(email).sync() == StatusCodes.SUCCESS) {
 }
 ```
 
-###2) Using Delegates
+###2) Using callbacks (delegates for .NET and interfaces for Java)
 Alteratively the result of the API call could have been handled using a delegate passed to the sync function. Here is an example using signin.
 
-```
+```csharp
+// C#
 app.signin(email, password).sync(delegate(ActionAppSignin action) {
 	if(action.getCode() == StatusCodes.SUCCESS) {
 		//Do something
@@ -70,15 +78,40 @@ app.signin(email, password).sync(delegate(ActionAppSignin action) {
 });
 ```
 
-The delegate gets a signin action object where you can query the status of the request. Of course a synchronous call isn't a very interesting use of a delegate.
+```java
+// Java
+app().signin(email, password).sync(new ActionAppSignin.IKumakore() {
+	@Override
+	public void onActionAppSignin(ActionAppSignin action) {
+		if (action.getStatusCode() == StatusCodes.SUCCESS) {
+			//Do something
+		}
+	}
+});
+```
+
+The callback gets a signin action object where you can query the status of the action's execution. Of course a synchronous call isn't a very interesting use of a callback.
 
 ###3) Asynchronous call
-You can also make asynchronous (non-blocking) calls. This executes the API request in the background and allows the client application to continue (e.g. render a spinner). Here's an example using signin again with a delegate.
+You can also make asynchronous (non-blocking) calls. This executes the API request in the background and allows the client application to continue (e.g. render a spinner). Here's an example using signin again with a callback.
 
-```
+```csharp
+// C#
 app.signin(email, password).async(delegate(ActionAppSignin action) {
 	if(action.getCode() == StatusCodes.SUCCESS) {
 		//Do something
+	}
+});
+```
+
+```java
+// Java
+app().signin(email, password).async(new ActionAppSignin.IKumakore() {
+	@Override
+	public void onActionAppSignin(ActionAppSignin action) {
+		if (action.getStatusCode() == StatusCodes.SUCCESS) {
+			//Do something
+		}
 	}
 });
 ```
