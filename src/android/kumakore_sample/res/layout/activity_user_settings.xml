@@ -1,0 +1,62 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:orientation="vertical"
+    tools:context=".UserSettingsActivity" >
+
+    <TextView
+        android:id="@+id/textSigninOrSignup"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="26dp"
+        android:gravity="center"
+        android:text="@string/user_settings"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+    
+    <EditText android:id="@+id/editUsername"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/username" 
+        android:autoText="false"
+        android:capitalize="none"        
+        android:layout_marginBottom="40dp"
+        android:inputType="text" />
+    
+    <EditText android:id="@+id/editEmail"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/email" 
+        android:autoText="false"
+        android:capitalize="none"
+        android:layout_marginBottom="40dp"
+        android:inputType="textEmailAddress" />
+    
+    <EditText android:id="@+id/editPassword"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/password" 
+        android:autoText="false"
+        android:capitalize="none"
+        android:password="true"
+        android:layout_marginBottom="40dp"
+        android:inputType="textPassword" />
+    
+    <Button 
+        android:id="@+id/btnSave"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/save"
+        android:layout_marginBottom="40dp"
+        />    
+    
+    <Button 
+        android:id="@+id/btnSignout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/signout"
+        android:layout_marginBottom="40dp"
+        />
+</LinearLayout>

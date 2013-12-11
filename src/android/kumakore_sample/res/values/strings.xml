@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  - Copyright 2012 Google Inc.
+  -
+  - Licensed under the Apache License, Version 2.0 (the "License"); you may not
+  - use this file except in compliance with the License. You may obtain a copy
+  - of the License at
+  -
+  - http://www.apache.org/licenses/LICENSE-2.0
+  -
+  - Unless required by applicable law or agreed to in writing, software
+  - distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  - WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+  - License for the specific language governing permissions and limitations
+  - under the License.
+-->
+<resources>
+
+    <string name="alert_dialog_username">Name:</string>
+    <string name="alert_dialog_password">Password:</string>
+    <string name="alert_dialog_ok">OK</string>
+    <string name="alert_dialog_cancel">Cancel</string>
+    <string name="alert_dialog_text_entry">Kumakore signin</string>
+    <string name="app_name">kumakore sample</string>
+    <string name="error_config">Please set the %1$s constant and recompile the app.</string>
+    <string name="already_registered">Device is already registered on server.</string>
+    <string name="gcm_registered">From GCM: device successfully registered!</string>
+    <string name="gcm_unregistered">From GCM: device successfully unregistered!</string>
+    <string name="gcm_message">From GCM: you got message!</string>
+    <string name="gcm_error">From GCM: error (%1$s).</string>
+    <string name="gcm_recoverable_error">From GCM: recoverable error (%1$s).</string>
+    <string name="gcm_deleted">From GCM: server deleted %1$d pending messages!</string>
+    <string name="server_registering">Trying (attempt %1$d/%2$d) to register device on Demo Server.</string>
+    <string name="server_registered">From Demo Server: successfully added device!</string>
+    <string name="server_unregistered">From Demo Server: successfully removed device!</string>
+    <string name="server_register_error">Could not register device on Demo Server after %1$d attempts.</string>
+    <string name="server_unregister_error">Could not unregister device on Demo Server (%1$s).</string>
+    <string name="options_register">Register</string>
+    <string name="options_unregister">Unregister</string>
+    <string name="options_clear">Clear</string>
+    <string name="options_exit">Exit</string>
+    <string name="app_id">471639666216008</string>
+    <!-- Activities texts -->
+    <!-- Main Menu -->
+    <string name="home_title">Main Menu</string>
+    <string name="user_settings">User settings</string>
+    <string name="achivements">Achievements</string>
+    <string name="inventory_and_store">Inventory and store</string>
+    <string name="matches">Matches</string>
+
+    <!-- Signup -->
+    <string name="signup_title">Signup</string>
+    <string name="signup_email_or_name">Email or Name</string>
+     <string name="facebook_signin">Facebook signin</string>
+    <string name="go_">GO!</string>
+    <string name="username_or_email">username or email</string>
+    <string name="signup_signin">Kumakore signup/signin</string>
+  
+    <!-- User -->
+    <string name="user_title">User Settings</string>
+    <string name="password">new password</string>
+    <string name="email">email</string>
+    <string name="username">username</string>
+    <string name="save">Save</string>
+    <string name="signout">Signout</string>
+    <!-- Achievements -->
+    <string name="achievements_title">Achievements</string>
+    <string name="achievements_appAchievements">Game Achievement List</string>
+    <string name="achievements_add_progress">Add Progress</string>
+    <!-- Inventory -->
+    <string name="inventory_title">Inventory/Store</string>
+    <string name="inventory_storeItems">Store Items List</string>
+    <string name="inventory_amount">Amount: </string>
+    <string name="inventory_addItem">Add Item</string>
+    <string name="inventory_removeItem">Remove Item</string>
+    <string name="inventory_buyWithCoins">Buy with Coins</string>
+    <string name="inventory_purchaseIAP">Purchase with Google IAP</string>
+
+    <!-- Match List -->
+    <string name="match_title">Match List</string>
+    <string name="match_creation">Match Creation</string>
+    <string name="match_createMatch">Create Match</string>
+    <string name="match_opponent">opponent name</string>
+    <string name="match_randomMatch">Random Match</string>
+    <string name="match_my">My Turn</string>
+    <string name="match_their">Their Turn</string>
+    <string name="match_no_myturn_matches">No my turn matches</string>
+    <string name="match_no_theirturn_matches">No their turn matches</string>
+
+    <!-- Match Info -->
+    <string name="match_stats">Match Status</string>
+    <string name="match_player1">Player One</string>
+    <string name="match_player2">Player Two</string>
+    <string name="match_movenum">Move Number:</string>
+    <string name="match_resign">Resign</string>
+    <string name="match_accept">"Accept"</string>
+    <string name="match_reject">"Reject"</string>
+    <string name="match_selectItems">"Select Items"</string>
+    <string name="match_sendMove">"Send Move"</string>
+    <string name="match_sendNudge">"Send Nudge"</string>
+    <string name="match_sendChat">"Send Chat"</string>
+    <string name="match_chatMessage">"chat message"</string>
+    
+    
+    
+   
+
+</resources>
