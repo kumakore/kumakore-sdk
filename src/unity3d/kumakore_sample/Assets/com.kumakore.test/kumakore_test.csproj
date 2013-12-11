@@ -32,9 +32,9 @@
 		<WarningLevel>4</WarningLevel>
 		<BaseIntermediateOutputPath>..\..\..\..\dotNet\kumakore_test\obj\</BaseIntermediateOutputPath>
 	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'unity3d_win32_Debug|AnyCPU' ">
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'unity3d_x86_Debug|AnyCPU' ">
 		<DebugSymbols>true</DebugSymbols>
-		<OutputPath>..\..\..\..\dotNet\kumakore_test\bin\unity3d_win32_Debug\</OutputPath>
+		<OutputPath>..\..\..\..\dotNet\kumakore_test\bin\unity3d_x86_Debug\</OutputPath>
 		<DefineConstants>TRACE;DEBUG;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_2_2;UNITY_4_2;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE</DefineConstants>
 		<DebugType>full</DebugType>
 		<PlatformTarget>AnyCPU</PlatformTarget>
@@ -42,8 +42,8 @@
 		<CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
 		<BaseIntermediateOutputPath>..\..\..\..\dotNet\kumakore_test\obj\</BaseIntermediateOutputPath>
 	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'unity3d_win32_Release|AnyCPU' ">
-		<OutputPath>..\..\..\..\dotNet\kumakore_test\bin\unity3d_win32_Release\</OutputPath>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'unity3d_x86_Release|AnyCPU' ">
+		<OutputPath>..\..\..\..\dotNet\kumakore_test\bin\unity3d_x86_Release\</OutputPath>
 		<DefineConstants>TRACE;UNITY3D</DefineConstants>
 		<Optimize>true</Optimize>
 		<DebugType>pdbonly</DebugType>
@@ -52,9 +52,9 @@
 		<CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
 		<BaseIntermediateOutputPath>..\..\..\..\dotNet\kumakore_test\obj\</BaseIntermediateOutputPath>
 	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'unity3d_win64_Debug|AnyCPU' ">
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'unity3d_x86_64_Debug|AnyCPU' ">
 		<DebugSymbols>true</DebugSymbols>
-		<OutputPath>..\..\..\..\dotNet\kumakore_test\bin\unity3d_win64_Debug\</OutputPath>
+		<OutputPath>..\..\..\..\dotNet\kumakore_test\bin\unity3d_x86_64_Debug\</OutputPath>
 		<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_2_2;UNITY_4_2;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE</DefineConstants>
 		<DebugType>full</DebugType>
 		<PlatformTarget>AnyCPU</PlatformTarget>
@@ -62,8 +62,8 @@
 		<CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
 		<BaseIntermediateOutputPath>..\..\..\..\dotNet\kumakore_test\obj\</BaseIntermediateOutputPath>
 	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'unity3d_win64_Release|AnyCPU' ">
-		<OutputPath>..\..\..\..\dotNet\kumakore_test\bin\unity3d_win64_Release\</OutputPath>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'unity3d_x86_64_Release|AnyCPU' ">
+		<OutputPath>..\..\..\..\dotNet\kumakore_test\bin\unity3d_x86_64_Release\</OutputPath>
 		<DefineConstants>TRACE;UNITY3D</DefineConstants>
 		<Optimize>true</Optimize>
 		<DebugType>pdbonly</DebugType>
