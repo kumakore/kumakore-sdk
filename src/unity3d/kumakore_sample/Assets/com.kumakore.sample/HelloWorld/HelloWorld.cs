@@ -18,7 +18,7 @@ public class HelloWorld : MonoBehaviour {
 	private void Start() {
 		_app = new KumakoreApp(API_KEY, DASHBOARD_VERSION);
 
-		_app.delete();
+		//_app.delete();
 
 		_app.load();
 		
