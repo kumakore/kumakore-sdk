@@ -1,7 +1,11 @@
 package com.kumakore.sample;
 
+import com.kumakore.ActionDeviceRegister;
+import com.kumakore.StatusCodes;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -59,6 +63,8 @@ public class HomeActivity extends KumakoreSessionActivity {
 	public void onResume() {
 		super.onResume();
 		checkSession();
+		
+		registerForPush();
 	}
 
 	private void checkSession() {
@@ -68,5 +74,20 @@ public class HomeActivity extends KumakoreSessionActivity {
 			startActivity(intent);
 			return;
 		}
+	}
+	
+	private void registerForPush() {
+		app().user().device().register(Helpers.GetGsmSenderId()).async(new ActionDeviceRegister.IKumakore() {
+
+			@Override
+			public void onActionDeviceRegister(
+					com.kumakore.ActionDeviceRegister action, String token) {
+				if (action.getStatusCode() == StatusCodes.SUCCESS) {
+					Log.i(TAG, "registered for push");
+				} else {
+					Log.w(TAG, "Failed to register for push");
+				}
+			}
+		});		
 	}
 }

@@ -20,8 +20,12 @@ namespace com.kumakore.test
 			device.SyncUnmuteDevice();
 			device.AsyncMuteDevice();
 			device.AsyncUnmuteDevice();
+			
+#if UNITY_IPHONE
 			device.SyncSetDeviceBadge();
 			device.AsyncSetDeviceBadge();
+#endif
+			
 			device.AsyncUnregisterDevice();
         }
 		
@@ -29,15 +33,15 @@ namespace com.kumakore.test
 		public override void setup ()
 		{
 			base.setup ();
-			app ().signin(VALID_TEST_EMAIL,VALID_TEST_PASSWORD).sync ();
-			app().user ().device ().register ("123456789").sync ();
+			app ().signin(TEST_1,PASSWORD).sync ();
+			app().getUser().device ().register ("123456789").sync ();
 		}
 		
 		
 		[Test]
         public void SyncMuteDevice()
         {
-            app().user().device().mute().sync (delegate(ActionDeviceMute action)
+            app().getUser().device().mute().sync (delegate(ActionDeviceMute action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
@@ -46,7 +50,7 @@ namespace com.kumakore.test
         [Test]
         public void AsyncMuteDevice()
         {
-            app().user().device().mute().async (delegate(ActionDeviceMute action)
+            app().getUser().device().mute().async (delegate(ActionDeviceMute action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
@@ -58,7 +62,7 @@ namespace com.kumakore.test
 		[Test]
         public void SyncUnmuteDevice()
         {
-            app().user().device().unmute().sync (delegate(ActionDeviceUnmute action)
+            app().getUser().device().unmute().sync (delegate(ActionDeviceUnmute action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
@@ -67,7 +71,7 @@ namespace com.kumakore.test
         [Test]
         public void AsyncUnmuteDevice()
         {
-            app().user().device().unmute().async (delegate(ActionDeviceUnmute action)
+            app().getUser().device().unmute().async (delegate(ActionDeviceUnmute action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
@@ -79,7 +83,7 @@ namespace com.kumakore.test
         [Test]
         public void AsyncRegisterDevice()
         {
-            app().user().device().register("123456789").async (delegate(ActionDeviceRegister action)
+            app().getUser().device().register("123456789").async (delegate(ActionDeviceRegister action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
@@ -91,7 +95,7 @@ namespace com.kumakore.test
 		[Test]
         public void SyncUnregisterDevice()
         {
-            app().user().device().unregister().sync (delegate(ActionDeviceUnregister action)
+            app().getUser().device().unregister().sync (delegate(ActionDeviceUnregister action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
@@ -100,7 +104,7 @@ namespace com.kumakore.test
         [Test]
         public void AsyncUnregisterDevice()
         {
-            app().user().device().unregister().async (delegate(ActionDeviceUnregister action)
+            app().getUser().device().unregister().async (delegate(ActionDeviceUnregister action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
@@ -109,10 +113,11 @@ namespace com.kumakore.test
             Wait();
         }
 		
+#if UNITY_IPHONE
 		[Test]
         public void SyncSetDeviceBadge()
         {
-            app().user().device().setDeviceBadge(1).sync (delegate(ActionDeviceSetBadge action)
+            app().getUser().device().setDeviceBadge(1).sync (delegate(ActionDeviceSetBadge action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
@@ -121,7 +126,7 @@ namespace com.kumakore.test
         [Test]
         public void AsyncSetDeviceBadge()
         {
-            app().user().device().setDeviceBadge(2).async (delegate(ActionDeviceSetBadge action)
+            app().getUser().device().setDeviceBadge(2).async (delegate(ActionDeviceSetBadge action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
@@ -129,5 +134,6 @@ namespace com.kumakore.test
 
             Wait();
         }
+#endif
 	}
 }

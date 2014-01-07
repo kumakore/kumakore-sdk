@@ -41,14 +41,14 @@ namespace com.kumakore.test
 		public override void setup ()
 		{
 			base.setup ();
-			app ().signin(VALID_TEST_EMAIL,VALID_TEST_PASSWORD).sync ();
+			app ().signin(TEST_1,PASSWORD).sync ();
 		}
 		
 		
 		/*[Test]
         public void SyncCreateNewMatch()
         {
-			app ().user ().currentMatch().createNewMatch(VALID_RIVAL).sync (delegate(ActionMatchCreateNew action) {
+			app().getUser().currentMatch().createNewMatch(VALID_RIVAL).sync (delegate(ActionMatchCreateNew action) {
 				Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
 			});
         }
@@ -56,7 +56,7 @@ namespace com.kumakore.test
         [Test]
         public void AsyncCreateNewMatch()
         {
-            app ().user ().currentMatch().createNewMatch(VALID_RIVAL).async (delegate(ActionMatchCreateNew action) {
+            app().getUser().currentMatch().createNewMatch(VALID_RIVAL).async (delegate(ActionMatchCreateNew action) {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
@@ -67,7 +67,7 @@ namespace com.kumakore.test
 		[Test]
         public void SyncCreateRandomMatch()
         {
-			app ().user ().currentMatch().createRandomMatch().sync (delegate(ActionMatchCreateRandom action) {
+			app().getUser().currentMatch().createRandomMatch().sync (delegate(ActionMatchCreateRandom action) {
 				Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
 			});
         }
@@ -75,7 +75,7 @@ namespace com.kumakore.test
         [Test]
         public void AsyncCreateRandomMatch()
         {
-            app ().user ().currentMatch().createRandomMatch().async (delegate(ActionMatchCreateRandom action) {
+            app().getUser().currentMatch().createRandomMatch().async (delegate(ActionMatchCreateRandom action) {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
@@ -86,7 +86,7 @@ namespace com.kumakore.test
 		[Test]
         public void SyncCloseMatch()
         {
-			app().user ().currentMatch().close (app ().user ().currentMatch().match.getMatchId ()).sync (delegate(ActionMatchClose action) {
+			app().getUser().currentMatch().close (app().getUser().currentMatch().match.getMatchId ()).sync (delegate(ActionMatchClose action) {
 				Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
 			});
         }
@@ -94,7 +94,7 @@ namespace com.kumakore.test
         [Test]
         public void AsyncCloseMatch()
         {
-            app().user ().currentMatch().close (app ().user ().currentMatch().match.getMatchId ()).async (delegate(ActionMatchClose action) {
+            app().getUser().currentMatch().close (app().getUser().currentMatch().match.getMatchId ()).async (delegate(ActionMatchClose action) {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
@@ -105,7 +105,7 @@ namespace com.kumakore.test
 		[Test]
         public void SyncGetMatchCompletedList()
         {
-			app ().user ().getCompletedMatches().get ().sync (delegate(ActionMatchListCompleted action) {
+			app().getUser().getCompletedMatches().get ().sync (delegate(ActionMatchListCompleted action) {
 				Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
 			});
         }
@@ -113,7 +113,7 @@ namespace com.kumakore.test
         [Test]
         public void AsyncGetMatchCompletedList()
         {
-            app ().user ().getCompletedMatches().get ().async (delegate(ActionMatchListCompleted action) {
+            app().getUser().getCompletedMatches().get ().async (delegate(ActionMatchListCompleted action) {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
@@ -124,7 +124,7 @@ namespace com.kumakore.test
 		[Test]
         public void SyncGetMatchCurrentList()
         {
-			app ().user ().getCurrentMatches().get ().sync (delegate(ActionMatchListCurrent action) {
+			app().getUser().getCurrentMatches().get ().sync (delegate(ActionMatchListCurrent action) {
 				Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
 			});
         }
@@ -132,7 +132,7 @@ namespace com.kumakore.test
         [Test]
         public void AsyncGetMatchCurrentList()
         {
-            app ().user ().getCurrentMatches().get ().async (delegate(ActionMatchListCurrent action) {
+            app().getUser().getCurrentMatches().get ().async (delegate(ActionMatchListCurrent action) {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
@@ -143,7 +143,7 @@ namespace com.kumakore.test
 		[Test]
         public void SyncGetStatus()
         {
-			app ().user ().currentMatch().getStatus ().sync (delegate(ActionMatchStatusGet action) {
+			app().getUser().currentMatch().getStatus ().sync (delegate(ActionMatchStatusGet action) {
 				Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
 			});
         }
@@ -151,7 +151,7 @@ namespace com.kumakore.test
         [Test]
         public void AsyncGetStatus()
         {
-            app ().user ().currentMatch().getStatus ().async (delegate(ActionMatchStatusGet action) {
+            app().getUser().currentMatch().getStatus ().async (delegate(ActionMatchStatusGet action) {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
@@ -162,7 +162,7 @@ namespace com.kumakore.test
 		[Test]
         public void SyncGetMoves()
         {
-			app ().user ().currentMatch().getMoves (0).sync (delegate(ActionMatchMoves action) {
+			app().getUser().currentMatch().getMoves (0).sync (delegate(ActionMatchMoves action) {
 				Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
 			});
         }
@@ -170,7 +170,7 @@ namespace com.kumakore.test
         [Test]
         public void AsyncGetMoves()
         {
-            app ().user ().currentMatch().getMoves (0).async (delegate(ActionMatchMoves action) {
+            app().getUser().currentMatch().getMoves (0).async (delegate(ActionMatchMoves action) {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
@@ -181,7 +181,7 @@ namespace com.kumakore.test
 		/*[Test]
         public void SyncSendMoves()
         {
-			app ().user ().currentMatch().sendMove(0,"dummy",new Dictionary<String,int>(),new Dictionary<String,int>(),0,false,new Dictionary<String,int>()).sync (delegate(ActionMatchSendMove action) {
+			app().getUser().currentMatch().sendMove(0,"dummy",new Dictionary<String,int>(),new Dictionary<String,int>(),0,false,new Dictionary<String,int>()).sync (delegate(ActionMatchSendMove action) {
 				Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
 			});
         }
@@ -189,7 +189,7 @@ namespace com.kumakore.test
         [Test]
         public void AsyncSendMoves()
         {
-            app ().user ().currentMatch().sendMove(0,"dummy",new Dictionary<String,int>(),new Dictionary<String,int>(),0,false,new Dictionary<String,int>()).async (delegate(ActionMatchSendMove action) {
+            app().getUser().currentMatch().sendMove(0,"dummy",new Dictionary<String,int>(),new Dictionary<String,int>(),0,false,new Dictionary<String,int>()).async (delegate(ActionMatchSendMove action) {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
@@ -200,7 +200,7 @@ namespace com.kumakore.test
 		[Test]
         public void SyncSelectItems()
         {
-			app ().user ().currentMatch().selectItems(new Dictionary<String,int>(),0).sync (delegate(ActionMatchSelectItems action) {
+			app().getUser().currentMatch().selectItems(new Dictionary<String,int>(),0).sync (delegate(ActionMatchSelectItems action) {
 				Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
 			});
         }
@@ -208,7 +208,7 @@ namespace com.kumakore.test
         [Test]
         public void AsyncSelectItems()
         {
-            app ().user ().currentMatch().selectItems(new Dictionary<String,int>(),0).async (delegate(ActionMatchSelectItems action) {
+            app().getUser().currentMatch().selectItems(new Dictionary<String,int>(),0).async (delegate(ActionMatchSelectItems action) {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
@@ -219,7 +219,7 @@ namespace com.kumakore.test
 		[Test]
         public void SyncResign()
         {
-			app ().user ().currentMatch().resign().sync (delegate(ActionMatchResign action) {
+			app().getUser().currentMatch().resign().sync (delegate(ActionMatchResign action) {
 				Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
 			});
         }
@@ -227,7 +227,7 @@ namespace com.kumakore.test
         [Test]
         public void AsyncResign()
         {
-            app ().user ().currentMatch().resign().async (delegate(ActionMatchResign action) {
+            app().getUser().currentMatch().resign().async (delegate(ActionMatchResign action) {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });

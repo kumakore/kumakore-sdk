@@ -31,7 +31,7 @@ public class Helpers {
             case ClaudeMonet:
                 return "292c9e31e5187c58b58f5f8588edc92d";
             case CharlesDarwin:
-                return "e3198395da8e81cc27dffffd6ebdcb45";
+                return "efc3993b2afd05a99f978342604046bc";
             case ThomasEdison:
                 return "60cbe9a5d89b09b6096e178450021505";
             default:

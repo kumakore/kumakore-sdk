@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using com.kumakore;
 using System;
@@ -24,8 +24,8 @@ public class HelloWorld : MonoBehaviour {
 		
 		//signout();
 
-		if (_app.user().hasSessionId()) {
-			Kumakore.LOGI(TAG, _app.user().getName() + " already signed in.");
+		if (_app.getUser().hasSessionId()) {
+			Kumakore.LOGI(TAG, _app.getUser().getName() + " already signed in.");
 		} else {
 			// could be not logged in or
 			// we need to create an account			
@@ -37,14 +37,58 @@ public class HelloWorld : MonoBehaviour {
 		_app.save();
 	}
 
+	// returns true if error is handled
+	private bool handleErrorCodes(KumakoreActionBase action) {
+		if (action.getCode() == StatusCodes.APP_API_KEY_INVALID) {
+			// developer used the wrong API key?
+			//...
+
+			return true;
+		} else if (action.getCode() == StatusCodes.APP_DASHBOARD_VERSION_INVALID) {
+			// dashboard version is not valid. update KumakoreApp dashboard version, then retry?
+			// the server dashboard version is stored in the action
+			// update the KumakoreApp dashboard version to match
+			_app.setDashboardVersion (action.getDashboardVersion ());
+
+			//retry a few times?
+			if (action.getExecutions() < 3) {
+				//NOTE: no need to provide callback because the action already
+				// associated the callback 
+				// true to reset the action state
+				action.async(true); 
+			}
+
+			return true;
+		} else if (action.getCode() == StatusCodes.APP_SESSION_ID_INVALID) {
+			// session id is not valid. get new session id, then retry?
+			//..
+			return true;
+		} else if (action.getCode() == StatusCodes.APP_VERSION_INVALID) {
+			// app version is not valid. force users to update or not?
+			//...
+
+			return true;
+		} else if (action.getCode() == StatusCodes.NETWORK_ERROR) {
+			//...
+			return true;
+		} else if (action.getCode() == StatusCodes.PROTOCOL_ERROR) {
+			//...
+			return true;
+		} 
+
+		return false;
+	}
+
 	private void signup(String usernameOrEmail) {
 
-		Kumakore.LOGI(TAG, "signup -> " + usernameOrEmail);
-		_app.signup(usernameOrEmail).sync(delegate(ActionAppSignup action) {
+		Kumakore.LOGI(TAG, "signup " + usernameOrEmail + " ...");
+		_app.signup(usernameOrEmail).async(delegate(ActionUserSignup action) {
 
-			if (action.getCode() == StatusCodes.SUCCESS) {
-				Kumakore.LOGI(TAG, _app.user().getName() + " signed in.");
+			if (action.getCode () == StatusCodes.SUCCESS) {
+				Kumakore.LOGI(TAG, _app.getUser().getName() + " signed in.");
 				return;
+			} else if (handleErrorCodes(action)) {
+				//...
 			} else if (action.getCode() == StatusCodes.USER_NAME_TAKEN) {
 				signin(usernameOrEmail, PASSWORD);
 				return;
@@ -63,15 +107,18 @@ public class HelloWorld : MonoBehaviour {
 
 	private void signin(String usernameOrEmail, String password) {
 
-		Kumakore.LOGI(TAG, "signin -> " + usernameOrEmail);
-		_app.signin(usernameOrEmail, password).sync(delegate(ActionAppSignin action) {
+		Kumakore.LOGI(TAG, "signin " + usernameOrEmail + " ...");
+		_app.signin(usernameOrEmail, password).async(delegate(ActionUserSignin action) {
 
-			if (action.getCode() == StatusCodes.SUCCESS) {
-				Kumakore.LOGI(TAG, _app.user().getName() + " signed in.");
+			if (action.getCode () == StatusCodes.SUCCESS) {
+				Kumakore.LOGI(TAG, _app.getUser().getName() + " signed in.");
+				platform();
 				return;
+			} else if (handleErrorCodes(action)) {
+				//...
 			} else if (action.getCode() == StatusCodes.USER_NAME_EMAIL_PASSWORD_INVALID) {
-
-			}
+				//...
+			} 
 
 			Kumakore.LOGE(TAG, action.getStatusMessage());
 		});
@@ -79,15 +126,27 @@ public class HelloWorld : MonoBehaviour {
 
 	private void signout() {
 
-		Kumakore.LOGI(TAG, "signout -> " + _app.user().getName());
-		_app.user().signout().sync(delegate(ActionUserSignout action) {
+		Kumakore.LOGI(TAG, "signout " + _app.getUser().getName() + " ...");
+		_app.getUser().signout().async(delegate(ActionUserSignout action) {
 
-			if (action.getCode() == StatusCodes.SUCCESS) {
-				Kumakore.LOGI(TAG, _app.user().getName() + " signed out.");
+			if (action.getCode () == StatusCodes.SUCCESS) {
+				Kumakore.LOGI(TAG, _app.getUser().getName() + " signed out.");
 				return;
+			} else if (handleErrorCodes(action)) {
+				//...
 			}
 
 			Kumakore.LOGE(TAG, action.getStatusMessage());
+		});
+	}
+
+	private void platform() {
+
+		Kumakore.LOGI(TAG, "platform ...");
+		_app.platform ().async (delegate(ActionAppPlatform action) {
+			if (action.getCode () == StatusCodes.SUCCESS) {
+				Kumakore.LOGI(TAG, "Current: " + action.getCurrent() + ", Mimimum: " + action.getMinimum());
+			}
 		});
 	}
 }

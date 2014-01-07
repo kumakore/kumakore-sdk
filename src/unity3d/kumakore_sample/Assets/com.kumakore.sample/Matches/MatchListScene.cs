@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using com.kumakore;
 using System.Collections.Generic;
 
 public class MatchListScene : MonoBehaviour {
 	
+	#region sample variables
 	public string appKey;
 	public int dashboardVersion;
 	
@@ -14,7 +15,6 @@ public class MatchListScene : MonoBehaviour {
 	public GUIStyle normalStyle = new GUIStyle();
 	
 	private KumakoreApp app;
-	private OpenMatchMap currentMatches;
 	private IDictionary<string,OpenMatch> myTurnMatches;
 	private IDictionary<string,OpenMatch> theirTurnMatches;
 	private IDictionary<string,Match> completedMatches;
@@ -35,25 +35,181 @@ public class MatchListScene : MonoBehaviour {
 	private Vector2 scrollPosition2;
 	
 	private string userId;
+	#endregion
 	
+	#region Kumakore 
+	// Code related to Kumakore API calls
 	// Initialise KumakoreApp object
 	void Awake () {
 		app = new KumakoreApp(appKey,dashboardVersion);
+		
+		//app.delete ();
+		
 		app.load();
 	}
 	
-	void Destroy() { 
-		app.save ();	
+	void OnDestroy() {
+		app.save ();
 	}
 	
+	// KUMAKORE ACTIONS
+	// Sign in with username / email and password
+	public void SignIn(string user, string pass) {
+		app.signin (user,pass).async (delegate(ActionUserSignin action) {
+			message = "Signin delegate: " + action.getStatusMessage();
+			if(action.getCode() == StatusCodes.SUCCESS) GetUserInfo();
+		});
+		
+	}
+	// Get user information
+	public void GetUserInfo() {
+		app.getUser ().get().async (delegate(ActionUserGet action) {
+			if(action.getCode() == StatusCodes.SUCCESS) {
+				// User info has been retrieved, load user matches
+				downloadMatches();
+				userId = app.getUser ().getId ();
+			} else message = "Error getting user info: " + action.getStatusMessage();
+		});
+	}
+	// Get list of current matches
+	public void GetCurrentMatches() {
+		app.getUser ().getOpenMatches().get ().async(delegate(ActionMatchGetOpen action) {
+			if(action.getCode() == StatusCodes.SUCCESS) {
+				finishedCurrentMatches = true;
+				updateAllMatches();
+			}
+			message = "Get current matches delegate: " + action.getStatusMessage();
+		});
+	}
+	// Get list of completed matches
+	public void GetCompletedMatches() {
+		app.getUser ().getClosedMatches().get ().async (delegate(ActionMatchGetClosed action) {
+			if(action.getCode() == StatusCodes.SUCCESS) {
+				finishedCompletedMatches = true;
+				updateAllMatches();
+			}
+			message = "Get completed matches delegate: " + action.getStatusMessage();
+		});
+	}
+	// Creates a new match against specified opponent
+	public void CreateNewMatch(string opponent) {
+		if(string.IsNullOrEmpty(opponent)) {
+			message = "Opponent cannot be null";
+		} else {
+			app.getUser ().getOpenMatches().createNewMatch(opponent).async (delegate(ActionMatchCreate action) {
+				if(action.getCode() == StatusCodes.SUCCESS) {
+					message = "Match created";
+					downloadMatches();
+				} else message = "Error while creating match: " + action.getStatusMessage();
+			});
+		}
+	}
+	// Creates a new match
+	public void CreateRandomMatch() {
+		app.getUser ().getOpenMatches().createRandomMatch().async (delegate(ActionMatchCreateRandom action) {
+			if(action.getCode() == StatusCodes.SUCCESS) {
+				message = "Random match created";
+				downloadMatches();
+			} else message = "Error while creating random match: " + action.getStatusMessage();
+		});
+	}
+	// Gets match status
+	public void GetMatchStatus(OpenMatch m) {
+		match = m;
+		match.getStatus().async (delegate(ActionMatchGetStatus action) {
+			if(action.getCode () == StatusCodes.SUCCESS) {
+				match = app.getUser ().getOpenMatches()[match.getMatchId()];
+				message = "Match selected: " + match.getMatchId();
+				userId = app.getUser ().getId ();
+				matchLoaded = true;
+				// load MatchInfo now
+				match.getMoves(0).async (GetMatchMovesDelegate);
+			} else message = "Error while loading match: " + action.getStatusMessage();
+			if(match.getNudged()) message = match.getOpponentUsername() + " has nudged you!";
+			//kumakore.user ().inventory().get ().async (GetInventoryDelegate);
+		});
+	}
+	
+	public void GetMatchMovesDelegate(ActionMatchGetMoves action) {
+		
+	}
+	// Resign a match
+	public void ResignMatch(OpenMatch m) {
+		m.resign().async (delegate(ActionMatchResign action) {
+			quitMatch();
+		});
+	}
+	// Accept a match
+	public void AcceptMatch(OpenMatch m) {
+		m.accept().async (delegate(ActionMatchAccept action) {
+			GetMatchStatus(m);
+		});
+	}
+	// Reject a match
+	public void RejectMatch(OpenMatch m) {
+		match.reject().async (delegate(ActionMatchReject action) {
+			quitMatch();
+		});
+	}
+	// Send nudge to opponents in a match
+	public void SendNudge(OpenMatch m) {
+		match.sendNudge().async (delegate(ActionMatchNudge action) {
+		});
+		
+	}
+	// Select items to be used in a move
+	public void SelectItems(OpenMatch m, IDictionary<string, int> it) {
+		m.selectItems(it,m.getMoveNum()).async (delegate(ActionMatchSelectItems action) {
+		});
+		
+	}
+	// Send a move to a match
+	public void SendMove(OpenMatch m,string move) {
+		IDictionary<string, int> _rewardItems = new Dictionary<string,int>();
+		IDictionary<string, int> _attackItems = new Dictionary<string,int>();
+		IDictionary<string, int> _selectedItems = new Dictionary<string,int>();
+		
+		//
+		 // _rewardItems.put("bomb_01", 1); _rewardItems.put("amazing_powerup",
+		 //* 1);
+		 //
+		_attackItems.Add(move, 1);
+		//*
+		 //* _selectedItems.put("bomb_01", 1);
+		 //* _selectedItems.put("amazing_powerup",1);
+		 //
+		
+		m.sendMove(match.getMoveNum(), "test attack for move: " + m.getMoveNum(),_rewardItems, _attackItems, false, _selectedItems).async(delegate(ActionMatchMove action) {
+			GetMatchStatus(m);
+		});
+	}
+	// Send chat message to match
+	public void SendChatMessage(OpenMatch m, string chatM) {
+		m.sendChatMessage(chatMessage).async (delegate(ActionMatchChatMessage action) {
+			chatMessage = "";
+			GetChatMessages(m);
+		});
+	}
+	public void GetChatMessages(OpenMatch m) {
+		m.getChatMessages().async (delegate(ActionMatchGetChatMessage action) {
+		});
+		
+	}
+	public void GetInventoryDelegate(ActionInventoryGet action) {
+		
+	}
+	#endregion
+	
+	#region GUI
+	// Deals with the graphical representation of the sample
 	
 	void OnGUI() {
-		if(app.user ().hasSessionId ()) {
+		if(app.getUser ().hasSessionId ()) {
 			if(match == null && !matchLoaded) {
 				scrollPosition = GUI.BeginScrollView(new Rect(0,0,Screen.width,Screen.height-180),scrollPosition,new Rect(0,0,Screen.width*0.9f,Screen.height*10));
 				GUI.Label (new Rect(Screen.width*0.35f,5,Screen.width*0.6f,60),"Match List",titleStyle);
 				// Matches list screen
-				DrawMatchCreation();
+				MatchCreationGUI();
 				// List matches
 				if(finishedCurrentMatches && finishedCompletedMatches) {
 					MatchListGUI();
@@ -66,7 +222,7 @@ public class MatchListScene : MonoBehaviour {
 			}
 		} else {
 			// Login screen
-			LoginScreen();
+			LoginGUI();
 		}
 		// Permanent GUI
 		GUI.Label (new Rect(Screen.width*0.1f,Screen.height-180,Screen.width*0.8f,60),message,normalStyle);
@@ -74,11 +230,11 @@ public class MatchListScene : MonoBehaviour {
 	}
 	
 	// GUI Screens
-	private void LoginScreen() {
+	private void LoginGUI() {
 		GUI.Label (new Rect(Screen.width*0.35f,20,Screen.width*0.6f,80),"Enter your email/username and password to sign in",titleStyle);
 		useremail = GUI.TextField (new Rect(Screen.width*0.1f,100,Screen.width*0.8f,100),useremail);
 		password = GUI.TextField (new Rect(Screen.width*0.1f,220,Screen.width*0.8f,100),password);
-		if(GUI.Button (new Rect(Screen.width*0.1f,340,Screen.width*0.8f,100),"Sign in")) app.signin (useremail,password).async (SigninDelegate);	
+		if(GUI.Button (new Rect(Screen.width*0.1f,340,Screen.width*0.8f,100),"Sign in")) SignIn(useremail,password);	
 	}
 	
 	private void MatchListGUI() {
@@ -92,8 +248,7 @@ public class MatchListScene : MonoBehaviour {
 				if(string.IsNullOrEmpty(info)) info = "Random Opponent";
 				info += " Move:" + pair.Value.getMoveNum();
 				if(GUI.Button (new Rect(Screen.width*0.1f,min+520,Screen.width*0.8f,100),info)) {
-					match = pair.Value;
-					pair.Value.getStatus().sync (GetStatusDelegate);
+					GetMatchStatus(pair.Value);
 				}
 				counter++;
 			}
@@ -105,8 +260,7 @@ public class MatchListScene : MonoBehaviour {
 				if(string.IsNullOrEmpty(info)) info = "Random Opponent";
 				info += " Move:" + pair.Value.getMoveNum();
 				if(GUI.Button (new Rect(Screen.width*0.1f,min+660,Screen.width*0.8f,100),info)) {
-					match = pair.Value;
-					pair.Value.getStatus().sync (GetStatusDelegate);
+					GetMatchStatus(pair.Value);
 				}
 				counter++;
 			}
@@ -121,11 +275,11 @@ public class MatchListScene : MonoBehaviour {
 		
 	}
 	
-	private void DrawMatchCreation() {
+	private void MatchCreationGUI() {
 		GUI.Label (new Rect(Screen.width*0.1f,70,Screen.width*0.8f,30),"Match creation",normalStyle);
 		opponentName = GUI.TextField (new Rect(Screen.width*0.1f,100,Screen.width*0.8f,100),opponentName);
-		if(GUI.Button (new Rect(Screen.width*0.1f,220,Screen.width*0.8f,100),"Create match")) currentMatches.createNewMatch(opponentName).async (CreateNewMatchDelegate);
-		if(GUI.Button (new Rect(Screen.width*0.1f,340,Screen.width*0.8f,100),"Create random")) currentMatches.createRandomMatch().async (CreateRandomMatchDelegate);
+		if(GUI.Button (new Rect(Screen.width*0.1f,220,Screen.width*0.8f,100),"Create match")) CreateNewMatch (opponentName);
+		if(GUI.Button (new Rect(Screen.width*0.1f,340,Screen.width*0.8f,100),"Create random")) CreateRandomMatch();
 	}
 	
 	private void MatchInfoGUI() {
@@ -133,15 +287,15 @@ public class MatchListScene : MonoBehaviour {
 		// Draw player names
 		if(checkFirstPlayer()) {
 			if(string.IsNullOrEmpty(match.getOpponentId())) {
-				GUI.Label (new Rect(Screen.width*0.1f,40,150,30),"P1: " + app.user ().getName (),normalStyle);
+				GUI.Label (new Rect(Screen.width*0.1f,40,150,30),"P1: " + app.getUser ().getName (),normalStyle);
 				GUI.Label (new Rect(Screen.width*0.7f,40,150,30),"Waiting for opponent",normalStyle);
 			} else {
-				GUI.Label (new Rect(Screen.width*0.1f,40,150,30),"P1: " + app.user ().getName (),normalStyle);
+				GUI.Label (new Rect(Screen.width*0.1f,40,150,30),"P1: " + app.getUser ().getName (),normalStyle);
 				GUI.Label (new Rect(Screen.width*0.7f,40,150,30),"P2: " + match.getOpponentUsername(),normalStyle);
 			}
 		} else {
 			GUI.Label (new Rect(Screen.width*0.1f,40,150,30),"P1: " + match.getOpponentUsername(),normalStyle);
-			GUI.Label (new Rect(Screen.width*0.7f,40,150,30),"P2: " + app.user ().getName (),normalStyle);
+			GUI.Label (new Rect(Screen.width*0.7f,40,150,30),"P2: " + app.getUser ().getName (),normalStyle);
 		}
 		GUI.Label (new Rect(Screen.width*0.4f,70,200,40),"Move " + match.getMoveNum());
 		
@@ -150,23 +304,23 @@ public class MatchListScene : MonoBehaviour {
 			// in turn
 			//if(match.getMoveNum() == 2) if(GUI.Button (new Rect(10,130,100,60),"Close")) match.close().async (CloseMatchDelegate);
 			if(!match.getRandomMatch() && !match.getClosed () && match.getMoveNum() == 1 && match.getTurn () == userId && !match.getAccepted()) {
-				if(GUI.Button (new Rect(Screen.width*0.1f,110,Screen.width*0.4f,100),"Accept")) match.accept().async (AcceptMatchDelegate);
-				if(GUI.Button (new Rect(Screen.width*0.5f,110,Screen.width*0.4f,100),"Reject")) match.reject().async (RejectMatchDelegate);
+				if(GUI.Button (new Rect(Screen.width*0.1f,110,Screen.width*0.4f,100),"Accept")) AcceptMatch (match);
+				if(GUI.Button (new Rect(Screen.width*0.5f,110,Screen.width*0.4f,100),"Reject")) RejectMatch(match);
 			}
-			if(GUI.Button (new Rect(Screen.width*0.1f,230,Screen.width*0.8f,100),"Select items")) match.selectItems(new Dictionary<string,int>(),match.getMoveNum()).async (SelectItemsDelegate);
+			if(GUI.Button (new Rect(Screen.width*0.1f,230,Screen.width*0.8f,100),"Select items")) SelectItems(match,new Dictionary<string,int>());
 			GUI.Label (new Rect(Screen.width*0.4f,350,200,30),"Send Move",normalStyle);
 			for(int ii=0; ii<attackItems.Length; ii++) {
-				if(GUI.Button (new Rect(ii*Screen.width/attackItems.Length,380,Screen.width/attackItems.Length,100),"Send Move: "+attackItems[ii])) SendMove(attackItems[ii]);
+				if(GUI.Button (new Rect(ii*Screen.width/attackItems.Length,380,Screen.width/attackItems.Length,100),"Send Move: "+attackItems[ii])) SendMove(match,attackItems[ii]);
 			}
-			if(GUI.Button (new Rect(Screen.width*0.1f,500,Screen.width*0.8f,100),"Resign")) match.resign().async (ResignDelegate);
+			if(GUI.Button (new Rect(Screen.width*0.1f,500,Screen.width*0.8f,100),"Resign")) ResignMatch (match);
 		} else {
 			// not in turn
-			if(GUI.Button (new Rect(Screen.width*0.1f,130,Screen.width*0.8f,100),"Send nudge")) match.sendNudge().async (SendNudgeDelegate);
+			if(GUI.Button (new Rect(Screen.width*0.1f,130,Screen.width*0.8f,100),"Send nudge")) SendNudge (match);
 		}
 		// common
 		chatMessage = GUI.TextField(new Rect(Screen.width*0.1f,600,Screen.width*0.8f,100),chatMessage);
-		if(GUI.Button (new Rect(Screen.width*0.1f,720,Screen.width*0.4f,100),"Send Chat")) match.sendChatMessage(chatMessage).async (SendChatMessageDelegate);
-		if(GUI.Button (new Rect(Screen.width*0.5f,720,Screen.width*0.4f,100),"Get messages")) match.getChatMessages().async (GetChatMessagesDelegate);
+		if(GUI.Button (new Rect(Screen.width*0.1f,720,Screen.width*0.4f,100),"Send Chat")) SendChatMessage(match,chatMessage);
+		if(GUI.Button (new Rect(Screen.width*0.5f,720,Screen.width*0.4f,100),"Get messages")) GetChatMessages(match);
 		if(match.chatMessages != null && match.chatMessages.Count > 0) {
 			for(int ii=0; ii<match.chatMessages.Count; ii++) {
 				GUI.Label (new Rect(Screen.width*0.1f,830 + ii*30,Screen.width*0.8f,30),"user:"+match.chatMessages[ii].getUserId() + ",message:"+match.chatMessages[ii].getMsg() + ",date:"+ match.chatMessages[ii].getDate());
@@ -174,105 +328,16 @@ public class MatchListScene : MonoBehaviour {
 		}
 		GUI.EndScrollView();
 	}
+	#endregion
 	
-	
-	// KUMAKORE DELEGATES
-	public void SigninDelegate(ActionAppSignin action) {
-		message = "Signin delegate: " + action.getStatusMessage();
-		if(action.getCode() == StatusCodes.SUCCESS) app.user ().get().async (GetUserInfoDelegate);
-	}
-	
-	public void GetUserInfoDelegate(ActionUserGet action) {
-		if(action.getCode() == StatusCodes.SUCCESS) {
-			downloadMatches();
-			userId = app.user ().getId ();
-		} else message = "Error getting user info: " + action.getStatusMessage();
-	}
-	
-	public void GetCurrentMatchesDelegate(ActionOpenMatchMap action) {
-		if(action.getCode() == StatusCodes.SUCCESS) {
-			finishedCurrentMatches = true;
-			updateAllMatches();
-		}
-		message = "Get current matches delegate: " + action.getStatusMessage();
-	}
-	
-	public void GetCompletedMatchesDelegate(ActionClosedMatchMap action) {
-		if(action.getCode() == StatusCodes.SUCCESS) {
-			finishedCompletedMatches = true;
-			updateAllMatches();
-		}
-		message = "Get completed matches delegate: " + action.getStatusMessage();
-	}
-	
-	public void CreateNewMatchDelegate(ActionMatchCreateNew action) {
-		if(action.getCode() == StatusCodes.SUCCESS) {
-			message = "Match created";
-			downloadMatches();
-		} else message = "Error while creating match: " + action.getStatusMessage();
-	}
-	
-	public void CreateRandomMatchDelegate(ActionMatchCreateRandom action) {
-		if(action.getCode() == StatusCodes.SUCCESS) {
-			message = "Random match created";
-			downloadMatches();
-		} else message = "Error while creating random match: " + action.getStatusMessage();
-	}
-	
-	public void GetStatusDelegate(ActionMatchStatusGet action) {
-		if(action.getCode () == StatusCodes.SUCCESS) {
-			match = app.user ().getOpenMatches()[match.getMatchId()];
-			message = "Match selected: " + match.getMatchId();
-			userId = app.user ().getId ();
-			matchLoaded = true;
-			// load MatchInfo now
-			match.getMoves(0).async (GetMatchMovesDelegate);
-		} else message = "Error while loading match: " + action.getStatusMessage();
-		//if(match.getNudged()) message = match.getOpponentUsername() + " has nudged you!";
-		//kumakore.user ().inventory().get ().async (GetInventoryDelegate);
-	}
-	
-	public void GetMatchMovesDelegate(ActionMatchMoves action) {
-		
-	}
-	
-	public void ResignDelegate(ActionMatchResign action) {
-		quitMatch();
-	}
-	
-	public void AcceptMatchDelegate(ActionMatchAccept action) {
-		match.getStatus().async (GetStatusDelegate);
-	}
-	public void RejectMatchDelegate(ActionMatchReject action) {
-		quitMatch();
-	}
-	
-	public void SendNudgeDelegate(ActionMatchSendNudge action) {
-		
-	}
-	public void SelectItemsDelegate(ActionMatchSelectItems action) {
-		
-	}
-	public void SendMoveDelegate(ActionMatchSendMove action) {
-		match.getStatus().async (GetStatusDelegate);
-	}
-	public void SendChatMessageDelegate(ActionChatMessageSend action) {
-		chatMessage = "";
-		match.getChatMessages().async (GetChatMessagesDelegate);
-	}
-	public void GetChatMessagesDelegate(ActionChatMessageGet action) {
-		
-	}
-	public void GetInventoryDelegate(ActionInventoryGet action) {
-		
-	}
+	#region auxiliar functions
+	// Supporting functions for the sample
 	
 	// AUXILIAR FUNCTIONS
 	private void downloadMatches() {
 		finishedCurrentMatches = finishedCompletedMatches = false;
-		currentMatches = app.user ().getOpenMatches();
-		currentMatches.get ().async(GetCurrentMatchesDelegate);
-		app.user ().getClosedMatches().get ().async (GetCompletedMatchesDelegate);
+		GetCurrentMatches();
+		GetCompletedMatches();
 		message = "Loading, please wait...";
 	}
 	
@@ -284,9 +349,9 @@ public class MatchListScene : MonoBehaviour {
 	}
 	
 	private void updateCurrentMatchList() {
-		myTurnMatches = currentMatches.filters().myTurn();
-		theirTurnMatches = currentMatches.filters().theirTurn();
-		completedMatches = app.user ().getClosedMatches();
+		myTurnMatches = app.getUser ().getOpenMatches().getMyTurn();
+		theirTurnMatches = app.getUser ().getOpenMatches().getTheirTurn();
+		completedMatches = app.getUser ().getClosedMatches();
 	}
 	
 	private void updateCompletedMatchList() {
@@ -333,27 +398,10 @@ public class MatchListScene : MonoBehaviour {
 		return mystart;
 	}
 	
-	private void SendMove(string move) {
-		IDictionary<string, int> _rewardItems = new Dictionary<string,int>();
-		IDictionary<string, int> _attackItems = new Dictionary<string,int>();
-		IDictionary<string, int> _selectedItems = new Dictionary<string,int>();
-		
-		//
-		 // _rewardItems.put("bomb_01", 1); _rewardItems.put("amazing_powerup",
-		 //* 1);
-		 //
-		_attackItems.Add(move, 1);
-		//*
-		 //* _selectedItems.put("bomb_01", 1);
-		 //* _selectedItems.put("amazing_powerup",1);
-		 //
-		
-		match.sendMove(match.getMoveNum(), "test attack for move: " + match.getMoveNum(),_rewardItems, _attackItems, false, _selectedItems).async(SendMoveDelegate);
-	}
-	
 	private void quitMatch() {
 		match = null;
 		matchLoaded = false;
 		downloadMatches();
 	}
+	#endregion
 }

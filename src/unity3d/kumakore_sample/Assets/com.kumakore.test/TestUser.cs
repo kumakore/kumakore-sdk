@@ -15,37 +15,41 @@ namespace com.kumakore.test
 			
 			user.SyncUserGet();
 			user.AsyncUserGet();
-			user.SyncUpdateInfo();
-			user.AsyncUpdateInfo();
+			user.SyncUpdateInfo(TEST_1,"newemail@carlostest.com","pass");
+			user.AsyncUpdateInfo(TEST_1,TEST_1_EMAIL,PASSWORD);
 			
 			user.SyncGetFacebookFriends();
 			user.AsyncGetFacebookFriends();
-			
+			user.SyncSignOut();
         }
 		
 		[TestFixtureSetUp]
 		public override void setup ()
 		{
 			base.setup ();
-			app ().signin(VALID_TEST_EMAIL,VALID_TEST_PASSWORD).sync ();
+			app ().signin(TEST_1,PASSWORD).sync ();
 		}
 		
 		
 		[Test]
         public void SyncUserGet()
         {
-            app().user().get().sync(delegate(ActionUserGet action)
+            app().getUser().get().sync(delegate(ActionUserGet action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
+					//Assert.IsNotNullOrEmpty(app().getUser().getEmail());
+					//Assert.IsNotNullOrEmpty(app().getUser().getName());
             });
         }
 
         [Test]
         public void AsyncUserGet()
         {
-            app().user().get().async(delegate(ActionUserGet action)
+            app().getUser().get().async(delegate(ActionUserGet action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
+					//Assert.IsNotNullOrEmpty(app().getUser().getEmail());
+					//Assert.IsNotNullOrEmpty(app().getUser().getName());
                 Release();
             });
 
@@ -53,21 +57,23 @@ namespace com.kumakore.test
         }
 		
 		[Test]
-        public void SyncUpdateInfo()
+        public void SyncUpdateInfo(String username, String newEmail, String pass)
         {
-            app().user().update("carlos_3","kiffen1011@h.com","pass").sync(delegate(ActionUserUpdate action)
+            app().getUser().update(username,newEmail,pass).sync(delegate(ActionUserUpdate action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
+				Assert.AreEqual(newEmail,app().getUser().getEmail());
             });
         }
 
         [Test]
-        public void AsyncUpdateInfo()
+        public void AsyncUpdateInfo(String username, String newEmail, String pass)
         {
-            app().user().update("carlos_2","kiffen1011@hotmail.com","password").async(delegate(ActionUserUpdate action)
+            app().getUser().update(username,newEmail,pass).async(delegate(ActionUserUpdate action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
-                Release();
+                Assert.AreEqual(newEmail,app().getUser().getEmail());
+				Release();
             });
 
             Wait();
@@ -76,7 +82,7 @@ namespace com.kumakore.test
 		[Test]
         public void SyncGetFacebookFriends()
         {
-            app().user().getFacebookFriends().get(TEST_FACEBOOK_TOKEN).sync(delegate(ActionFacebookGetFriends action)
+            app().getUser().getFacebookFriends().get(TEST_FACEBOOK_TOKEN).sync(delegate(ActionFacebookGetFriends action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
@@ -85,13 +91,22 @@ namespace com.kumakore.test
         [Test]
         public void AsyncGetFacebookFriends()
         {
-            app().user().getFacebookFriends().get(TEST_FACEBOOK_TOKEN).async(delegate(ActionFacebookGetFriends action)
+            app().getUser().getFacebookFriends().get(TEST_FACEBOOK_TOKEN).async(delegate(ActionFacebookGetFriends action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 
             Wait();
+        }
+		
+		[Test]
+        public void SyncSignOut()
+        {
+            app().getUser().signout ().sync(delegate(ActionUserSignout action)
+            {
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
+            });
         }
 		
 	}

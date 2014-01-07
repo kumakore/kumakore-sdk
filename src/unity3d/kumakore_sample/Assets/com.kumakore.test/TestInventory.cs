@@ -26,14 +26,14 @@ namespace com.kumakore.test
 		public override void setup ()
 		{
 			base.setup ();
-			app ().signin(VALID_TEST_EMAIL,VALID_TEST_PASSWORD).sync ();
+			app ().signin(TEST_1,PASSWORD).sync ();
 		}
 		
 		
 		[Test]
         public void SyncAddItem()
         {
-            app().user().inventory().addItem(ITEM_NAME,10).sync(delegate(ActionInventoryAdd action)
+            app().getUser().getInventory().addItem(ITEM_NAME,10).sync(delegate(ActionInventoryAdd action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
@@ -42,7 +42,7 @@ namespace com.kumakore.test
         [Test]
         public void AsyncAddItem()
         {
-            app().user().inventory().addItem(ITEM_NAME,2).async(delegate(ActionInventoryAdd action)
+            app().getUser().getInventory().addItem(ITEM_NAME,2).async(delegate(ActionInventoryAdd action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
@@ -54,7 +54,7 @@ namespace com.kumakore.test
 		[Test]
         public void SyncRemoveItem()
         {
-            app().user().inventory().removeItem(ITEM_NAME,1).sync(delegate(ActionInventoryRemove action)
+            app().getUser().getInventory().removeItem(ITEM_NAME,1).sync(delegate(ActionInventoryRemove action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
@@ -63,7 +63,7 @@ namespace com.kumakore.test
         [Test]
         public void AsyncRemoveItem()
         {
-            app().user().inventory().removeItem(ITEM_NAME,2).async(delegate(ActionInventoryRemove action)
+            app().getUser().getInventory().removeItem(ITEM_NAME,2).async(delegate(ActionInventoryRemove action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();

@@ -45,10 +45,10 @@ namespace com.kumakore.test
 			
 			app.SyncFacebookConnectAccount();
 			app.SyncFacebookLogin();
-			app.SyncFacebookRemoveAccount();
+			app.SyncFacebookDeauthorize();
 			app.AsyncFacebookConnectAccount();
 			app.AsyncFacebookLogin();
-			app.AsyncFacebookRemoveAccount();
+			app.AsyncFacebookDeauthorize();
 			
         }
 		
@@ -153,7 +153,7 @@ namespace com.kumakore.test
         public void AsyncSignupViaEmail()
         {
             String email = "email_async_" + Guid.NewGuid().ToString() + "@email.com";
-            app().signup(email).async(delegate(ActionAppSignup action)
+            app().signup(email).async(delegate(ActionUserSignup action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
@@ -173,7 +173,7 @@ namespace com.kumakore.test
         public void AsyncSignupViaUserName()
         {
             String userName = "username_async_" + Guid.NewGuid().ToString();
-            app().signup(userName).async(delegate(ActionAppSignup action)
+            app().signup(userName).async(delegate(ActionUserSignup action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
@@ -185,7 +185,7 @@ namespace com.kumakore.test
         [Test]
         public void SyncGetUserId()
         {
-            app().getUserId(TEST_USERNAME).sync(delegate(ActionAppGetUserId action)
+            app().getUserId(TEST_1).sync(delegate(ActionUserGetUserId action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Assert.IsFalse(String.IsNullOrEmpty(action.getUserId()), "userId is null or empty");
@@ -195,7 +195,7 @@ namespace com.kumakore.test
         [Test]
         public void AsyncGetUserId()
         {
-            app().getUserId(TEST_USERNAME).async(delegate(ActionAppGetUserId action)
+            app().getUserId(TEST_1).async(delegate(ActionUserGetUserId action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Assert.IsFalse(String.IsNullOrEmpty(action.getUserId()), "userId is null or empty");
@@ -208,13 +208,13 @@ namespace com.kumakore.test
         [Test]
         public void SyncPasswordReset()
         {
-            Assert.AreEqual(StatusCodes.SUCCESS, app().passwordReset(VALID_TEST_EMAIL).sync());
+            Assert.AreEqual(StatusCodes.SUCCESS, app().passwordReset(TEST_1_EMAIL).sync());
         }
 
         [Test]
         public void AsyncPasswordReset()
         {
-            app().passwordReset(VALID_TEST_EMAIL).async(delegate(ActionAppUserPasswordReset action)
+            app().passwordReset(TEST_1_EMAIL).async(delegate(ActionUserPasswordReset action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
@@ -225,14 +225,14 @@ namespace com.kumakore.test
 		
 		[Test]
 		public void SyncSignin() {
-			app ().signin (VALID_TEST_EMAIL,VALID_TEST_PASSWORD).sync (delegate(ActionAppSignin action) {
+			app ().signin (TEST_1_EMAIL,PASSWORD).sync (delegate(ActionUserSignin action) {
 				Assert.AreEqual(StatusCodes.SUCCESS,action.getCode());
 			});
 		}
 		
 		[Test]
 		public void AsyncSignin() {
-			app ().signin (VALID_TEST_EMAIL,VALID_TEST_PASSWORD).async (delegate(ActionAppSignin action) {
+			app ().signin (TEST_1_EMAIL,PASSWORD).async (delegate(ActionUserSignin action) {
 				Assert.AreEqual(StatusCodes.SUCCESS,action.getCode());
 				Release ();
 			});
@@ -242,7 +242,7 @@ namespace com.kumakore.test
 		[Test]
         public void SyncFacebookConnectAccount()
         {
-            app().facebookConnectAccount(TEST_FACEBOOK_TOKEN).sync(delegate(ActionFacebookConnectAccount action)
+            app().facebookConnect(TEST_FACEBOOK_TOKEN).sync(delegate(ActionFacebookConnect action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
@@ -251,7 +251,7 @@ namespace com.kumakore.test
         [Test]
         public void AsyncFacebookConnectAccount()
         {
-            app().facebookConnectAccount(TEST_FACEBOOK_TOKEN).async(delegate(ActionFacebookConnectAccount action)
+            app().facebookConnect(TEST_FACEBOOK_TOKEN).async(delegate(ActionFacebookConnect action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
@@ -263,7 +263,7 @@ namespace com.kumakore.test
 		[Test]
         public void SyncFacebookLogin()
         {
-            app().facebookLogin(TEST_FACEBOOK_TOKEN).sync(delegate(ActionFacebookLogin action)
+            app().facebookLogin(TEST_FACEBOOK_TOKEN).sync(delegate(ActionFacebookSignin action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
@@ -272,7 +272,7 @@ namespace com.kumakore.test
         [Test]
         public void AsyncFacebookLogin()
         {
-            app().facebookLogin(TEST_FACEBOOK_TOKEN).async(delegate(ActionFacebookLogin action)
+            app().facebookLogin(TEST_FACEBOOK_TOKEN).async(delegate(ActionFacebookSignin action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
@@ -282,18 +282,18 @@ namespace com.kumakore.test
 		}
 		
 		[Test]
-        public void SyncFacebookRemoveAccount()
+        public void SyncFacebookDeauthorize()
         {
-            app().facebookRemoveAccount().sync(delegate(ActionFacebookRemoveAccount action)
+            app().facebookDeauthorize().sync(delegate(ActionFacebookDeauthorize action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
         }
 
         [Test]
-        public void AsyncFacebookRemoveAccount()
+        public void AsyncFacebookDeauthorize()
         {
-            app().facebookRemoveAccount().async(delegate(ActionFacebookRemoveAccount action)
+            app().facebookDeauthorize().async(delegate(ActionFacebookDeauthorize action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
@@ -305,7 +305,7 @@ namespace com.kumakore.test
 		[Test]
         public void SyncGetAppRewards()
         {
-            app().rewards().get ().sync(delegate(ActionAppGetRewards action)
+            app().getRewards().get ().sync(delegate(ActionAppGetRewards action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
@@ -314,7 +314,7 @@ namespace com.kumakore.test
         [Test]
         public void AsyncGetAppRewards()
         {
-            app().rewards().get().async(delegate(ActionAppGetRewards action)
+            app().getRewards().get().async(delegate(ActionAppGetRewards action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();

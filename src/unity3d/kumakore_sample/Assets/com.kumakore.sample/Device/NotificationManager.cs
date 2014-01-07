@@ -31,15 +31,20 @@ namespace com.kumakore
 			
 			//signout();
 	
-			if (_app.user().hasSessionId()) {
-				Kumakore.LOGI(TAG, _app.user().getName() + " already signed in.");
+			if (_app.getUser().hasSessionId()) {
+				Kumakore.LOGI(TAG, _app.getUser().getName() + " already signed in.");
 			} else {
 				// could be not logged in or
 				// we need to create an account			
 				signup(EMAIL);
 			}
 		}
-	
+		
+		void OnApplicationFocus(bool focusState) {
+			Debug.Log ("OnApplicationFocus:" + focusState);
+			Notification.getInstance().setEnabled(!focusState);
+		}
+		
 		private void OnDestroy() {
 			_app.save();
 		}
@@ -49,7 +54,7 @@ namespace com.kumakore
 		    GUIStyle boxStyle = new GUIStyle(GUI.skin.box);
 		    boxStyle.fontSize = 30;
 			
-			if (_app.user().hasSessionId()) {
+			if (_app.getUser().hasSessionId()) {
 				
 				GUI.BeginGroup(new Rect(0, 0, Screen.width, Screen.height));
 				GUI.Box(new Rect(0,0, Screen.width, 40), "Notification Manager", boxStyle);
@@ -95,7 +100,7 @@ namespace com.kumakore
 		}
 		
 		private void register(string senderIds) {
-			_app.user().device().register(senderIds).sync(delegate(ActionDeviceRegister action) {
+			_app.getUser().device().register(senderIds).sync(delegate(ActionDeviceRegister action) {
 	
 				if (action.getCode() == StatusCodes.SUCCESS) {
 					Kumakore.LOGI(TAG, "registered: " + action.getToken());
@@ -109,7 +114,7 @@ namespace com.kumakore
 		}
 		
 		private void unregister() {
-			_app.user().device().unregister().sync(delegate(ActionDeviceUnregister action) {
+			_app.getUser().device().unregister().sync(delegate(ActionDeviceUnregister action) {
 	
 				if (action.getCode() == StatusCodes.SUCCESS) {
 					Kumakore.LOGI(TAG, "unregistered");
@@ -125,10 +130,10 @@ namespace com.kumakore
 		private void signup(String usernameOrEmail) {
 	
 			Kumakore.LOGI(TAG, "signup -> " + usernameOrEmail);
-			_app.signup(usernameOrEmail).sync(delegate(ActionAppSignup action) {
+			_app.signup(usernameOrEmail).sync(delegate(ActionUserSignup action) {
 	
 				if (action.getCode() == StatusCodes.SUCCESS) {
-					Kumakore.LOGI(TAG, _app.user().getName() + " signed in.");
+					Kumakore.LOGI(TAG, _app.getUser().getName() + " signed in.");
 					return;
 				} else if (action.getCode() == StatusCodes.USER_NAME_TAKEN) {
 					signin(usernameOrEmail, PASSWORD);
@@ -149,10 +154,10 @@ namespace com.kumakore
 		private void signin(String usernameOrEmail, String password) {
 	
 			Kumakore.LOGI(TAG, "signin -> " + usernameOrEmail);
-			_app.signin(usernameOrEmail, password).sync(delegate(ActionAppSignin action) {
+			_app.signin(usernameOrEmail, password).sync(delegate(ActionUserSignin action) {
 	
 				if (action.getCode() == StatusCodes.SUCCESS) {
-					Kumakore.LOGI(TAG, _app.user().getName() + " signed in.");
+					Kumakore.LOGI(TAG, _app.getUser().getName() + " signed in.");
 					return;
 				} else if (action.getCode() == StatusCodes.USER_NAME_EMAIL_PASSWORD_INVALID) {
 	
@@ -164,11 +169,11 @@ namespace com.kumakore
 	
 		private void signout() {
 	
-			Kumakore.LOGI(TAG, "signout -> " + _app.user().getName());
-			_app.user().signout().sync(delegate(ActionUserSignout action) {
+			Kumakore.LOGI(TAG, "signout -> " + _app.getUser().getName());
+			_app.getUser().signout().sync(delegate(ActionUserSignout action) {
 	
 				if (action.getCode() == StatusCodes.SUCCESS) {
-					Kumakore.LOGI(TAG, _app.user().getName() + " signed out.");
+					Kumakore.LOGI(TAG, _app.getUser().getName() + " signed out.");
 					return;
 				}
 	

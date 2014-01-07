@@ -47,7 +47,7 @@ namespace com.kumakore.test
                 case TestUsers.CharlesDarwin:
                     return 1375571696;
 				case TestUsers.CarlosFernandez:
-					return 1382389172;
+					return 1386951174;
                 default:
                     return -1;
             }

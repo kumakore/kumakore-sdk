@@ -16,17 +16,17 @@ namespace com.kumakore.sample
 		// Use this for initialization
 		void Start ()
 		{
-			_app = new KumakoreApp (DemoHelpers.API_KEY,
+			/*_app = new KumakoreApp (DemoHelpers.API_KEY,
 				DemoHelpers.DASHBOARD_VERSION);
 			
 			_app.signin ("carlos.fernandez.musoles@gmail.com","password").sync ();
-			
+			*/
 			
 			//TestApp.All();
 			//TestUser.All();
 			//TestAchievements.All ();
 			//TestProducts.All();
-			//TestLeaderboards.All ();
+			TestLeaderboards.All ();
 			//TestDatastore.All();
 			//TestInventory.All ();
 			//TestMatches.All ();

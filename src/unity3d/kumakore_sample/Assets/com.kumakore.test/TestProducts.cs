@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using com.kumakore;
 using NUnit.Framework;
 using System.Threading;
@@ -29,13 +29,13 @@ namespace com.kumakore.test
 		public override void setup ()
 		{
 			base.setup ();
-			app ().signin(VALID_TEST_EMAIL,VALID_TEST_PASSWORD).sync ();
+			app ().signin(TEST_1,PASSWORD).sync ();
 		}
 		
 		[Test]
         public void SyncGetProductList()
         {
-            app().products().get().sync(delegate(ActionAppProductListGet action)
+            app().getProducts().get().sync(delegate(ActionInventoryGetProducts action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
@@ -44,7 +44,7 @@ namespace com.kumakore.test
         [Test]
         public void AsyncGetProductList()
         {
-            app().products().get().async(delegate(ActionAppProductListGet action)
+            app().getProducts().get().async(delegate(ActionInventoryGetProducts action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
@@ -56,7 +56,7 @@ namespace com.kumakore.test
 		[Test]
         public void SyncBuyProduct()
         {
-            app().products().buyItem(VALID_PRODUCT_ID,1).sync(delegate(ActionAppBuyItem action)
+            app().getProducts().buyItem(VALID_PRODUCT_ID,1).sync(delegate(ActionInventoryPurchase action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
@@ -65,7 +65,7 @@ namespace com.kumakore.test
         [Test]
         public void AsyncBuyProduct()
         {
-            app().products().buyItem(VALID_PRODUCT_ID,1).async(delegate(ActionAppBuyItem action)
+            app().getProducts().buyItem(VALID_PRODUCT_ID,1).async(delegate(ActionInventoryPurchase action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
