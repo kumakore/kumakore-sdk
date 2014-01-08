@@ -29,6 +29,8 @@ app.save();
 
 From here you can begin calling app level data like user, leaderboards, achievements, ...
 
+It's also worth noting that ```KumakoreApp.load/save``` are default mechanisms to save and restore the core application state. These can be overridden and replaced with custom methods to fit the client's needs.
+
 ## Making Kumakore API calls
 Even using the action objects there are multiple ways of interacting with the Kumakore Service. 
 
