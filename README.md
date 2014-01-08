@@ -1,25 +1,19 @@
-# Android and .NET SDK Overview
-The Kumakore SDK for Android and .NET (C# and Unity compatible). 
+# Kumakore SDK Overview
+The Kumakore SDK for Android, .NET, and Unity®.
 
 <!-- <img src="diagram.jpg" alt="Drawing" style="width: 600px;" align="middle"/>
 -->
 
 <img src="diagram.jpg" width="600px" align="middle"/>
 
-Data are stored in either app data ( universal to the app such as achievements and leaderboards) or user data (specific to the user such as achievement progress) space. The client application will retrieve data from here.
+The Kumakore Service is a web service that provides RESTful API's to handle all the backend services; e.g., leaderboards, achievements, application, users, facebook, friends, inventory, matches, push, and datastore. The Kumakore SDK makes it easier to use the Kumakore Services both synchronously or asynchronously through the Kumakore Actions.
 
-Client communication and control happens through action objects that are mapped to specific actions to the server. 
-
-When sending data to the server, the client will create an action object, set the appropriate data, and send the data either synchronously or asynchronously. 
-
-When retrieving data from the server, the client will again create and send an action object, but the action will transfer the return data to the app or user data structures. The client will then retrieve the return data from here.
-
-The important thing to remember is that server communication happens through the action objects
+Client communication and control happens through Action objects that are mapped to specific Actions to the server. When sending data to the server, the client will create an Action object, set the appropriate data, and send the data either synchronously or asynchronously. When retrieving data from the server, the client will again create and send an action object, but the action will transfer the return data to the app or user data structures. The client will then retrieve the return data from here. Data is stored in either app data ( universal to the app such as achievements and leaderboards) or user data (specific to the user such as achievement progress) space. The important thing to remember is that server communication happens through these Action objects.
 
 ## Kumakore SDK startup and shutdown
 By now you should have read general documentation and know that an app will have an app key, dashboard version, and potentially an app version. The SDK first needs to be initialized with these values
+
 ```csharp
-// C#
 // startup
 KumakoreApp app = new KumakoreApp(API_KEY, DASHBOARD_VERSION);
 
@@ -27,15 +21,8 @@ KumakoreApp app = new KumakoreApp(API_KEY, DASHBOARD_VERSION);
 app.load();
 ```
 
-```java
-// Java
-// startup
-KumakoreApp app = new KumakoreApp(API_KEY, DASHBOARD_VERSION);
-```
-
 During the application lifecycle, or before it ends, save the KumakoreApp state for loading in the future.
 ```csharp
-// C#
 // shutdown
 app.save();
 ```
