@@ -10,6 +10,23 @@ The Kumakore Service is a web service that provides RESTful API's to handle all 
 
 Client communication and control happens through Action objects that are mapped to specific Actions to the server. When sending data to the server, the client will create an Action object, set the appropriate data, and send the data either synchronously or asynchronously. When retrieving data from the server, the client will again create and send an action object, but the action will transfer the return data to the app or user data structures. The client will then retrieve the return data from here. Data is stored in either app data ( universal to the app such as achievements and leaderboards) or user data (specific to the user such as achievement progress) space. The important thing to remember is that server communication happens through these Action objects.
 
+
+## Kumakore SDK - 2014 Q1 roadmap
+
+###All
+-add support for gifts
+
+###.NET SDK
+-enchance samples and tests for full coverage of Actions
+
+###iOS SDK
+-TODO
+
+###Android SDK
+-refactor Actions to match .NET SDK
+-improve KumakoreHttp Action lifecycle
+-enchance samples and tests for full coverage of Actions
+
 ## Kumakore SDK startup and shutdown
 By now you should have read general documentation and know that an app will have an app key, dashboard version, and potentially an app version. The SDK first needs to be initialized with these values
 
@@ -21,13 +38,12 @@ KumakoreApp app = new KumakoreApp(API_KEY, DASHBOARD_VERSION);
 app.load();
 ```
 
-During the application lifecycle, or before it ends, save the KumakoreApp state for loading in the future.
-```csharp
+From here you can begin calling app level data like user, leaderboards, achievements, and so on. During the application lifecycle, or before it ends, save the KumakoreApp state for loading in the future.
+
+```
 // shutdown
 app.save();
 ```
-
-From here you can begin calling app level data like user, leaderboards, achievements, ...
 
 It's also worth noting that ```KumakoreApp.load/save``` are default mechanisms to save and restore the core application state. These can be overridden and replaced with custom methods to fit the client's needs.
 
@@ -38,10 +54,10 @@ Even using the action objects there are multiple ways of interacting with the Ku
 Here's an example of a synchronous signup call.
 
 ```
-ActionAppSignup signup = app.signup(email);
+ActionUserSignup signup = app.signup(email);
 signup.sync();
 if(signup.getCode() == StatusCodes.SUCCESS) {
-	//Do something
+    //Do something
 }
 ```	
 
@@ -60,7 +76,7 @@ Alteratively the result of the API call could have been handled using a delegate
 
 ```csharp
 // C#
-app.signin(email, password).sync(delegate(ActionAppSignin action) {
+app.signin(email, password).sync(delegate(ActionUserSignin action) {
 	if(action.getCode() == StatusCodes.SUCCESS) {
 		//Do something
 	}
@@ -69,9 +85,9 @@ app.signin(email, password).sync(delegate(ActionAppSignin action) {
 
 ```java
 // Java
-app().signin(email, password).sync(new ActionAppSignin.IKumakore() {
+app().signin(email, password).sync(new ActionUserSignin.IKumakore() {
 	@Override
-	public void onActionAppSignin(ActionAppSignin action) {
+	public void onActionUserSignin(ActionUserSignin action) {
 		if (action.getStatusCode() == StatusCodes.SUCCESS) {
 			//Do something
 		}
@@ -86,7 +102,7 @@ You can also make asynchronous (non-blocking) calls. This executes the API reque
 
 ```csharp
 // C#
-app.signin(email, password).async(delegate(ActionAppSignin action) {
+app.signin(email, password).async(delegate(ActionUserSignin action) {
 	if(action.getCode() == StatusCodes.SUCCESS) {
 		//Do something
 	}
@@ -95,9 +111,9 @@ app.signin(email, password).async(delegate(ActionAppSignin action) {
 
 ```java
 // Java
-app().signin(email, password).async(new ActionAppSignin.IKumakore() {
+app().signin(email, password).async(new ActionUserSignin.IKumakore() {
 	@Override
-	public void onActionAppSignin(ActionAppSignin action) {
+	public void onActionUserSignin(ActionUserSignin action) {
 		if (action.getStatusCode() == StatusCodes.SUCCESS) {
 			//Do something
 		}
@@ -111,7 +127,7 @@ Aside form the using the async() call the difference is that the application wil
 In general you want to provide a delegate to handle the return, but we can also handle this by querying the action itself
 
 ```
-ActionAppSignup signup = app.signup(email);
+ActionUserSignup signup = app.signup(email);
 signup.async();
 
 while (signup.getCode() == StatusCodes.UNKNOWN) {
@@ -127,26 +143,27 @@ if(signup.getCode() == StatusCodes.SUCCESS) {
 
 ```
 // simple params
-app.user().update(usernameOrEmail, password).sync();
+app.getUser().update(usernameOrEmail, password).sync();
 // builder params
-app.user().update().setName(name).setEmail(email).setPassword(password).sync();
+app.getUser().update().setName(name).setEmail(email).setPassword(password).sync();
 ```
 
-###Actions
+###6) Actions are a core structure
 You have now been exposed to the use of actions to communicate with the Kumakore service. Every server operation will have an individual action object. To stress the point again, the client retrieves data through the app or user data space and issues requests through actions. 
 
 In the following example, the application needs to list the app achievements.
 
-```
-for(int i=0; i< app.achievements().Count; i++) {
-	print( app.achievements()[i].getName() );
+```csharp
+//
+foreach(AppAchievement aa in app.getAchievements().Values) {
+	String name = aa.getName();
 }
 ```
 
 achievements() returns the internal list of achievements. However, when the app is first opened, the internal list is empty, so the application must request the achievements from the Kumakore service.
 
 ```
-ActionAppAchievementListGet a = app.achievements().get();
+ActionAchievementGetApp a = app.getAchievements().get();
 a.sync();
 ```
 
@@ -155,16 +172,55 @@ When the request returns, the action will handle the return data by copying it i
 Again the above call could be formed multiple ways. Here is an equivalent call.
 
 ```
-app.achievements().get().sync();
+app.getAchievements().get().sync();
 ```
 
 Remember the sync() or async() happens on the action.
 
-###Buying multiple items example
+###7) Rety - execution count for Actions
+Actions make up a configuration of a request. Thus, once setup you can make more than one call to the action. That being said, we recommend creating a new Action for most cases. The following is an example where an action returned an errorCode other than success, and we want to retry the action.
+
+```
+app.platform ().async (delegate(ActionAppPlatform action) {
+	if (action.getCode () == StatusCodes.SUCCESS) {
+		
+	} else if (action.getCode() == StatusCodes.APP_DASHBOARD_VERSION_INVALID) {
+        // dashboard version is not valid. 
+        // update KumakoreApp dashboard version, then retry?
+		// the server dashboard version is stored in the action result
+		// update the KumakoreApp dashboard version to match the result
+		app.setDashboardVersion (action.getDashboardVersion ());
+
+		//retry a few times?
+		if (action.getExecutions() < 3) {
+			// No need to provide callback or other parameters again
+            // because the action already associated the callback and params 
+			
+            // We need to reset the Action state to retry
+            // true to reset the action state
+			action.async(true); 
+		}
+    } else {
+        //...
+    }
+});
+```
+
+Even though you can execute an Action at any point, the results are held in the single instance of that Action. Thus, you should avoid additional sync/async operations for that Action at least until the callback is executed if you want to try again. 
+
+In this case, once the first call to async fails because of invalid dashboard version, then we rety that action.
+
+
+###Further information
+At this point you should be familiar with interacting with the Kumakore SDK. More information about the SDK classes and calls can be found in the reference documentation.
+
+##Inventory
+
+###1) Buying multiple items example
 Here's a more complex example of buying multple items. The SDK provides a purchase function that allows you to pass in a Dictionary of products. However, using the builder pattern, you can construct a complex action.
 
 ```
-ActionAppBuyItem a = app.products().buyItem();
+ActionInventoryPurchase a = app.getProducts().buyItem();
 a.includeItem("laser", 1);
 a.includeItem("shield", 2);
 a.sync();
@@ -173,44 +229,41 @@ a.sync();
 Which is also equivalent to
 
 ```
-app.productList().buyItem().includeItem("laser"", 1).includeItem("shield", 2).sync();
+app.getProducts().buyItem().includeItem("laser"", 1).includeItem("shield", 2).sync();
 ```
-
-###Further information
-At this point you should be familiar with interacting with the Kumakore SDK. More information about the SDK classes and calls can be found in the reference documentation.
 
 ##Matches
 Matches are the core of application gameplay, so this section will spend some time illustrating how matches are handled.
 
-###Getting matches
+###1) Getting matches
 A user will have match lists stored in MatchCurrentList and MatchCompletedList objects corresponding to the user's active matches and completed mathces respectively. You can retrieve them through
 
 ```
-MatchCurrentList current = app.user().getCurrentMatches();
-MatchCompletedList completed = app.user().getCompletedMatches();
+OpenMatchMap open = app.getUser().getOpenMatches();
+ClosedMatchMap closed = app.getUser().getClosedMatches();
 ```
 
 Again, the lists will be empty if the state of the user's matches have not been retrieved from the server. In this case, actions are used to fetch data into these lists.
 
 ```
-current.get().sync();
-completed.get().sync();
+open.get().sync();
+closed.get().sync();
 ```
 
 Now, there will be data when you iterated through the match lists.
 
 With current matches you can also drill down a level to matches that are your or your opponents turn.
 
-###Creating a match
+###2) Creating a match
 
 ```
-current.createRandomMatch().async(delegate(ActionMatchCreateRandom action){
+open.createRandomMatch().async(delegate(ActionMatchCreateRandom action){
 	if(action.getCode() == StatusCodes.SUCCESS) {
 		//do something
 	}
 });
 ```
 	
-###Match status
+###3) Match status
 
-###Making a move
+###4) Making a move
