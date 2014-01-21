@@ -14,18 +14,18 @@ Client communication and control happens through Action objects that are mapped 
 ## Kumakore SDK - 2014 Q1 roadmap
 
 ###All
--add support for gifts
+* add support for gifts
 
 ###.NET SDK
--enchance samples and tests for full coverage of Actions
+* enchance samples and tests for full coverage of Actions
 
 ###iOS SDK
--TODO
+* TODO
 
 ###Android SDK
--refactor Actions to match .NET SDK
--improve KumakoreHttp Action lifecycle
--enchance samples and tests for full coverage of Actions
+* refactor Actions to match .NET SDK
+* improve KumakoreHttp Action lifecycle
+* enchance samples and tests for full coverage of Actions
 
 ## Kumakore SDK startup and shutdown
 By now you should have read general documentation and know that an app will have an app key, dashboard version, and potentially an app version. The SDK first needs to be initialized with these values
