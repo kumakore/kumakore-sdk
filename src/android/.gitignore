@@ -1,6 +1,0 @@
-### eclipse project ###
-bin/
-gen/
-.settings
-.classpath
-lint.xml
