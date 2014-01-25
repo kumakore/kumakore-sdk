@@ -3,7 +3,7 @@ var namespacecom_1_1kumakore =
     [ "ActionAchievementGetApp", "classcom_1_1kumakore_1_1_action_achievement_get_app.html", "classcom_1_1kumakore_1_1_action_achievement_get_app" ],
     [ "ActionAchievementGetUser", "classcom_1_1kumakore_1_1_action_achievement_get_user.html", "classcom_1_1kumakore_1_1_action_achievement_get_user" ],
     [ "ActionAchievementSetUser", "classcom_1_1kumakore_1_1_action_achievement_set_user.html", "classcom_1_1kumakore_1_1_action_achievement_set_user" ],
-    [ "ActionAppGetRewards", "classcom_1_1kumakore_1_1_action_app_get_rewards.html", "classcom_1_1kumakore_1_1_action_app_get_rewards" ],
+    [ "ActionAppGetRewardMap", "classcom_1_1kumakore_1_1_action_app_get_reward_map.html", "classcom_1_1kumakore_1_1_action_app_get_reward_map" ],
     [ "ActionAppLog", "classcom_1_1kumakore_1_1_action_app_log.html", "classcom_1_1kumakore_1_1_action_app_log" ],
     [ "ActionAppPlatform", "classcom_1_1kumakore_1_1_action_app_platform.html", "classcom_1_1kumakore_1_1_action_app_platform" ],
     [ "ActionDatastoreCreate", "classcom_1_1kumakore_1_1_action_datastore_create.html", "classcom_1_1kumakore_1_1_action_datastore_create" ],

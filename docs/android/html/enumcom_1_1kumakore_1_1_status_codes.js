@@ -13,6 +13,7 @@ var enumcom_1_1kumakore_1_1_status_codes =
     [ "APP_UNDER_MAINTENANCE", "enumcom_1_1kumakore_1_1_status_codes.html#a12ad30a53ac2ce86647403b9f0df37cc", null ],
     [ "APP_VERSION_INVALID", "enumcom_1_1kumakore_1_1_status_codes.html#a316d8adb66b6f3f050efaf905ed93eb4", null ],
     [ "CANNOT_FIND_USER", "enumcom_1_1kumakore_1_1_status_codes.html#ae8a77bb51f79461304038bdaf15fbbc7", null ],
+    [ "INVALID_KEY", "enumcom_1_1kumakore_1_1_status_codes.html#a7f7fd78033fcfc9952eec9d293eb3aa4", null ],
     [ "JSON_INVALID", "enumcom_1_1kumakore_1_1_status_codes.html#a5917ec332e01a5354ee0cd9bbdbec582", null ],
     [ "SIGNUP_FAILED", "enumcom_1_1kumakore_1_1_status_codes.html#a36d9ada8754c2329ed00836ac89eeb5a", null ],
     [ "SUCCESS", "enumcom_1_1kumakore_1_1_status_codes.html#af87046a6603afb0c9208270f44b1a5eb", null ],
@@ -20,5 +21,10 @@ var enumcom_1_1kumakore_1_1_status_codes =
     [ "TODO701", "enumcom_1_1kumakore_1_1_status_codes.html#a7cafd73511d815cacd752fa3bf32b342", null ],
     [ "TODO702", "enumcom_1_1kumakore_1_1_status_codes.html#a46e0824654e0d291aa59b9ed56e99252", null ],
     [ "TODO802", "enumcom_1_1kumakore_1_1_status_codes.html#adb5e88c3b5e65e16d8ad1812e3bb0a05", null ],
-    [ "UNKNOWN", "enumcom_1_1kumakore_1_1_status_codes.html#afb8626582bf4662a0dcb55e64db1a789", null ]
+    [ "UNKNOWN", "enumcom_1_1kumakore_1_1_status_codes.html#afb8626582bf4662a0dcb55e64db1a789", null ],
+    [ "USER_EMAIL_INVALID", "enumcom_1_1kumakore_1_1_status_codes.html#a4096a09322cdf9d5f37075390d8de44b", null ],
+    [ "USER_EMAIL_TAKEN", "enumcom_1_1kumakore_1_1_status_codes.html#a1c1092c32ef7b8907fd0681c97455ff7", null ],
+    [ "USER_NAME_EMAIL_PASSWORD_INVALID", "enumcom_1_1kumakore_1_1_status_codes.html#a5711cc8d4a68ebd104648cb5759ce69d", null ],
+    [ "USER_NAME_INVALID", "enumcom_1_1kumakore_1_1_status_codes.html#a3694544857527e5d26c7d1df982c85af", null ],
+    [ "USER_NAME_TAKEN", "enumcom_1_1kumakore_1_1_status_codes.html#a0cdfaa621a6860d1a06704a3ec8a3828", null ]
 ];

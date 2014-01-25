@@ -46,8 +46,8 @@ var hierarchy =
     [ "KumakoreAction< ActionAchievementSetUser.IKumakore >", null, [
       [ "com.kumakore.ActionAchievementSetUser", "classcom_1_1kumakore_1_1_action_achievement_set_user.html", null ]
     ] ],
-    [ "KumakoreAction< ActionAppGetRewards.IKumakore >", null, [
-      [ "com.kumakore.ActionAppGetRewards", "classcom_1_1kumakore_1_1_action_app_get_rewards.html", null ]
+    [ "KumakoreAction< ActionAppGetRewardMap.IKumakore >", null, [
+      [ "com.kumakore.ActionAppGetRewardMap", "classcom_1_1kumakore_1_1_action_app_get_reward_map.html", null ]
     ] ],
     [ "KumakoreAction< ActionAppLog.IKumakore >", null, [
       [ "com.kumakore.ActionAppLog", "classcom_1_1kumakore_1_1_action_app_log.html", null ]

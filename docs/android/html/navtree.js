@@ -19,8 +19,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 ".html",
-"classcom_1_1kumakore_1_1_datastore_object.html#ad568c278e148041f60f91a25a6608c8d",
-"enumcom_1_1kumakore_1_1_log_levels.html#a2996c0cc7bc3a46e7b5491856606a747"
+"classcom_1_1kumakore_1_1_app_achievement.html#a0e8ea98bed4ef231afca9de30855cef9",
+"classcom_1_1kumakore_1_1_open_match_map_1_1_filters.html#a9bb187911f0c297b360656b471b4698f"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -4,7 +4,7 @@ var searchData=
   ['actionachievementgetapp',['ActionAchievementGetApp',['../classcom_1_1kumakore_1_1_action_achievement_get_app.html',1,'com::kumakore']]],
   ['actionachievementgetuser',['ActionAchievementGetUser',['../classcom_1_1kumakore_1_1_action_achievement_get_user.html',1,'com::kumakore']]],
   ['actionachievementsetuser',['ActionAchievementSetUser',['../classcom_1_1kumakore_1_1_action_achievement_set_user.html',1,'com::kumakore']]],
-  ['actionappgetrewards',['ActionAppGetRewards',['../classcom_1_1kumakore_1_1_action_app_get_rewards.html',1,'com::kumakore']]],
+  ['actionappgetrewardmap',['ActionAppGetRewardMap',['../classcom_1_1kumakore_1_1_action_app_get_reward_map.html',1,'com::kumakore']]],
   ['actionapplog',['ActionAppLog',['../classcom_1_1kumakore_1_1_action_app_log.html',1,'com::kumakore']]],
   ['actionappplatform',['ActionAppPlatform',['../classcom_1_1kumakore_1_1_action_app_platform.html',1,'com::kumakore']]],
   ['actiondatastorecreate',['ActionDatastoreCreate',['../classcom_1_1kumakore_1_1_action_datastore_create.html',1,'com::kumakore']]],
