@@ -41,12 +41,12 @@ app.signin(email, password).sync(delegate(ActionUserSignin action) {
 
 ```java
 // Java
-    // startup
-    KumakoreApp app = new KumakoreApp(API_KEY, DASHBOARD_VERSION);
+// startup
+KumakoreApp app = new KumakoreApp(API_KEY, DASHBOARD_VERSION);
 
-    // load KumakoreApp state.
-    app.load();
-    
+// load KumakoreApp state.
+app.load();
+
 app().signin(email, password).sync(new ActionUserSignin.IKumakore() {
 	@Override
 	public void onActionUserSignin(ActionUserSignin action) {
@@ -55,6 +55,23 @@ app().signin(email, password).sync(new ActionUserSignin.IKumakore() {
 		}
 	}
 });
+```
+
+```objc
+// Objective-C
+// startup
+KKApplication *app = [self createKKApplicationInstance];
+[app updateDashboardVersion:nil];
+    
+KKUser *user = [[KKUser alloc] init:app];
+KKUserData *userData = [self getValidLoginCredentials];
+    
+__block KKReturnStatus *rc;
+void (^returnBlock)(KKReturnStatus*) = ^(KKReturnStatus* returnCode) {
+    rc = returnCode;
+};
+[user syncSignIn:userData callback:returnBlock];
+
 ```
 
 The callback gets a signin action object where you can query the status of the action's execution. Of course a synchronous call isn't a very interesting use of a callback.
