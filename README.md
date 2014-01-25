@@ -21,7 +21,9 @@ The Kumakore Service is a web service that provides RESTful API's to handle all 
 * enchance samples and tests for full coverage of Actions
 
 
-## Basic synchronous action w/ callbacks (delegates for .NET, interfaces for Android, delegates for iOS)
+## Basic synchronous action w/ callbacks 
+> delegates for .NET/IOS, interfaces for Android
+
 Here's an example of a synchronous signin call. A signin action object is created with an email. Then sync() makes a syncrhonous (blocking) call and when complete executes the delegate/interface with the results.
 
 ```csharp
