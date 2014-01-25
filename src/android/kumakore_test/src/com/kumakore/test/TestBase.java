@@ -31,7 +31,7 @@ public class TestBase extends AndroidTestCase
          // create test account
          if (app().signup(TEST_EMAIL).sync() == StatusCodes.SUCCESS)
          {
-             app().user().update().setName(TEST_USERNAME).sync();
+             app().getUser().update().setName(TEST_USERNAME).sync();
          }
     }
 

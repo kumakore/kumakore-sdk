@@ -29,7 +29,7 @@ public class UserSettingsActivity extends KumakoreSessionActivity implements Act
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_user_settings);
 		
-		_user = app().user();		
+		_user = app().getUser();		
 
 		// Username 
 		_username = (EditText) findViewById(R.id.editUsername);

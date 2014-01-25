@@ -17,20 +17,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kumakore.ActionAppBuyItem;
-import com.kumakore.ActionAppProductListGet;
+import com.kumakore.ActionAppGetProductMap;
 import com.kumakore.ActionInventoryAdd;
 import com.kumakore.ActionInventoryGet;
 import com.kumakore.ActionInventoryRemove;
-import com.kumakore.Inventory;
+import com.kumakore.InventoryMap;
 import com.kumakore.ItemBundle;
 import com.kumakore.Product;
-import com.kumakore.ProductList;
+import com.kumakore.ProductMap;
 import com.kumakore.StatusCodes;
 import com.kumakore.listactivity.ItemArrayAdapter;
 
 public class InventoryActivity extends KumakoreSessionActivity implements ActionInventoryAdd.IKumakore,
 		ActionInventoryRemove.IKumakore, ActionInventoryGet.IKumakore, ActionAppBuyItem.IKumakore,
-		ActionAppProductListGet.IKumakore {
+		ActionAppGetProductMap.IKumakore {
 	private static final String TAG = InventoryActivity.class.getName();
 
 	private TextView amountLB;
@@ -42,8 +42,8 @@ public class InventoryActivity extends KumakoreSessionActivity implements Action
 
 	private boolean inventoryDownloaded, productsDownloaded;
 
-	private ProductList _productList;
-	private Inventory _inventory;
+	private ProductMap _productList;
+	private InventoryMap _inventory;
 
 	private Product _selectedProduct;
 
@@ -139,7 +139,7 @@ public class InventoryActivity extends KumakoreSessionActivity implements Action
 			toast.show();
 			return;
 		}
-		app().user().inventory().addItem(_selectedProduct, itemAmount).async(InventoryActivity.this);
+		app().getUser().inventory().addItem(_selectedProduct, itemAmount).async(InventoryActivity.this);
 	}
 
 	private void removeItem() {
@@ -154,7 +154,7 @@ public class InventoryActivity extends KumakoreSessionActivity implements Action
 			toast.show();
 			return;
 		}
-		app().user().inventory().removeItem(item.getProductId(), itemAmount).sync(InventoryActivity.this);
+		app().getUser().inventory().removeItem(item.getProductId(), itemAmount).sync(InventoryActivity.this);
 
 	}
 
@@ -165,7 +165,7 @@ public class InventoryActivity extends KumakoreSessionActivity implements Action
 			return;
 		}
 
-		app().productList().buyItem(_selectedProduct.getProductId(), itemAmount).async(InventoryActivity.this);
+		app().getProduct().buyItem(_selectedProduct.getProductId(), itemAmount).async(InventoryActivity.this);
 	}
 
 	private void purchaseItem() {
@@ -232,12 +232,12 @@ public class InventoryActivity extends KumakoreSessionActivity implements Action
 
 	private void getProducts() {
 		productsDownloaded = false;
-		app().productList().get().async(InventoryActivity.this);
+		app().getProduct().get().async(InventoryActivity.this);
 	}
 
 	public void getInventory() {
 		inventoryDownloaded = false;
-		app().user().inventory().get().async(this);
+		app().getUser().inventory().get().async(this);
 	}
 
 	private void checkDownload() {
@@ -251,7 +251,7 @@ public class InventoryActivity extends KumakoreSessionActivity implements Action
 	private void handleInventoryResponse(StatusCodes status, String message) {
 		if (status == StatusCodes.SUCCESS) {
 			inventoryDownloaded = true;
-			_inventory = app().user().inventory();
+			_inventory = app().getUser().inventory();
 			checkDownload();
 		} else {
 			Toast toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
@@ -280,9 +280,9 @@ public class InventoryActivity extends KumakoreSessionActivity implements Action
 	}
 
 	@Override
-	public void onActionAppProductListGet(ActionAppProductListGet action) {
+	public void onActionAppProductListGet(ActionAppGetProductMap action) {
 		productsDownloaded = true;
-		_productList = app().productList();
+		_productList = app().getProduct();
 		checkDownload();
 	}
 

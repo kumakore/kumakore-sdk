@@ -22,7 +22,7 @@ public class KumakoreSessionActivity extends KumakoreActivity {
 		
 		// verify User Session
 		// not logged in
-		if (!app().user().hasId()) {
+		if (!app().getUser().hasId()) {
 			Intent intent = new Intent(KumakoreSessionActivity.this, TrySignupSigninActivity.class);
 			startActivityForResult(intent, TrySignupSigninActivity.REQUEST_CODE);
 		}

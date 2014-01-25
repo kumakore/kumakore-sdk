@@ -305,7 +305,7 @@ namespace com.kumakore.test
 		[Test]
         public void SyncGetAppRewards()
         {
-            app().getRewards().get ().sync(delegate(ActionAppGetRewards action)
+            app().getRewards().get ().sync(delegate(ActionAppGetRewardMap action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
@@ -314,7 +314,7 @@ namespace com.kumakore.test
         [Test]
         public void AsyncGetAppRewards()
         {
-            app().getRewards().get().async(delegate(ActionAppGetRewards action)
+            app().getRewards().get().async(delegate(ActionAppGetRewardMap action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();

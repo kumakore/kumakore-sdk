@@ -2,7 +2,7 @@ package com.kumakore.sample.test;
 
 import android.util.Log;
 
-import com.kumakore.ActionAppAchievementListGet;
+import com.kumakore.ActionAchievementGetApp;
 import com.kumakore.ActionUserAchievementListGet;
 import com.kumakore.ActionUserAchievementSet;
 import com.kumakore.AppAchievement;
@@ -25,12 +25,12 @@ public class TestAchievements extends TestBase {
 	public void testAppAchievements() {
 
 		// ## example 9 : get app achievements ##
-		app().achievements().get().async(new ActionAppAchievementListGet.IKumakore() {
+		app().getAchievements().get().async(new ActionAchievementGetApp.IKumakore() {
 			@Override
-			public void onActionAppAchievmentListGet(ActionAppAchievementListGet action) {
+			public void onActionAppAchievmentListGet(ActionAchievementGetApp action) {
 
-				Log.i(TAG, "Achievements size " + app().achievements().size());
-				for (AppAchievement achievement : app().achievements()) {
+				Log.i(TAG, "Achievements size " + app().getAchievements().size());
+				for (AppAchievement achievement : app().getAchievements().values()) {
 					Log.i(TAG, achievement.getName() + "  " + achievement.getDescription());
 				}
 			}
@@ -41,12 +41,12 @@ public class TestAchievements extends TestBase {
 	public void testUserAchievements() {
 
 		// ## example 7 : get user achievements ##
-		app().user().achievements().get().async(new ActionUserAchievementListGet.IKumakore() {
+		app().getUser().achievements().get().async(new ActionUserAchievementListGet.IKumakore() {
 
 			@Override
 			public void onActionUserAchievmentListGet(ActionUserAchievementListGet action) {
-				Log.i(TAG, "User Achievements size " + app().user().achievements().size());
-				for (UserAchievement achievement : app().user().achievements()) {
+				Log.i(TAG, "User Achievements size " + app().getUser().achievements().size());
+				for (UserAchievement achievement : app().getUser().achievements().values()) {
 					Log.i(TAG, achievement.getName() + "  " + achievement.getProgress());
 				}
 				testChangeProgress();
@@ -57,15 +57,15 @@ public class TestAchievements extends TestBase {
 	}
 	
 	private void testChangeProgress() {
-		UserAchievement achievement = app().user().achievements().get(0);
+		UserAchievement achievement = app().getUser().achievements().get(0);
 		Log.i(TAG, "Progress is " + achievement.getProgress());
 		
-		app().user().achievements().set(achievement.getName(), achievement.getProgress() + 1)
+		app().getUser().achievements().set(achievement.getName(), achievement.getProgress() + 1)
 				.async(new ActionUserAchievementSet.IKumakore() {
 
 					@Override
 					public void onActionUserAchievmentSet(ActionUserAchievementSet action) {
-						for (UserAchievement achievement : app().user().achievements()) {
+						for (UserAchievement achievement : app().getUser().achievements().values()) {
 
 							Log.i(TAG, achievement.getName() + "  " + achievement.getProgress());
 						}

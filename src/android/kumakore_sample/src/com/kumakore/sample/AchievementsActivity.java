@@ -15,18 +15,18 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Toast;
 
-import com.kumakore.ActionAppAchievementListGet;
+import com.kumakore.ActionAchievementGetApp;
 import com.kumakore.ActionUserAchievementListGet;
 import com.kumakore.ActionUserAchievementSet;
 import com.kumakore.AppAchievement;
-import com.kumakore.AppAchievementList;
+import com.kumakore.AppAchievementMap;
 import com.kumakore.StatusCodes;
 import com.kumakore.UserAchievement;
-import com.kumakore.UserAchievementList;
+import com.kumakore.UserAchievementMap;
 import com.kumakore.listactivity.KumakoreArrayAdapter;
 
 public class AchievementsActivity extends KumakoreSessionActivity implements ActionUserAchievementListGet.IKumakore,
-		ActionUserAchievementSet.IKumakore, ActionAppAchievementListGet.IKumakore {
+		ActionUserAchievementSet.IKumakore, ActionAchievementGetApp.IKumakore {
 	private static final String TAG = AchievementsActivity.class.getName();
 
 	private ListView listViewAchievements;
@@ -34,8 +34,8 @@ public class AchievementsActivity extends KumakoreSessionActivity implements Act
 	private SeekBar achievementAmount;
 	Button btAddProgress;
 
-	private AppAchievementList _appAchievements;
-	private UserAchievementList _userAchievements;
+	private AppAchievementMap _appAchievements;
+	private UserAchievementMap _userAchievements;
 
 	private AppAchievement _selectedAchievement;
 
@@ -96,8 +96,8 @@ public class AchievementsActivity extends KumakoreSessionActivity implements Act
 
 		_dialog = ProgressDialog.show(AchievementsActivity.this, "", "Loading. Please wait...", true);
 
-		app().user().achievements().get().async(AchievementsActivity.this);
-		app().achievements().get().async(AchievementsActivity.this);
+		app().getUser().achievements().get().async(AchievementsActivity.this);
+		app().getAchievements().get().async(AchievementsActivity.this);
 
 	}
 
@@ -126,7 +126,7 @@ public class AchievementsActivity extends KumakoreSessionActivity implements Act
 			}
 		}
 		Double progress = (double) achievementAmount.getProgress();
-		app().user().achievements().set(_selectedAchievement.getName(), progress)
+		app().getUser().achievements().set(_selectedAchievement.getName(), progress)
 				.async(AchievementsActivity.this);
 	}
 
@@ -143,7 +143,7 @@ public class AchievementsActivity extends KumakoreSessionActivity implements Act
 	@Override
 	public void onActionUserAchievmentListGet(ActionUserAchievementListGet action) {
 		if (action.getStatusCode() == StatusCodes.SUCCESS) {
-			_userAchievements = app().user().achievements();
+			_userAchievements = app().getUser().achievements();
 			userAchievementsDownloaded = true;
 			checkDownload();
 			// Log.i(TAG, "User Achievements size " + _userAchievements.size());
@@ -155,9 +155,9 @@ public class AchievementsActivity extends KumakoreSessionActivity implements Act
 	}
 
 	@Override
-	public void onActionAppAchievmentListGet(ActionAppAchievementListGet action) {
+	public void onActionAppAchievmentListGet(ActionAchievementGetApp action) {
 		if (action.getStatusCode() == StatusCodes.SUCCESS) {
-			_appAchievements = app().achievements();
+			_appAchievements = app().getAchievements();
 			appAchievementsDownloaded = true;
 			checkDownload();
 		} else {
@@ -171,7 +171,7 @@ public class AchievementsActivity extends KumakoreSessionActivity implements Act
 		List<String> titles = new ArrayList<String>();
 		List<String> descriptions = new ArrayList<String>();
 		UserAchievement userAchivement;
-		for (AppAchievement achievement : _appAchievements) {
+		for (AppAchievement achievement : _appAchievements.values()) {
 			userAchivement = _userAchievements.findAchievement(achievement.getName());
 			if (userAchivement != null)
 				titles.add(achievement.getTitle() + " " + userAchivement.getProgress() + "%");

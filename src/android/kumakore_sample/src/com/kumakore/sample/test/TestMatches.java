@@ -25,11 +25,11 @@ ActionClosedMatchMap.IKumakore, ActionMatchCreateRandom.IKumakore {
 	}
 
 	public void testGetCurrentMatches() {
-		app().user().getOpenedMatches().get().async(TestMatches.this);
+		app().getUser().getOpenedMatches().get().async(TestMatches.this);
 	}
 
 	public void testGetCompletedMatches() {
-		app().user().getClosedMatches().get().async(TestMatches.this);
+		app().getUser().getClosedMatches().get().async(TestMatches.this);
 	}
 
 	public void testCreateNewMatch() {
@@ -37,7 +37,7 @@ ActionClosedMatchMap.IKumakore, ActionMatchCreateRandom.IKumakore {
 	}
 
 	public void testCreateRandomMatch() {
-		app().user().getOpenedMatches().createRandomMatch().async(TestMatches.this);
+		app().getUser().getOpenedMatches().createRandomMatch().async(TestMatches.this);
 	}
 
 	@Override

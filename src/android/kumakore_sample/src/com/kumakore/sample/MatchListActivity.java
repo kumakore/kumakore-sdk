@@ -84,9 +84,9 @@ public class MatchListActivity extends KumakoreSessionActivity implements Action
 
 	private void downloadMatches() {
 		_finishedCompletedMatches = _finishedCurrentMatches = false;
-		_openMatchMap = app().user().getOpenedMatches();
+		_openMatchMap = app().getUser().getOpenedMatches();
 		_openMatchMap.get().async(MatchListActivity.this);
-		app().user().getClosedMatches().get().async(MatchListActivity.this);
+		app().getUser().getClosedMatches().get().async(MatchListActivity.this);
 
 		_dialog = ProgressDialog.show(MatchListActivity.this, "", "Loading. Please wait...", true);
 	}
@@ -125,7 +125,7 @@ public class MatchListActivity extends KumakoreSessionActivity implements Action
 		// Store variables
 		myTurnMatches = _openMatchMap.filters().myTurn();
 		theirTurnMatches = _openMatchMap.filters().theirTurn();
-		completedMatches = app().user().getClosedMatches();
+		completedMatches = app().getUser().getClosedMatches();
 
 		_layoutMyTurn.removeAllViews();
 		if (myTurnMatches.size() > 0)

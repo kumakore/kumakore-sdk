@@ -19,14 +19,14 @@ import android.widget.TextView;
 import com.facebook.Session;
 import com.kumakore.ActionFacebookGetFriends;
 import com.kumakore.ActionFacebookLogin;
-import com.kumakore.ActionFacebookConnectAccount;
+import com.kumakore.ActionFacebookConnect;
 import com.kumakore.FriendFacebook;
 import com.kumakore.FriendFacebookList;
-import com.kumakore.ActionFacebookRemoveAccount;
+import com.kumakore.ActionFacebookDeauthorize;
 import com.kumakore.KumakoreApp;
 
 public class DemoFacebook extends Activity implements ActionFacebookGetFriends.IKumakore, ActionFacebookLogin.IKumakore,
-ActionFacebookConnectAccount.IKumakore, ActionFacebookRemoveAccount.IKumakore{
+ActionFacebookConnect.IKumakore, ActionFacebookDeauthorize.IKumakore{
 	private static final String TAG = DemoFacebook.class.getName();
 
 	private ListView listViewFaceFriends;
@@ -35,6 +35,9 @@ ActionFacebookConnectAccount.IKumakore, ActionFacebookRemoveAccount.IKumakore{
 	private KumakoreApp _app;
 
 	private FriendFacebookList _facebookFriends;
+	
+	private ArrayList<FriendFacebook> _invitedFriends;
+	private ArrayList<FriendFacebook> _friends;
 	
 	private FacebookHelper fbHelper;
 	
@@ -82,7 +85,7 @@ ActionFacebookConnectAccount.IKumakore, ActionFacebookRemoveAccount.IKumakore{
 		btGetFriends.setOnClickListener(new OnClickListener() {
 			public void onClick(View view) {				
 				if(fbHelper.isSessionOpened())
-					_app.user().getFacebookFriends().get(fbHelper.getToken()).async(DemoFacebook.this);
+					_app.getUser().getFacebookFriends().get(fbHelper.getToken()).async(DemoFacebook.this);
 			}
 		});
 
@@ -105,14 +108,14 @@ ActionFacebookConnectAccount.IKumakore, ActionFacebookRemoveAccount.IKumakore{
 		btConnect.setOnClickListener(new OnClickListener() {
 			public void onClick(View view) {
 				if(fbHelper.isSessionOpened())
-				_app.facebookConnectAccount(fbHelper.getToken()).async(DemoFacebook.this);
+				_app.getUser().facebookConnectAccount(fbHelper.getToken()).async(DemoFacebook.this);
 			}
 		});
 		
 		Button btDeauthorize = (Button) findViewById(R.id.btnRemoveFace);
 		btDeauthorize.setOnClickListener(new OnClickListener() {
 			public void onClick(View view) {				
-				_app.facebookRemoveAccount().async(DemoFacebook.this);
+				_app.getUser().facebookDeauthorizeAccount().async(DemoFacebook.this);
 			}
 		});
 
@@ -137,11 +140,11 @@ ActionFacebookConnectAccount.IKumakore, ActionFacebookRemoveAccount.IKumakore{
 	private void fillFriendList() {
 
 		List<String> list = new ArrayList<String>();
-		for (FriendFacebook friend : _facebookFriends.friends) {
+		for (FriendFacebook friend : _friends) {
 			list.add(friend.getFirstName() + " " + friend.getLastName());
 		}
 
-		for (FriendFacebook friend : _facebookFriends.inviteFriends) {
+		for (FriendFacebook friend : _invitedFriends) {
 			list.add(friend.getFirstName() + " " + friend.getLastName());
 		}
 
@@ -152,7 +155,9 @@ ActionFacebookConnectAccount.IKumakore, ActionFacebookRemoveAccount.IKumakore{
 
 	@Override
 	public void onActionFacebookGetFriends(ActionFacebookGetFriends action) {
-		_facebookFriends = _app.user().getFacebookFriends();
+		_facebookFriends = _app.getUser().getFacebookFriends();
+		_invitedFriends = _facebookFriends.getInvitedFriends();
+		_friends = _facebookFriends.getFriends();
 		fillFriendList();
 		updateView();
 	}
@@ -181,12 +186,12 @@ ActionFacebookConnectAccount.IKumakore, ActionFacebookRemoveAccount.IKumakore{
 	}
 
 	@Override
-	public void onActionFacebookConnectAccount(ActionFacebookConnectAccount action) {
+	public void onActionFacebookConnect(ActionFacebookConnect action) {
 		Log.v(TAG, "onActionFacebookConnectAccount ");
 	}
 
 	@Override
-	public void onActionFacebookRemoveAccount(ActionFacebookRemoveAccount action) {
+	public void onActionFacebookDeauthorize(ActionFacebookDeauthorize action) {
 		Log.v(TAG, "onActionFacebookRemoveAccount ");
 	}
 

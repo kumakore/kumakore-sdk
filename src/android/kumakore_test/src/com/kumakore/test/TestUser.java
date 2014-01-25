@@ -12,21 +12,21 @@ public class TestUser extends TestBase {
 	
 	public void testSyncUserGet()
     {
-        Assert.assertEquals(StatusCodes.SUCCESS, app().user().get().sync());
-        Assert.assertEquals(TEST_EMAIL, app().user().getEmail());
-        Assert.assertEquals(TEST_USERNAME, app().user().getName());
+        Assert.assertEquals(StatusCodes.SUCCESS, app().getUser().get().sync());
+        Assert.assertEquals(TEST_EMAIL, app().getUser().getEmail());
+        Assert.assertEquals(TEST_USERNAME, app().getUser().getName());
     }
 	
 
 	public void testAsyncUserGet()
     {
-		app().user().get().async(new ActionUserGet.IKumakore() {
+		app().getUser().get().async(new ActionUserGet.IKumakore() {
 			
 			@Override
 			public void onActionUserGet(ActionUserGet action) {
 		        Assert.assertEquals(StatusCodes.SUCCESS, action.getStatusCode());
-		        Assert.assertEquals(TEST_EMAIL, app().user().getEmail());
-		        Assert.assertEquals(TEST_USERNAME, app().user().getName());
+		        Assert.assertEquals(TEST_EMAIL, app().getUser().getEmail());
+		        Assert.assertEquals(TEST_USERNAME, app().getUser().getName());
 		        Release();
 			}
 		});
@@ -36,8 +36,8 @@ public class TestUser extends TestBase {
 	
 	public void testSyncUserUpdate()
     {
-        Assert.assertEquals(StatusCodes.SUCCESS, app().user().update().setName(TEST_USERNAME2).sync());
-        Assert.assertEquals(TEST_USERNAME2, app().user().getName());
+        Assert.assertEquals(StatusCodes.SUCCESS, app().getUser().update().setName(TEST_USERNAME2).sync());
+        Assert.assertEquals(TEST_USERNAME2, app().getUser().getName());
     }
 
 //	

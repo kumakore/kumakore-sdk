@@ -23,13 +23,13 @@ public class TestInventory extends TestBase {
 	}
 	
 	public void testInventoryGet() {
-		app().user().inventory().get().async(new ActionInventoryGet.IKumakore() {
+		app().getUser().inventory().get().async(new ActionInventoryGet.IKumakore() {
 
 			@Override
 			public void onActionInventoryGet(ActionInventoryGet action) {
 				// Log.i(TAG, "Inventory size " +
-				// app.user().inventory().size());
-				for (ItemBundle item : app().user().inventory()) {
+				// app.getUser().inventory().size());
+				for (ItemBundle item : app().getUser().inventory()) {
 					Log.i(TAG, item.getProductId() + "  " + item.getQuantity());
 				}
 			}
@@ -38,12 +38,12 @@ public class TestInventory extends TestBase {
 
 	public void testInventoryAdd() {
 
-		app().user().inventory().addItem("amazing_powerup", 1).async(new ActionInventoryAdd.IKumakore() {
+		app().getUser().inventory().addItem("amazing_powerup", 1).async(new ActionInventoryAdd.IKumakore() {
 
 			@Override
 			public void onActionInventoryAdd(ActionInventoryAdd action) {
-				Log.i(TAG, "Inventory size " + app().user().inventory().size());
-				for (ItemBundle item : app().user().inventory()) {
+				Log.i(TAG, "Inventory size " + app().getUser().inventory().size());
+				for (ItemBundle item : app().getUser().inventory()) {
 					Log.i(TAG, item.getProductId() + "  " + item.getQuantity());
 				}
 
@@ -53,12 +53,12 @@ public class TestInventory extends TestBase {
 
 	public void testInventoryRemove() {
 
-		app().user().inventory().removeItem("amazing_powerup", 1).async(new ActionInventoryRemove.IKumakore() {
+		app().getUser().inventory().removeItem("amazing_powerup", 1).async(new ActionInventoryRemove.IKumakore() {
 
 			@Override
 			public void onActionInventoryRemove(ActionInventoryRemove action) {
-				Log.i(TAG, "Inventory size " + app().user().inventory().size());
-				for (ItemBundle item : app().user().inventory()) {
+				Log.i(TAG, "Inventory size " + app().getUser().inventory().size());
+				for (ItemBundle item : app().getUser().inventory()) {
 					Log.i(TAG, item.getProductId() + "  " + item.getQuantity());
 				}
 

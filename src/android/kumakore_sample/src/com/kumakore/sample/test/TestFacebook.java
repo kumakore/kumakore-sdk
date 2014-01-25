@@ -25,7 +25,7 @@ public class TestFacebook extends TestBase implements ActionFacebookLogin.IKumak
 	}
 	
 	public void testGetFriends(){
-		app().user().getFacebookFriends().get(Helpers.GetFacebookToken()).async(TestFacebook.this);
+		app().getUser().getFacebookFriends().get(Helpers.GetFacebookToken()).async(TestFacebook.this);
 	}
 
 	@Override
@@ -37,8 +37,8 @@ public class TestFacebook extends TestBase implements ActionFacebookLogin.IKumak
 	@Override
 	public void onActionFacebookGetFriends(ActionFacebookGetFriends action) {
 		Log.i(TAG, "GET FRIENDS SUCCESS");
-		Log.i(TAG, "INVITE FRIENDS: " + app().user().getFacebookFriends().inviteFriends.size());
-		Log.i(TAG, "GAME FRIENDS: " + app().user().getFacebookFriends().friends.size());
+		Log.i(TAG, "INVITE FRIENDS: " + app().getUser().getFacebookFriends().getInvitedFriends().size());
+		Log.i(TAG, "GAME FRIENDS: " + app().getUser().getFacebookFriends().getFriends().size());
 		
 	}
 

@@ -38,7 +38,7 @@ public class TestUser extends TestBase implements ActionAppSignin.IKumakore {
 	@Override
 	public void onActionAppSignin(ActionAppSignin action) {
 		// ## example : get user ##
-		app().user().get().async(new ActionUserGet.IKumakore() {
+		app().getUser().get().async(new ActionUserGet.IKumakore() {
 
 			@Override
 			public void onActionUserGet(ActionUserGet action) {

@@ -75,7 +75,7 @@ public class MatchInfoActivity extends KumakoreSessionActivity implements Action
 		}
 		downloadMatches();
 
-		_userId = app().user().getId();
+		_userId = app().getUser().getId();
 
 		getWidgets();
 
@@ -83,7 +83,7 @@ public class MatchInfoActivity extends KumakoreSessionActivity implements Action
 	}
 
 	private void init() {
-		_openMatch = app().user().getOpenedMatches().get(_matchId);
+		_openMatch = app().getUser().getOpenedMatches().get(_matchId);
 
 		_openMatch.getStatus().async(MatchInfoActivity.this);
 		_openMatch.getMoves(0).async(MatchInfoActivity.this);
@@ -105,16 +105,16 @@ public class MatchInfoActivity extends KumakoreSessionActivity implements Action
 		// Left side
 		if (checkFirstPlayer()) {
 			if (_match.getOpponentId() == null || _match.getOpponentId().isEmpty()) {
-				player1Name.setText(app().user().getName());
+				player1Name.setText(app().getUser().getName());
 				player2Name.setText("Waiting for Opponent");
 			} else {
-				player1Name.setText(app().user().getName());
+				player1Name.setText(app().getUser().getName());
 				player2Name.setText(_match.getOpponentUsername());
 			}
 		} else {
 			// Right side
 			player1Name.setText(_match.getOpponentUsername());
-			player2Name.setText(app().user().getName());
+			player2Name.setText(app().getUser().getName());
 		}
 
 		// if(_match.get)
@@ -347,7 +347,7 @@ public class MatchInfoActivity extends KumakoreSessionActivity implements Action
 	}
 
 	private void downloadMatches() {
-		app().user().getOpenedMatches().get().async(MatchInfoActivity.this);
+		app().getUser().getOpenedMatches().get().async(MatchInfoActivity.this);
 
 		_dialog = ProgressDialog.show(MatchInfoActivity.this, "", "Loading. Please wait...", true);
 	}

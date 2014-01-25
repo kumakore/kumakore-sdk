@@ -28,12 +28,12 @@ public class TestDatastore extends TestBase {
 	
     public void testSyncDatastoreCreate()
     {
-        Assert.assertEquals(StatusCodes.SUCCESS, app().user().datastore().create(NAME, TYPE, DATA).sync());
+        Assert.assertEquals(StatusCodes.SUCCESS, app().getUser().datastore().create(NAME, TYPE, DATA).sync());
     }
 
     public void testAsyncDatastoreCreate()
     {
-        app().user().datastore().create(NAME, TYPE, DATA).async(new ActionDatastoreCreate.IKumakore() {
+        app().getUser().datastore().create(NAME, TYPE, DATA).async(new ActionDatastoreCreate.IKumakore() {
         	
 			@Override
 			public void onActionDatastoreCreate(ActionDatastoreCreate action) {
