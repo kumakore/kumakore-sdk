@@ -21,8 +21,8 @@ The Kumakore Service is a web service that provides RESTful API's to handle all 
 * enchance samples and tests for full coverage of Actions
 
 
-## Basic synchronous action w/ callbacks (delegates for .NET, interfaces for Android, X for iOS)
-Alteratively the result of the API call could have been handled using a delegate passed to the sync function. Here's an example of a synchronous signin call. A signin action object is created with an email. Then sync() makes a syncrhonous (blocking) call.
+## Basic synchronous action w/ callbacks (delegates for .NET, interfaces for Android, delegates for iOS)
+Here's an example of a synchronous signin call. A signin action object is created with an email. Then sync() makes a syncrhonous (blocking) call and when complete executes the delegate/interface with the results.
 
 ```csharp
 // C#
@@ -74,5 +74,12 @@ void (^returnBlock)(KKReturnStatus*) = ^(KKReturnStatus* returnCode) {
 
 ```
 
-The callback gets a signin action object where you can query the status of the action's execution. Of course a synchronous call isn't a very interesting use of a callback.
+The callback gets a signin action object where you can query the status of the action's execution. Of course a synchronous call isn't a very interesting use of a callback. If you repleace ```sync``` with ```async``` you will now have a non-blocking execution of the action, and when it returns it will using the same delegate/interfaces to notifiy the completion of the action.
 
+## Documentation (v0.6.1.0)
+* [Android](http://kumakore.github.io/kumakore-sdk/docs/android/html/index.html)
+* [iOS](http://kumakore.github.io/kumakore-sdk/docs/ios/html/index.html)
+* [Unity Android](http://kumakore.github.io/kumakore-sdk/docs/unity3d/android/html/index.html)
+* [Unity iOS](http://kumakore.github.io/kumakore-sdk/docs/unity3d/ios/html/index.html)
+* [Unity x86](http://kumakore.github.io/kumakore-sdk/docs/unity3d/x86/html/index.html)
+* [.NET x86](http://kumakore.github.io/kumakore-sdk/docs/x86/html/index.html)
