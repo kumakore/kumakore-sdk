@@ -26,8 +26,8 @@ namespace com.kumakore.sample
 			//TestUser.All();
 			//TestAchievements.All ();
 			//TestProducts.All();
-			TestLeaderboards.All ();
-			//TestDatastore.All();
+			//TestLeaderboards.All ();
+			TestDatastore.All();
 			//TestInventory.All ();
 			//TestMatches.All ();
 			//TestDevice.All ();

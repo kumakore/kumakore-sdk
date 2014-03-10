@@ -23,6 +23,11 @@ public class AppActionsScene : MonoBehaviour {
 		kumakore.load ();
 	}
 	
+	
+	private void Update() {
+		kumakore.getDispatcher().dispatch();	
+	}
+	
 	void OnDestroy() {
 		kumakore.save ();
 	}

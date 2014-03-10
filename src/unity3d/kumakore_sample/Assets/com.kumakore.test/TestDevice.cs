@@ -8,7 +8,10 @@ namespace com.kumakore.test
     [TestFixture]
     public class TestDevice : TestBase
 	{
-        public static void All()
+		// Valid DEVICE_UDID needed to pass register device related tests
+		private static string VALID_DEVICE_UDID = "";
+        
+		public static void All()
         {
             TestDevice device = new TestDevice();
             device.setup();
@@ -34,7 +37,7 @@ namespace com.kumakore.test
 		{
 			base.setup ();
 			app ().signin(TEST_1,PASSWORD).sync ();
-			app().getUser().device ().register ("123456789").sync ();
+			app().getUser().device ().register (VALID_DEVICE_UDID).sync ();
 		}
 		
 		
@@ -83,7 +86,7 @@ namespace com.kumakore.test
         [Test]
         public void AsyncRegisterDevice()
         {
-            app().getUser().device().register("123456789").async (delegate(ActionDeviceRegister action)
+            app().getUser().device().register(VALID_DEVICE_UDID).async (delegate(ActionDeviceRegister action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();

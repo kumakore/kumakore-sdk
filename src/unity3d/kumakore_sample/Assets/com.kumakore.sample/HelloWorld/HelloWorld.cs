@@ -7,7 +7,7 @@ public class HelloWorld : MonoBehaviour {
 
 	private static readonly String TAG = typeof(HelloWorld).Name;	
 	private const string API_KEY = "292c9e31e5187c58b58f5f8588edc92d"; //sample
-	private const int DASHBOARD_VERSION = 1375571696;
+	private const int DASHBOARD_VERSION = 1394062976;
 	private const string APP_VERISON = "0.0";
 	private const string EMAIL = "test@sinuouscode.com";
 	private const string PASSWORD = "test";
@@ -31,6 +31,10 @@ public class HelloWorld : MonoBehaviour {
 			// we need to create an account			
 			signup(EMAIL);
 		}
+	}
+	
+	private void Update() {
+		_app.getDispatcher().dispatch();	
 	}
 
 	private void OnDestroy() {
@@ -147,6 +151,60 @@ public class HelloWorld : MonoBehaviour {
 			if (action.getCode () == StatusCodes.SUCCESS) {
 				Kumakore.LOGI(TAG, "Current: " + action.getCurrent() + ", Mimimum: " + action.getMinimum());
 			}
+		});
+	}
+	
+	private void getLeaderboards() {
+		_app.getLeaderboards().get().async(delegate(ActionLeaderboardGet action) {
+
+			if (action.getCode () == StatusCodes.SUCCESS) {
+				
+				foreach(Leaderboard leaderboard in _app.getLeaderboards().Values) {
+					setLeaderboardScoreForCurrentUser(leaderboard, 100);
+					Kumakore.LOGD(TAG, "Leaderboard:" + leaderboard.getName());
+				}
+				
+				return;
+			} else if (handleErrorCodes(action)) {
+				//...
+			}
+
+			Kumakore.LOGE(TAG, action.getStatusMessage());
+		});
+	}
+	
+	private void setLeaderboardScoreForCurrentUser(Leaderboard leaderboard, int score) {
+					
+		// updates the score for the current user for this leaderboard
+		leaderboard.setUserScore(score).async(delegate(ActionLeaderboardSetScore action) {
+
+			if (action.getCode () == StatusCodes.SUCCESS) {
+				getLeaderboardMembers(leaderboard, 0, 10);
+				Kumakore.LOGD(TAG, "Leaderboard:" + leaderboard.getName() + " set to " + score + " for UserId:" + _app.getUser().getId());
+				return;
+			} else if (handleErrorCodes(action)) {
+				//...
+			}
+
+			Kumakore.LOGE(TAG, action.getStatusMessage());
+		});
+	}
+	
+	private void getLeaderboardMembers(Leaderboard leaderboard, int start, int end) {
+		leaderboard.getMembsGivenRange(start, end).async(delegate(ActionLeaderboardGetMembers action) {
+
+			if (action.getCode () == StatusCodes.SUCCESS) {
+				
+				foreach(LeaderboardMember member in leaderboard.getMembers()) {
+					Kumakore.LOGD(TAG, "LeaderboardMember:" + member.getMemberId());
+				}
+				
+				return;
+			} else if (handleErrorCodes(action)) {
+				//...
+			}
+
+			Kumakore.LOGE(TAG, action.getStatusMessage());
 		});
 	}
 }

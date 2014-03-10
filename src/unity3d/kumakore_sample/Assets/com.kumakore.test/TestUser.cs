@@ -8,6 +8,9 @@ namespace com.kumakore.test
     [TestFixture]
     public class TestUser : TestBase
 	{
+		private static string FAKE_EMAIL = "newemail@carlostest.com";
+		private static string FAKE_PASSWORD = "pass";
+		
         public static void All()
         {
             TestUser user = new TestUser();
@@ -15,8 +18,8 @@ namespace com.kumakore.test
 			
 			user.SyncUserGet();
 			user.AsyncUserGet();
-			user.SyncUpdateInfo(TEST_1,"newemail@carlostest.com","pass");
-			user.AsyncUpdateInfo(TEST_1,TEST_1_EMAIL,PASSWORD);
+			user.SyncUpdateInfo();
+			user.AsyncUpdateInfo();
 			
 			user.SyncGetFacebookFriends();
 			user.AsyncGetFacebookFriends();
@@ -34,22 +37,24 @@ namespace com.kumakore.test
 		[Test]
         public void SyncUserGet()
         {
+            if(String.IsNullOrEmpty(app ().getUser().getId())) setup ();
             app().getUser().get().sync(delegate(ActionUserGet action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
-					//Assert.IsNotNullOrEmpty(app().getUser().getEmail());
-					//Assert.IsNotNullOrEmpty(app().getUser().getName());
+				Assert.IsNotNullOrEmpty(app().getUser().getEmail());
+				Assert.IsNotNullOrEmpty(app().getUser().getName());
             });
         }
 
         [Test]
         public void AsyncUserGet()
         {
+            if(String.IsNullOrEmpty(app ().getUser().getId())) setup ();
             app().getUser().get().async(delegate(ActionUserGet action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
-					//Assert.IsNotNullOrEmpty(app().getUser().getEmail());
-					//Assert.IsNotNullOrEmpty(app().getUser().getName());
+				Assert.IsNotNullOrEmpty(app().getUser().getEmail());
+				Assert.IsNotNullOrEmpty(app().getUser().getName());
                 Release();
             });
 
@@ -57,22 +62,38 @@ namespace com.kumakore.test
         }
 		
 		[Test]
-        public void SyncUpdateInfo(String username, String newEmail, String pass)
+        public void SyncUpdateInfo()
         {
-            app().getUser().update(username,newEmail,pass).sync(delegate(ActionUserUpdate action)
+			if(String.IsNullOrEmpty(app ().getUser().getId())) setup ();
+            app().getUser().update(TEST_1,FAKE_EMAIL,FAKE_PASSWORD).sync(delegate(ActionUserUpdate action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
-				Assert.AreEqual(newEmail,app().getUser().getEmail());
+				Assert.AreEqual(FAKE_EMAIL,app().getUser().getEmail());
+            });
+			app().getUser().update(TEST_1,TEST_1_EMAIL,PASSWORD).sync(delegate(ActionUserUpdate action)
+            {
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
+				Assert.AreEqual(TEST_1_EMAIL,app().getUser().getEmail());
             });
         }
 
         [Test]
-        public void AsyncUpdateInfo(String username, String newEmail, String pass)
+        public void AsyncUpdateInfo()
         {
-            app().getUser().update(username,newEmail,pass).async(delegate(ActionUserUpdate action)
+            if(String.IsNullOrEmpty(app ().getUser().getId())) setup ();
+            app().getUser().update(TEST_1,FAKE_EMAIL,FAKE_PASSWORD).async(delegate(ActionUserUpdate action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
-                Assert.AreEqual(newEmail,app().getUser().getEmail());
+                Assert.AreEqual(FAKE_EMAIL,app().getUser().getEmail());
+				Release();
+            });
+
+            Wait();
+			
+			app().getUser().update(TEST_1,TEST_1_EMAIL,PASSWORD).async(delegate(ActionUserUpdate action)
+            {
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
+                Assert.AreEqual(TEST_1_EMAIL,app().getUser().getEmail());
 				Release();
             });
 
@@ -82,6 +103,7 @@ namespace com.kumakore.test
 		[Test]
         public void SyncGetFacebookFriends()
         {
+            if(String.IsNullOrEmpty(app ().getUser().getId())) setup ();
             app().getUser().getFacebookFriends().get(TEST_FACEBOOK_TOKEN).sync(delegate(ActionFacebookGetFriends action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
@@ -91,6 +113,7 @@ namespace com.kumakore.test
         [Test]
         public void AsyncGetFacebookFriends()
         {
+            if(String.IsNullOrEmpty(app ().getUser().getId())) setup ();
             app().getUser().getFacebookFriends().get(TEST_FACEBOOK_TOKEN).async(delegate(ActionFacebookGetFriends action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
@@ -103,6 +126,7 @@ namespace com.kumakore.test
 		[Test]
         public void SyncSignOut()
         {
+            if(String.IsNullOrEmpty(app ().getUser().getId())) setup ();
             app().getUser().signout ().sync(delegate(ActionUserSignout action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());

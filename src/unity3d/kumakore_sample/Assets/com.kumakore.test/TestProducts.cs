@@ -8,6 +8,7 @@ namespace com.kumakore.test
     [TestFixture]
 	public class TestProducts : TestBase
     {
+		// TEST_1 user should have enough coins (or items) to pay for VALID_PRODUCT_ID
 		private String VALID_PRODUCT_ID = "it1";
 		
 	    public static void All()
@@ -56,18 +57,22 @@ namespace com.kumakore.test
 		[Test]
         public void SyncBuyProduct()
         {
-            app().getProducts().buyItem(VALID_PRODUCT_ID,1).sync(delegate(ActionInventoryPurchase action)
+			int quantity = 1;
+            app().getProducts().buyItem(VALID_PRODUCT_ID,quantity).sync(delegate(ActionInventoryPurchase action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
+				Assert.GreaterOrEqual(app ().getUser().getInventory()[VALID_PRODUCT_ID].getQuantity(),quantity);
             });
         }
 
         [Test]
         public void AsyncBuyProduct()
         {
-            app().getProducts().buyItem(VALID_PRODUCT_ID,1).async(delegate(ActionInventoryPurchase action)
+            int quantity = 1;
+            app().getProducts().buyItem(VALID_PRODUCT_ID,quantity).async(delegate(ActionInventoryPurchase action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
+				Assert.GreaterOrEqual(app ().getUser().getInventory()[VALID_PRODUCT_ID].getQuantity(),quantity);
                 Release();
             });
 

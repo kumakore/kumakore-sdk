@@ -1,10 +1,10 @@
 package com.kumakore.sample.test;
 
-import com.kumakore.ActionAppSignin;
+import com.kumakore.ActionUserSignin;
 import com.kumakore.ActionUserGet;
 import com.kumakore.KumakoreApp;
 
-public class TestUser extends TestBase implements ActionAppSignin.IKumakore {
+public class TestUser extends TestBase implements ActionUserSignin.IKumakore {
 	private static final String TAG = TestUser.class.getName();
 
 	public TestUser(KumakoreApp app) {
@@ -36,7 +36,7 @@ public class TestUser extends TestBase implements ActionAppSignin.IKumakore {
 	}
 
 	@Override
-	public void onActionAppSignin(ActionAppSignin action) {
+	public void onActionUserSignin(ActionUserSignin action) {
 		// ## example : get user ##
 		app().getUser().get().async(new ActionUserGet.IKumakore() {
 

@@ -8,10 +8,14 @@ namespace com.kumakore.test
     [TestFixture]
 	public class TestApp : TestBase
     {
+		// You need a valid TEST_FACEBOOK_TOKEN (not linked to any account) for the facebook-related tests to pass -see TestBase
 	    public static void All()
         {
             TestApp app = new TestApp();
             app.setup();
+			
+			app.SyncPlatform();
+			app.AsyncPlatform();
 			//// sync log
             app.SyncLogInfo();
             app.SyncLogDebug();
@@ -50,6 +54,31 @@ namespace com.kumakore.test
 			app.AsyncFacebookLogin();
 			app.AsyncFacebookDeauthorize();
 			
+        }
+		
+		[TestFixtureSetUp]
+		public override void setup ()
+		{
+			base.setup ();
+			app ().signin(TEST_1,PASSWORD).sync ();
+		}
+		
+		[Test]
+        public void SyncPlatform()
+        {
+			Assert.AreEqual(StatusCodes.SUCCESS, app().platform ().sync ());
+        }
+
+        [Test]
+        public void AsyncPlatform()
+        {
+            app().platform().async(delegate(ActionAppPlatform action)
+            {
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
+                Release();
+            });
+
+            Wait();
         }
 		
 		[Test]
@@ -145,14 +174,14 @@ namespace com.kumakore.test
         [Test]
         public void SyncSignupViaEmail()
         {
-            String email = "email_sync_" + Guid.NewGuid().ToString() + "@email.com";
+            String email = "email_sync_" + Guid.NewGuid().ToString().Substring(0,10) + "@email.com";
             Assert.AreEqual(StatusCodes.SUCCESS, app().signup(email).sync());
         }
 
         [Test]
         public void AsyncSignupViaEmail()
         {
-            String email = "email_async_" + Guid.NewGuid().ToString() + "@email.com";
+            String email = "email_async_" + Guid.NewGuid().ToString().Substring(0,10) + "@email.com";
             app().signup(email).async(delegate(ActionUserSignup action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
@@ -165,14 +194,14 @@ namespace com.kumakore.test
         [Test]
         public void SyncSignupViaUserName()
         {
-            String userName = "username_sync_" + Guid.NewGuid().ToString();
+            String userName = "username_sync_" + Guid.NewGuid().ToString().Substring(0,10);
             Assert.AreEqual(StatusCodes.SUCCESS, app().signup(userName).sync());
         }
 
         [Test]
         public void AsyncSignupViaUserName()
         {
-            String userName = "username_async_" + Guid.NewGuid().ToString();
+            String userName = "username_async_" + Guid.NewGuid().ToString().Substring(0,10);
             app().signup(userName).async(delegate(ActionUserSignup action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());

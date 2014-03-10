@@ -13,7 +13,7 @@ namespace com.kumakore.test
         private KumakoreApp _app;
         private AutoResetEvent _resetEvent = new AutoResetEvent(false);
         private static readonly int MAX_TEST_TIMEOUT = 5000;
-		protected static readonly String TEST_FACEBOOK_TOKEN = "CAAGJJ0L1ZC0cBAKM7qyqICJLwpExK2KU8m4nZBGCLbUZBVYexfenZCGk1cA2D6nujBenXdX4fJG7E2imo7nJGyE4zeF3psMUiQ0HuSek7hlo7ZAXWZAdw0gzpmxX0ajpIRf4nbNtzVAloBovZAP8xFX6G7yZC9OJsGA4ejcI6leFQPqrHbBIZBSUN";
+		protected static readonly String TEST_FACEBOOK_TOKEN = "CAABqApmZBl7QBABIBV2JvDtf4dUXAEo5FC0mheq4nqZCbzTqeamEUQclFBiPxjtZAZBZChQXJjUkTCDH4Mp2vaHpq2RNzqped7isiP3nQXchZCxtaaBNiAX8U4xhiBQ6GbZAR7enZCPPEzaIclSV6V1e7KNqb2wZB6ZAyv9l2xSzwFyhRcC53vTQVIfxCQFYCcr2MZD";
 		protected static readonly String TEST_1_EMAIL = "test01@carlostest.com";
         protected static readonly String TEST_1 = "test01"; // Valid test user for the app
 		protected static readonly String TEST_2 = "test02"; // Valid test user for the app
@@ -26,13 +26,15 @@ namespace com.kumakore.test
             _app = new KumakoreApp(Helpers.GetApiKey(),
                Helpers.GetDashboardVersion());
 			
+			_app.getDispatcher().immediateDispatch = true;
+			
 			// create test account
             //if (app().signup(TEST_EMAIL).sync() == StatusCodes.SUCCESS)
             //{
              //   app().getUser().update().setName(TEST_USERNAME).sync();
             //}
         }
-
+		
 		protected KumakoreApp app ()
 		{
 			return _app;

@@ -40,6 +40,11 @@ namespace com.kumakore
 			}
 		}
 		
+		
+		private void Update() {
+			_app.getDispatcher().dispatch();	
+		}
+		
 		void OnApplicationFocus(bool focusState) {
 			Debug.Log ("OnApplicationFocus:" + focusState);
 			Notification.getInstance().setEnabled(!focusState);

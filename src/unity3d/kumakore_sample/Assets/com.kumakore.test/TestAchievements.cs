@@ -11,20 +11,21 @@ namespace com.kumakore.test
 		private static readonly String ACHIEVEMENT_1 = "ach_1"; // valid achievement name for app
 		private static readonly int NUMBER_OF_ACHIEVEMENTS = 2; // number of achievements on app
 		
+		// run testcases from Unity scene
 		public static void All()
         {
             TestAchievements app = new TestAchievements();
             app.setup();
 			
 			// app achievements
-			app.SyncGetAchievementList(NUMBER_OF_ACHIEVEMENTS);
-			app.AsyncGetAchievementList(NUMBER_OF_ACHIEVEMENTS);
+			app.SyncGetAchievementList();
+			app.AsyncGetAchievementList();
 			
 			// user achievements
 			app.SyncGetUserAchievementList();
 			app.AsyncGetUserAchievementList();
-			app.SyncSetUserAchievement(ACHIEVEMENT_1);
-			app.AsyncSetUserAchievement(ACHIEVEMENT_1);
+			app.SyncSetUserAchievement();
+			app.AsyncSetUserAchievement();
         }
 		
 		[TestFixtureSetUp]
@@ -35,22 +36,22 @@ namespace com.kumakore.test
 		}
 		
 		[Test]
-        public void SyncGetAchievementList(int count)
+        public void SyncGetAchievementList()
         {
             app().getAchievements().get().sync(delegate(ActionAchievementGetApp action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
-				Assert.AreEqual (app().getAchievements().Count,count);
+				Assert.AreEqual (app().getAchievements().Count,NUMBER_OF_ACHIEVEMENTS);
             });
         }
 
         [Test]
-        public void AsyncGetAchievementList(int count)
+        public void AsyncGetAchievementList()
         {
             app().getAchievements().get().async(delegate(ActionAchievementGetApp action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
-				Assert.AreEqual (app().getAchievements().Count,count);
+				Assert.AreEqual (app().getAchievements().Count,NUMBER_OF_ACHIEVEMENTS);
                 Release();
             });
 
@@ -79,33 +80,33 @@ namespace com.kumakore.test
         }
 		
 		[Test]
-        public void SyncSetUserAchievement(String achievement)
+        public void SyncSetUserAchievement()
         {
 			Double progress = 1.0;
 			foreach(UserAchievement ach in app().getUser().getAchievements().Values) {
-				if(achievement.Equals(ach.getName ())) progress += ach.getProgress();
+				if(ACHIEVEMENT_1.Equals(ach.getName ())) progress += ach.getProgress();
 			}
-			app().getUser().getAchievements().set (achievement,progress).sync(delegate(ActionAchievementSetUser action)
+			app().getUser().getAchievements().set (ACHIEVEMENT_1,progress).sync(delegate(ActionAchievementSetUser action)
             {
 				Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
 				foreach(UserAchievement a in app().getUser().getAchievements().Values) {
-					if(a.getName () == achievement) Assert.AreEqual(progress,a.getProgress());
+					if(a.getName () == ACHIEVEMENT_1) Assert.AreEqual(progress,a.getProgress());
 				}
             });
         }
 
         [Test]
-        public void AsyncSetUserAchievement(String achievement)
+        public void AsyncSetUserAchievement()
         {
 			Double progress = 1.0;
 			foreach(UserAchievement ach in app().getUser().getAchievements().Values) {
-				if(achievement.Equals(ach.getName ())) progress += ach.getProgress();
+				if(ACHIEVEMENT_1.Equals(ach.getName ())) progress += ach.getProgress();
 			}
-			app().getUser().getAchievements().set (achievement,progress).async(delegate(ActionAchievementSetUser action)
+			app().getUser().getAchievements().set (ACHIEVEMENT_1,progress).async(delegate(ActionAchievementSetUser action)
             {
 				Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
 				foreach(UserAchievement a in app().getUser().getAchievements().Values) {
-					if(a.getName () == achievement) Assert.AreEqual(progress,a.getProgress());
+					if(a.getName () == ACHIEVEMENT_1) Assert.AreEqual(progress,a.getProgress());
 				}
 				Release ();
             });

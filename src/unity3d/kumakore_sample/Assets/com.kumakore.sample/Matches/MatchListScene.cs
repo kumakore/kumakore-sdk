@@ -48,6 +48,10 @@ public class MatchListScene : MonoBehaviour {
 		app.load();
 	}
 	
+	private void Update() {
+		app.getDispatcher().dispatch();	
+	}
+	
 	void OnDestroy() {
 		app.save ();
 	}

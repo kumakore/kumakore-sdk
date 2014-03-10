@@ -8,16 +8,17 @@ namespace com.kumakore.test
     [TestFixture]
     public class TestInventory : TestBase
 	{
-	
+		// valid item name
 		private static readonly String ITEM_NAME = "b1";
+		
         public static void All()
         {
             TestInventory inventory = new TestInventory();
             inventory.setup();
 			
 			inventory.SyncAddItem();
-			inventory.AsyncAddItem();
 			inventory.SyncRemoveItem();
+			inventory.AsyncAddItem();
 			inventory.AsyncRemoveItem();
 			
         }
@@ -33,18 +34,22 @@ namespace com.kumakore.test
 		[Test]
         public void SyncAddItem()
         {
-            app().getUser().getInventory().addItem(ITEM_NAME,10).sync(delegate(ActionInventoryAdd action)
+			int quantity = 1;
+            app().getUser().getInventory().addItem(ITEM_NAME,quantity).sync(delegate(ActionInventoryAdd action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
+				Assert.GreaterOrEqual(app ().getUser ().getInventory()[ITEM_NAME].getQuantity(),quantity);
             });
         }
 
         [Test]
         public void AsyncAddItem()
         {
-            app().getUser().getInventory().addItem(ITEM_NAME,2).async(delegate(ActionInventoryAdd action)
+			int quantity = 2;
+            app().getUser().getInventory().addItem(ITEM_NAME,quantity).async(delegate(ActionInventoryAdd action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
+				Assert.GreaterOrEqual(app ().getUser ().getInventory()[ITEM_NAME].getQuantity(),quantity);
                 Release();
             });
 
@@ -54,18 +59,26 @@ namespace com.kumakore.test
 		[Test]
         public void SyncRemoveItem()
         {
-            app().getUser().getInventory().removeItem(ITEM_NAME,1).sync(delegate(ActionInventoryRemove action)
+			int quantity = 0;
+			if(app().getUser ().getInventory().ContainsKey(ITEM_NAME)) quantity = app ().getUser().getInventory()[ITEM_NAME].getQuantity();
+			else Assert.Pass (ITEM_NAME + " not found in inventory");
+            app().getUser().getInventory().removeItem(ITEM_NAME,quantity).sync(delegate(ActionInventoryRemove action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
+				Assert.True(!app ().getUser().getInventory().ContainsKey(ITEM_NAME) || app ().getUser().getInventory()[ITEM_NAME].getQuantity() == 0); 
             });
         }
 
         [Test]
         public void AsyncRemoveItem()
         {
-            app().getUser().getInventory().removeItem(ITEM_NAME,2).async(delegate(ActionInventoryRemove action)
+            int quantity = 0;
+			if(app().getUser ().getInventory().ContainsKey(ITEM_NAME)) quantity = app ().getUser().getInventory()[ITEM_NAME].getQuantity();
+            else Assert.Pass (ITEM_NAME + " not found in inventory");
+            app().getUser().getInventory().removeItem(ITEM_NAME,quantity).async(delegate(ActionInventoryRemove action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
+				Assert.True(!app ().getUser().getInventory().ContainsKey(ITEM_NAME) || app ().getUser().getInventory()[ITEM_NAME].getQuantity() == 0);
                 Release();
             });
 

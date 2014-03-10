@@ -1,10 +1,11 @@
 package com.kumakore.sample;
 
 import com.facebook.Session;
-import com.kumakore.ActionAppSignin;
+import com.kumakore.ActionUserSignin;
 import com.kumakore.ActionAppSignup;
 import com.kumakore.ActionFacebookLogin;
 import com.kumakore.StatusCodes;
+import com.kumakore.User;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -148,10 +149,10 @@ public class TrySignupSigninActivity extends KumakoreActivity {
 	
 	private void trySignin(String usernameOrEmail, String password) {
 		
-		app().signin(usernameOrEmail, password).async(new ActionAppSignin.IKumakore() {
+		app().signin(usernameOrEmail, password).async(new ActionUserSignin.IKumakore() {
 			
 			@Override
-			public void onActionAppSignin(ActionAppSignin action) {
+			public void onActionUserSignin(ActionUserSignin action) {
 				if (action.getStatusCode() == StatusCodes.SUCCESS) {
 					setResult(RESULT_OK);
 					finish();

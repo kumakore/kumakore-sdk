@@ -16,8 +16,8 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.kumakore.ActionAppBuyItem;
-import com.kumakore.ActionAppGetProductMap;
+import com.kumakore.ActionInventoryPurchase;
+import com.kumakore.ActionInventoryGetProducts;
 import com.kumakore.ActionInventoryAdd;
 import com.kumakore.ActionInventoryGet;
 import com.kumakore.ActionInventoryRemove;
@@ -29,8 +29,8 @@ import com.kumakore.StatusCodes;
 import com.kumakore.listactivity.ItemArrayAdapter;
 
 public class InventoryActivity extends KumakoreSessionActivity implements ActionInventoryAdd.IKumakore,
-		ActionInventoryRemove.IKumakore, ActionInventoryGet.IKumakore, ActionAppBuyItem.IKumakore,
-		ActionAppGetProductMap.IKumakore {
+		ActionInventoryRemove.IKumakore, ActionInventoryGet.IKumakore, ActionInventoryPurchase.IKumakore,
+		ActionInventoryGetProducts.IKumakore {
 	private static final String TAG = InventoryActivity.class.getName();
 
 	private TextView amountLB;
@@ -275,12 +275,12 @@ public class InventoryActivity extends KumakoreSessionActivity implements Action
 	}
 
 	@Override
-	public void onActionAppBuyItem(ActionAppBuyItem action) {
+	public void onActionInventoryPurchase(ActionInventoryPurchase action) {
 		handleInventoryResponse(action.getStatusCode(), action.getStatusMessage());
 	}
 
 	@Override
-	public void onActionAppProductListGet(ActionAppGetProductMap action) {
+	public void onActionInventoryGetProducts(ActionInventoryGetProducts action) {
 		productsDownloaded = true;
 		_productList = app().getProduct();
 		checkDownload();

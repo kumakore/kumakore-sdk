@@ -2,8 +2,8 @@ package com.kumakore.sample.test;
 
 import android.util.Log;
 
-import com.kumakore.ActionAppBuyItem;
-import com.kumakore.ActionAppGetProductMap;
+import com.kumakore.ActionInventoryPurchase;
+import com.kumakore.ActionInventoryGetProducts;
 import com.kumakore.ItemBundle;
 import com.kumakore.KumakoreApp;
 import com.kumakore.Product;
@@ -22,10 +22,10 @@ public class TestProduct extends TestBase {
 	}
 	
 	public void testProductsGet() {
-		app().getProduct().get().async(new ActionAppGetProductMap.IKumakore() {
+		app().getProduct().get().async(new ActionInventoryGetProducts.IKumakore() {
 
 			@Override
-			public void onActionAppProductListGet(ActionAppGetProductMap action) {
+			public void onActionInventoryGetProducts(ActionInventoryGetProducts action) {
 				for (Product product : app().getProduct()) {
 					Log.i(TAG, product.getName() + "  " + product.getProductId());
 					testBuyItemWithCoins2();
@@ -35,10 +35,10 @@ public class TestProduct extends TestBase {
 	}
 
 	public void testBuyItemWithCoins() {
-		app().getProduct().buyItem("amazing_powerup", 3).async(new ActionAppBuyItem.IKumakore() {
+		app().getProduct().buyItem("amazing_powerup", 3).async(new ActionInventoryPurchase.IKumakore() {
 
 			@Override
-			public void onActionAppBuyItem(ActionAppBuyItem action) {
+			public void onActionInventoryPurchase	(ActionInventoryPurchase action) {
 				for (ItemBundle item : app().getUser().inventory()) {
 					Log.i(TAG, item.getProductId() + "  " + item.getQuantity());
 				}
@@ -61,10 +61,10 @@ public class TestProduct extends TestBase {
 			Log.w(TAG, "qqweqwe");
 			return;
 		}
-		app().getProduct().buyItem(auxProduct, 1).async(new ActionAppBuyItem.IKumakore() {
+		app().getProduct().buyItem(auxProduct, 1).async(new ActionInventoryPurchase.IKumakore() {
 
 			@Override
-			public void onActionAppBuyItem(ActionAppBuyItem action) {
+			public void onActionInventoryPurchase(ActionInventoryPurchase action) {
 				for (ItemBundle item : app().getUser().inventory()) {
 					Log.i(TAG, item.getProductId() + "  " + item.getQuantity());
 				}

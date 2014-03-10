@@ -21,8 +21,8 @@ namespace com.kumakore.test
 			
 			datastore.SyncUpdateDatastore(); // includes Get sync
 			datastore.AsyncUpdateDatastore(); // includes Get async
-			datastore.SyncGetDatastoreType();
-			datastore.AsyncGetDatastoreType();
+			//datastore.SyncGetDatastoreType();
+			//datastore.AsyncGetDatastoreType();
 			datastore.SyncDeleteDatastore();
 			datastore.AsyncCreateDatastore();
 			datastore.AsyncDeleteDatastore();
@@ -43,7 +43,7 @@ namespace com.kumakore.test
         {
 			app().getUser().getDatastore().get(DATASTORE_TYPE,DATASTORE_NAME).sync(delegate(ActionDatastoreGet action)
             {
-                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
+				Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
 				IDictionary<String,Object> db = new Dictionary<String,Object>();
 				db.Add (DATASTORE_FIELD,"a");
 				app().getUser().getDatastore().update (DATASTORE_TYPE,DATASTORE_NAME,db).sync(delegate(ActionDatastoreUpdate a)
@@ -111,6 +111,15 @@ namespace com.kumakore.test
             });
 
             Wait();
+        }
+		
+		[Test]
+        public void SyncCreateDatastore()
+        {
+            app().getUser().getDatastore().create(DATASTORE_TYPE,DATASTORE_NAME, new Dictionary<String,Object>()).sync(delegate(ActionDatastoreCreate action)
+            {
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
+            });
         }
 		
 		[Test]

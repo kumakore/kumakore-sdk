@@ -25,6 +25,11 @@ public class InventoryScene : MonoBehaviour {
 	void OnDestroy() {
 		kumakore.save ();
 	}
+	
+	private void Update() {
+		kumakore.getDispatcher().dispatch();	
+	}
+	
 	// Kumakore calls
 	public void SignIn(string user, string pass) {
 		kumakore.signin (useremail,password).async (delegate(ActionUserSignin action) {
