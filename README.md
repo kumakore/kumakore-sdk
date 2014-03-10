@@ -78,7 +78,7 @@ void (^returnBlock)(KKReturnStatus*) = ^(KKReturnStatus* returnCode) {
 
 The callback gets a signin action object where you can query the status of the action's execution. Of course a synchronous call isn't a very interesting use of a callback. If you repleace ```sync``` with ```async``` you will now have a non-blocking execution of the action, and when it returns it will using the same delegate/interfaces to notifiy the completion of the action.
 
-## Documentation (v0.6.1.0)
+## Documentation (v0.7.0.0)
 * [Android](http://kumakore.github.io/kumakore-sdk/docs/android/html/index.html)
 * [iOS](http://kumakore.github.io/kumakore-sdk/docs/ios/html/index.html)
 * [Unity Android](http://kumakore.github.io/kumakore-sdk/docs/unity3d/android/html/index.html)
