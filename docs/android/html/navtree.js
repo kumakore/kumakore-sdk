@@ -1,6 +1,7 @@
 var NAVTREE =
 [
   [ "Android", "index.html", [
+    [ "Modules", "modules.html", "modules" ],
     [ "Namespaces", null, [
       [ "Namespace List", "namespaces.html", "namespaces" ]
     ] ],
@@ -19,8 +20,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 ".html",
-"classcom_1_1kumakore_1_1_app_achievement.html#a0e8ea98bed4ef231afca9de30855cef9",
-"classcom_1_1kumakore_1_1_open_match_map_1_1_filters.html#a9bb187911f0c297b360656b471b4698f"
+"classcom_1_1kumakore_1_1_action_user_update.html",
+"classcom_1_1kumakore_1_1_open_match.html#a81f5bc640970b86c6e6c22684152cae1"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

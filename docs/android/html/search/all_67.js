@@ -10,7 +10,6 @@ var searchData=
   ['getcostinitems',['getCostInItems',['../classcom_1_1kumakore_1_1_product.html#a7644f4940eb34a49a812000a146b809c',1,'com::kumakore::Product']]],
   ['getcreated_5fat',['getCreated_at',['../classcom_1_1kumakore_1_1_user_achievement.html#a333f013be5053a73febf0ac36aebcfe9',1,'com::kumakore::UserAchievement']]],
   ['getcreatedat',['getCreatedAt',['../classcom_1_1kumakore_1_1_datastore_object.html#a3c416a41ed5fb2568d2301d9774e6f26',1,'com.kumakore.DatastoreObject.getCreatedAt()'],['../classcom_1_1kumakore_1_1_product.html#a148115b77b2e348976c548a17c102d95',1,'com.kumakore.Product.getCreatedAt()']]],
-  ['getcreateddate',['getCreatedDate',['../classcom_1_1kumakore_1_1_inventory_map.html#a6e325b66aad6d29fac252d252b9c954f',1,'com::kumakore::InventoryMap']]],
   ['getcreatedutc',['getCreatedUTC',['../classcom_1_1kumakore_1_1_match.html#a64937c7e9da6dd27c40ba5462d448c2b',1,'com.kumakore.Match.getCreatedUTC()'],['../classcom_1_1kumakore_1_1_match_move.html#aac6482853aa75c1a1070f7bf6f5a66b9',1,'com.kumakore.MatchMove.getCreatedUTC()']]],
   ['getdata',['getData',['../classcom_1_1kumakore_1_1_datastore_object.html#a0ea10109f73bfb22726a627577ce87fa',1,'com.kumakore.DatastoreObject.getData()'],['../classcom_1_1kumakore_1_1_match_move.html#a3756718518de323229609c4d3e38450f',1,'com.kumakore.MatchMove.getData()']]],
   ['getdate',['getDate',['../classcom_1_1kumakore_1_1_chat_message.html#a2d56e067b3e2e970a10024960ffd361d',1,'com::kumakore::ChatMessage']]],

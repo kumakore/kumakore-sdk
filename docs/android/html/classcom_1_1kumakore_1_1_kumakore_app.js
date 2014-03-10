@@ -24,6 +24,6 @@ var classcom_1_1kumakore_1_1_kumakore_app =
     [ "reset", "classcom_1_1kumakore_1_1_kumakore_app.html#a98b5473d9fa73fb778671a1d51e4d91d", null ],
     [ "setAppVersion", "classcom_1_1kumakore_1_1_kumakore_app.html#acdde4ad232acec1bd292b829a99613b4", null ],
     [ "setDashboardVersion", "classcom_1_1kumakore_1_1_kumakore_app.html#a14f08b51180c03a5b905e7489154dbbf", null ],
-    [ "signin", "classcom_1_1kumakore_1_1_kumakore_app.html#ae6ebdfa08052e2a60b06636b12066ab6", null ],
+    [ "signin", "classcom_1_1kumakore_1_1_kumakore_app.html#ac27a703194b2c1a3f78c89cdb2ed26cc", null ],
     [ "signup", "classcom_1_1kumakore_1_1_kumakore_app.html#a4dd844bb5b5c31638f53034ed988dac6", null ]
 ];

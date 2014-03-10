@@ -64,7 +64,7 @@ var group___a_c_t_i_o_n_s___u_s_e_r =
       [ "setName", "classcom_1_1kumakore_1_1_action_user_update.html#ab97910c976533c9657f473dceb5b677d", null ],
       [ "setPassword", "classcom_1_1kumakore_1_1_action_user_update.html#ac6313f10c490e9b3d02728651de65a7a", null ]
     ] ],
-    [ "get", "group___a_c_t_i_o_n_s___u_s_e_r.html#gac2cdbc32bb4694b3771d3094d9e85d27", null ],
+    [ "get", "group___a_c_t_i_o_n_s___u_s_e_r.html#ga13eeb97ce8e64ffc2a59c0dcece3518e", null ],
     [ "get", "group___a_c_t_i_o_n_s___u_s_e_r.html#gaa269677b649e5115e0136594392c7e70", null ],
     [ "getFacebook_id", "group___a_c_t_i_o_n_s___u_s_e_r.html#gad9f8204072c473bbf187e8f2654da8c0", null ],
     [ "getFirstName", "group___a_c_t_i_o_n_s___u_s_e_r.html#ga5aa8b63113c690973b703b8b95f4ecc2", null ],

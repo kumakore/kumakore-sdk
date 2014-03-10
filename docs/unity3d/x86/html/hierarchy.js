@@ -14,7 +14,7 @@ var hierarchy =
       [ "com.kumakore.InventoryMap", "classcom_1_1kumakore_1_1_inventory_map.html", null ]
     ] ],
     [ "Dictionary< String, Leaderboard >", null, [
-      [ "com.kumakore.LeaderboardList", "classcom_1_1kumakore_1_1_leaderboard_list.html", null ]
+      [ "com.kumakore.LeaderboardMap", "classcom_1_1kumakore_1_1_leaderboard_map.html", null ]
     ] ],
     [ "Dictionary< String, Match >", null, [
       [ "com.kumakore.ClosedMatchMap", "classcom_1_1kumakore_1_1_closed_match_map.html", null ]
@@ -36,6 +36,9 @@ var hierarchy =
     [ "com.kumakore.FriendFacebookList", "classcom_1_1kumakore_1_1_friend_facebook_list.html", null ],
     [ "com.kumakore.FriendInvitation", "classcom_1_1kumakore_1_1_friend_invitation.html", null ],
     [ "com.kumakore.FriendList", "classcom_1_1kumakore_1_1_friend_list.html", null ],
+    [ "com.kumakore.IKumakoreInvokable", "interfacecom_1_1kumakore_1_1_i_kumakore_invokable.html", [
+      [ "com.kumakore.KumakoreInvokable", "structcom_1_1kumakore_1_1_kumakore_invokable.html", null ]
+    ] ],
     [ "com.kumakore.ItemBundle", "classcom_1_1kumakore_1_1_item_bundle.html", null ],
     [ "KumakoreAction< ActionAchievementGetApp.IKumakore >", null, [
       [ "com.kumakore.ActionAchievementGetApp", "classcom_1_1kumakore_1_1_action_achievement_get_app.html", null ]
@@ -195,6 +198,7 @@ var hierarchy =
       ] ]
     ] ],
     [ "com.kumakore.KumakoreApp", "classcom_1_1kumakore_1_1_kumakore_app.html", null ],
+    [ "com.kumakore.KumakoreDispatcher", "classcom_1_1kumakore_1_1_kumakore_dispatcher.html", null ],
     [ "com.kumakore.Leaderboard", "classcom_1_1kumakore_1_1_leaderboard.html", null ],
     [ "com.kumakore.LeaderboardMember", "classcom_1_1kumakore_1_1_leaderboard_member.html", null ],
     [ "List< User >", null, [

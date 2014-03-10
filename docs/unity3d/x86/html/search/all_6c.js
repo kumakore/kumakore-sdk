@@ -1,7 +1,7 @@
 var searchData=
 [
   ['leaderboard',['Leaderboard',['../classcom_1_1kumakore_1_1_leaderboard.html',1,'com::kumakore']]],
-  ['leaderboardlist',['LeaderboardList',['../classcom_1_1kumakore_1_1_leaderboard_list.html',1,'com::kumakore']]],
+  ['leaderboardmap',['LeaderboardMap',['../classcom_1_1kumakore_1_1_leaderboard_map.html',1,'com::kumakore']]],
   ['leaderboardmember',['LeaderboardMember',['../classcom_1_1kumakore_1_1_leaderboard_member.html',1,'com::kumakore']]],
   ['load',['load',['../classcom_1_1kumakore_1_1_kumakore_app.html#a18f372a6bfe21f826f684becd792183d',1,'com.kumakore.KumakoreApp.load()'],['../classcom_1_1kumakore_1_1_kumakore_app.html#a73ad4e806b35852fb0d061fd1bfbd1eb',1,'com.kumakore.KumakoreApp.load(String path)']]],
   ['logcritical',['logCritical',['../group___a_c_t_i_o_n_s___a_p_p.html#gad926edd3a16a2ce85204a09792a58c1e',1,'com::kumakore::KumakoreApp']]],
