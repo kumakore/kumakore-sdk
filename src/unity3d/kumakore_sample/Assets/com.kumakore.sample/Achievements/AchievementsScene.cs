@@ -30,6 +30,7 @@ public class AchievementsScene : MonoBehaviour {
 	void OnDestroy() {
 		kumakore.save ();
 	}
+	
 	// Kumakore calls
 	public void SignIn(string user, string pass) {
 		kumakore.signin (user,pass).async (delegate(ActionUserSignin action) {

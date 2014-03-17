@@ -26,6 +26,11 @@ public class HelloWorld : MonoBehaviour {
 
 		if (_app.getUser().hasSessionId()) {
 			Kumakore.LOGI(TAG, _app.getUser().getName() + " already signed in.");
+			
+			_app.logInfo("TEST").async(delegate(ActionAppLog action) {
+				Debug.Log("TEST CALLBACK!");
+			});
+			Debug.Log("TEST AFTER!");
 		} else {
 			// could be not logged in or
 			// we need to create an account			
