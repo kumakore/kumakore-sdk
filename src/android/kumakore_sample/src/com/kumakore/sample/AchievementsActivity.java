@@ -16,8 +16,8 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Toast;
 
 import com.kumakore.ActionAchievementGetApp;
-import com.kumakore.ActionUserAchievementListGet;
-import com.kumakore.ActionUserAchievementSet;
+import com.kumakore.ActionAchievementGetUser;
+import com.kumakore.ActionAchievementSetUser;
 import com.kumakore.AppAchievement;
 import com.kumakore.AppAchievementMap;
 import com.kumakore.StatusCodes;
@@ -25,8 +25,8 @@ import com.kumakore.UserAchievement;
 import com.kumakore.UserAchievementMap;
 import com.kumakore.listactivity.KumakoreArrayAdapter;
 
-public class AchievementsActivity extends KumakoreSessionActivity implements ActionUserAchievementListGet.IKumakore,
-		ActionUserAchievementSet.IKumakore, ActionAchievementGetApp.IKumakore {
+public class AchievementsActivity extends KumakoreSessionActivity implements ActionAchievementGetUser.IKumakore,
+		ActionAchievementSetUser.IKumakore, ActionAchievementGetApp.IKumakore {
 	private static final String TAG = AchievementsActivity.class.getName();
 
 	private ListView listViewAchievements;
@@ -131,7 +131,7 @@ public class AchievementsActivity extends KumakoreSessionActivity implements Act
 	}
 
 	@Override
-	public void onActionUserAchievmentSet(ActionUserAchievementSet action) {
+	public void onActionUserAchievmentSet(ActionAchievementSetUser action) {
 		if (action.getStatusCode() == StatusCodes.SUCCESS) {
 			updateView();
 		} else {
@@ -141,7 +141,7 @@ public class AchievementsActivity extends KumakoreSessionActivity implements Act
 	}
 
 	@Override
-	public void onActionUserAchievmentListGet(ActionUserAchievementListGet action) {
+	public void onActionAchievementGetUser(ActionAchievementGetUser action) {
 		if (action.getStatusCode() == StatusCodes.SUCCESS) {
 			_userAchievements = app().getUser().achievements();
 			userAchievementsDownloaded = true;

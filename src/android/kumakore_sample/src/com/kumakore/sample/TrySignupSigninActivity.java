@@ -2,8 +2,8 @@ package com.kumakore.sample;
 
 import com.facebook.Session;
 import com.kumakore.ActionUserSignin;
-import com.kumakore.ActionAppSignup;
-import com.kumakore.ActionFacebookLogin;
+import com.kumakore.ActionUserSignup;
+import com.kumakore.ActionFacebookSignin;
 import com.kumakore.StatusCodes;
 import com.kumakore.User;
 
@@ -133,10 +133,10 @@ public class TrySignupSigninActivity extends KumakoreActivity {
 	
 	private void trySignup(String usernameOrEmail) {
 		
-		app().signup(usernameOrEmail).async(new ActionAppSignup.IKumakore() {
+		app().signup(usernameOrEmail).async(new ActionUserSignup.IKumakore() {
 			
 			@Override
-			public void onActionAppSignup(ActionAppSignup action) {
+			public void onActionUserSignup(ActionUserSignup action) {
 				if (action.getStatusCode() == StatusCodes.SUCCESS) {
 					setResult(RESULT_OK);
 					finish();
@@ -167,10 +167,10 @@ public class TrySignupSigninActivity extends KumakoreActivity {
 	
 		_fbHelper.CheckSession();
 		if (_fbHelper.isSessionOpened()) {
-			app().facebookLogin(_fbHelper.getToken()).async( new ActionFacebookLogin.IKumakore() {
+			app().facebookLogin(_fbHelper.getToken()).async( new ActionFacebookSignin.IKumakore() {
 				
 				@Override
-				public void onActionFacebookLogin(ActionFacebookLogin action) {
+				public void onActionFacebookSignin(ActionFacebookSignin action) {
 					if (action.getStatusCode() == StatusCodes.SUCCESS) {
 						setResult(RESULT_OK);
 						finish();

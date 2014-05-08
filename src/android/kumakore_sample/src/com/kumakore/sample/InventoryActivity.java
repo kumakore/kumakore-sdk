@@ -154,7 +154,7 @@ public class InventoryActivity extends KumakoreSessionActivity implements Action
 			toast.show();
 			return;
 		}
-		app().getUser().inventory().removeItem(item.getProductId(), itemAmount).sync(InventoryActivity.this);
+		app().getUser().inventory().removeItem(item.getName(), itemAmount).sync(InventoryActivity.this);
 
 	}
 

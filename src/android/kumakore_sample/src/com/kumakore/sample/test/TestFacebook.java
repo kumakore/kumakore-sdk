@@ -3,11 +3,11 @@ package com.kumakore.sample.test;
 import android.util.Log;
 
 import com.kumakore.ActionFacebookGetFriends;
-import com.kumakore.ActionFacebookLogin;
+import com.kumakore.ActionFacebookSignin;
 import com.kumakore.KumakoreApp;
 import com.kumakore.sample.Helpers;
 
-public class TestFacebook extends TestBase implements ActionFacebookLogin.IKumakore, ActionFacebookGetFriends.IKumakore {
+public class TestFacebook extends TestBase implements ActionFacebookSignin.IKumakore, ActionFacebookGetFriends.IKumakore {
 	private static final String TAG = TestFacebook.class.getName();
 
 	public TestFacebook(KumakoreApp app) {
@@ -29,7 +29,7 @@ public class TestFacebook extends TestBase implements ActionFacebookLogin.IKumak
 	}
 
 	@Override
-	public void onActionFacebookLogin(ActionFacebookLogin action) {
+	public void onActionFacebookSignin(ActionFacebookSignin action) {
 		Log.i(TAG, "LOGIN SUCCESS ");
 		testGetFriends();
 	}

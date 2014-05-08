@@ -30,7 +30,7 @@ public class TestInventory extends TestBase {
 				// Log.i(TAG, "Inventory size " +
 				// app.getUser().inventory().size());
 				for (ItemBundle item : app().getUser().inventory()) {
-					Log.i(TAG, item.getProductId() + "  " + item.getQuantity());
+					Log.i(TAG, item.getName() + "  " + item.getQuantity());
 				}
 			}
 		});
@@ -44,7 +44,7 @@ public class TestInventory extends TestBase {
 			public void onActionInventoryAdd(ActionInventoryAdd action) {
 				Log.i(TAG, "Inventory size " + app().getUser().inventory().size());
 				for (ItemBundle item : app().getUser().inventory()) {
-					Log.i(TAG, item.getProductId() + "  " + item.getQuantity());
+					Log.i(TAG, item.getName() + "  " + item.getQuantity());
 				}
 
 			}
@@ -59,7 +59,7 @@ public class TestInventory extends TestBase {
 			public void onActionInventoryRemove(ActionInventoryRemove action) {
 				Log.i(TAG, "Inventory size " + app().getUser().inventory().size());
 				for (ItemBundle item : app().getUser().inventory()) {
-					Log.i(TAG, item.getProductId() + "  " + item.getQuantity());
+					Log.i(TAG, item.getName() + "  " + item.getQuantity());
 				}
 
 			}

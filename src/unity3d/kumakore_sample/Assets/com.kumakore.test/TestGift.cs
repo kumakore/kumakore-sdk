@@ -11,6 +11,7 @@ namespace com.kumakore.test
 	{   
 
 		private static readonly String RED_BALL_PRODUCT_ID = "com_sinuouscode_red_ball";
+		private static readonly String BLUE_BALL_PRODUCT_ID = "sinuous_code_blue_ball";
 		private static readonly int GIFT_COUNT = 1;
 
 		public static void All()
@@ -75,7 +76,7 @@ namespace com.kumakore.test
 		{
 			String giftId = String.Empty;
 
-			app1().getUser().gifts().giveUserName(TEST_2, RED_BALL_PRODUCT_ID, GIFT_COUNT).sync (delegate(ActionGiftGive action) {
+			app1().getUser().gifts().giveUserName(TEST_2, RED_BALL_PRODUCT_ID, 1).sync (delegate(ActionGiftGive action) {
 
 				Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
 				giftId =	action.getGiftId();
@@ -92,7 +93,7 @@ namespace com.kumakore.test
 		{
 			String giftId = String.Empty;
 
-			app1().getUser().gifts().giveUserName(TEST_2, RED_BALL_PRODUCT_ID, GIFT_COUNT).sync (delegate(ActionGiftGive action) {
+			app1().getUser().gifts().giveUserName(TEST_2, RED_BALL_PRODUCT_ID, 1).sync (delegate(ActionGiftGive action) {
 		
 				Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
 				giftId =	action.getGiftId();
@@ -153,7 +154,7 @@ namespace com.kumakore.test
 		public void SyncGiftRequest()
 		{
 			app1().getUser().gifts().request().addUserName(TEST_2).
-			addItem(RED_BALL_PRODUCT_ID, GIFT_COUNT).sync (delegate(ActionGiftRequest action)
+			addItem(RED_BALL_PRODUCT_ID, 1).sync (delegate(ActionGiftRequest action)
 			{
 				Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
 			});
@@ -163,7 +164,7 @@ namespace com.kumakore.test
 		public void AsyncGiftRequest()
 		{
 			app1().getUser().gifts().request().addUserName(TEST_2).
-			addItem(RED_BALL_PRODUCT_ID, GIFT_COUNT).async (delegate(ActionGiftRequest action)
+			addItem(RED_BALL_PRODUCT_ID, 1).async (delegate(ActionGiftRequest action)
 			{
 				Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
 				Release();

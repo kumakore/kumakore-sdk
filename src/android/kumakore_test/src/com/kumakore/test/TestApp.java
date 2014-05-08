@@ -4,10 +4,11 @@ import java.util.UUID;
 
 import junit.framework.Assert;
 
-import com.kumakore.ActionAppGetUserId;
+import com.kumakore.ActionUserGetUserId;
 import com.kumakore.ActionAppLog;
-import com.kumakore.ActionAppSignup;
-import com.kumakore.ActionAppUserPasswordReset;
+import com.kumakore.ActionUserSignup;
+import com.kumakore.ActionUserPasswordReset;
+import com.kumakore.ActionUserSignin;
 import com.kumakore.KumakoreUtil;
 import com.kumakore.StatusCodes;
 
@@ -118,10 +119,10 @@ public class TestApp extends TestBase {
     public void testAsyncSignupViaEmail()
     {
         String email = "email_async_" + UUID.randomUUID().toString() + "@email.com";
-        app().signup(email).async(new ActionAppSignup.IKumakore() {
+        app().signup(email).async(new ActionUserSignup.IKumakore() {
 			
 			@Override
-			public void onActionAppSignup(ActionAppSignup action) {
+			public void onActionUserSignup(ActionUserSignup action) {
 	            Assert.assertEquals(StatusCodes.SUCCESS, action.getStatusCode());
 	            Release();				
 			}
@@ -139,10 +140,10 @@ public class TestApp extends TestBase {
     public void testAsyncSignupViaUserName()
     {
         String userName = "username_async_" + UUID.randomUUID().toString();
-        app().signup(userName).async(new ActionAppSignup.IKumakore() {
+        app().signup(userName).async(new ActionUserSignup.IKumakore() {
 			
 			@Override
-			public void onActionAppSignup(ActionAppSignup action) {
+			public void onActionUserSignup(ActionUserSignup action) {
 				Assert.assertEquals(StatusCodes.SUCCESS, action.getStatusCode());
 				Release();
 			}
@@ -153,10 +154,10 @@ public class TestApp extends TestBase {
 
     public void testSyncGetUserId()
     {
-        app().getUserId(TEST_USERNAME).sync(new ActionAppGetUserId.IKumakore() {
+        app().getUserId(TEST_USERNAME).sync(new ActionUserGetUserId.IKumakore() {
 			
 			@Override
-			public void onActionUserId(ActionAppGetUserId action) {
+			public void onActionUserId(ActionUserGetUserId action) {
 	            Assert.assertEquals(StatusCodes.SUCCESS, action.getStatusCode());
 	            Assert.assertFalse("userId is null or empty", KumakoreUtil.isNullOrEmpty(action.getUserId()));				
 			}
@@ -165,10 +166,10 @@ public class TestApp extends TestBase {
 
     public void testAsyncGetUserId()
     {
-        app().getUserId(TEST_USERNAME).async(new ActionAppGetUserId.IKumakore() {
+        app().getUserId(TEST_USERNAME).async(new ActionUserGetUserId.IKumakore() {
 			
 			@Override
-			public void onActionUserId(ActionAppGetUserId action) {
+			public void onActionUserId(ActionUserGetUserId action) {
 	            Assert.assertEquals(StatusCodes.SUCCESS, action.getStatusCode());
 	            Assert.assertFalse("userId is null or empty", KumakoreUtil.isNullOrEmpty(action.getUserId()));
 	            Release();				
@@ -185,10 +186,10 @@ public class TestApp extends TestBase {
 
     public void testAsyncPasswordReset()
     {
-        app().passwordReset(TEST_EMAIL).async(new ActionAppUserPasswordReset.IKumakore() {
+        app().passwordReset(TEST_EMAIL).async(new ActionUserPasswordReset.IKumakore() {
 			
 			@Override
-			public void onActionUserPasswordReset(ActionAppUserPasswordReset action) {
+			public void onActionUserPasswordReset(ActionUserPasswordReset action) {
 	            Assert.assertEquals(StatusCodes.SUCCESS, action.getStatusCode());
 	            Release();				
 			}

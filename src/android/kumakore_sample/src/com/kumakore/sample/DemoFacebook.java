@@ -18,14 +18,14 @@ import android.widget.TextView;
 
 import com.facebook.Session;
 import com.kumakore.ActionFacebookGetFriends;
-import com.kumakore.ActionFacebookLogin;
+import com.kumakore.ActionFacebookSignin;
 import com.kumakore.ActionFacebookConnect;
 import com.kumakore.FriendFacebook;
 import com.kumakore.FriendFacebookList;
 import com.kumakore.ActionFacebookDeauthorize;
 import com.kumakore.KumakoreApp;
 
-public class DemoFacebook extends Activity implements ActionFacebookGetFriends.IKumakore, ActionFacebookLogin.IKumakore,
+public class DemoFacebook extends Activity implements ActionFacebookGetFriends.IKumakore, ActionFacebookSignin.IKumakore,
 ActionFacebookConnect.IKumakore, ActionFacebookDeauthorize.IKumakore{
 	private static final String TAG = DemoFacebook.class.getName();
 
@@ -163,9 +163,9 @@ ActionFacebookConnect.IKumakore, ActionFacebookDeauthorize.IKumakore{
 	}
 
 	@Override
-	public void onActionFacebookLogin(ActionFacebookLogin action) {
+	public void onActionFacebookSignin(ActionFacebookSignin action) {
 
-		Log.i(TAG, "onActionFacebookLogin ");
+		Log.i(TAG, "onActionFacebookSignin ");
 		updateView();
 	}
 

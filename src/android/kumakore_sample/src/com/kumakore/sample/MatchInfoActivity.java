@@ -2,49 +2,39 @@ package com.kumakore.sample;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup.LayoutParams;
-import android.widget.ArrayAdapter;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import com.kumakore.ActionChatMessageGet.IKumakore;
-import com.kumakore.ActionClosedMatchMap;
 import com.kumakore.ActionMatchAccept;
+import com.kumakore.ActionMatchChatMessage;
 import com.kumakore.ActionMatchClose;
+import com.kumakore.ActionMatchGetChatMessage;
+import com.kumakore.ActionMatchGetMoves;
+import com.kumakore.ActionMatchGetOpen;
+import com.kumakore.ActionMatchGetStatus;
+import com.kumakore.ActionMatchMove;
+import com.kumakore.ActionMatchNudge;
 import com.kumakore.ActionMatchReject;
 import com.kumakore.ActionMatchResign;
-import com.kumakore.ActionMatchStatusGet;
 import com.kumakore.ActionMatchSelectItems;
-import com.kumakore.ActionMatchMoves;
-import com.kumakore.ActionMatchSendMove;
-import com.kumakore.ActionChatMessageGet;
-import com.kumakore.ActionChatMessageSend;
-import com.kumakore.ActionOpenMatchMap;
 import com.kumakore.ChatMessage;
-import com.kumakore.KumakoreApp;
 import com.kumakore.Match;
-import com.kumakore.OpenMatchMap;
-import com.kumakore.ActionMatchSendNudge;
 import com.kumakore.OpenMatch;
 
-public class MatchInfoActivity extends KumakoreSessionActivity implements ActionOpenMatchMap.IKumakore,
-		ActionMatchStatusGet.IKumakore, ActionMatchClose.IKumakore, ActionMatchResign.IKumakore,
-		ActionMatchReject.IKumakore, ActionMatchAccept.IKumakore, ActionMatchSelectItems.IKumakore,
-		ActionMatchMoves.IKumakore, ActionMatchSendMove.IKumakore, ActionChatMessageGet.IKumakore,
-		ActionChatMessageSend.IKumakore, ActionMatchSendNudge.IKumakore {
+public class MatchInfoActivity extends KumakoreSessionActivity implements ActionMatchGetOpen.IKumakore, ActionMatchGetStatus.IKumakore,
+		ActionMatchClose.IKumakore, ActionMatchResign.IKumakore, ActionMatchReject.IKumakore, ActionMatchAccept.IKumakore,
+		ActionMatchSelectItems.IKumakore, ActionMatchGetMoves.IKumakore, ActionMatchMove.IKumakore, ActionMatchGetChatMessage.IKumakore,
+		ActionMatchChatMessage.IKumakore, ActionMatchNudge.IKumakore {
 	private static final String TAG = MatchInfoActivity.class.getName();
 
 	private LinearLayout layoutMyTurn, layoutTheirTurn, layoutChat;
@@ -160,8 +150,7 @@ public class MatchInfoActivity extends KumakoreSessionActivity implements Action
 
 		Button buttonAccept = (Button) findViewById(R.id.matchinfo_accept);
 		Button buttonReject = (Button) findViewById(R.id.matchinfo_reject);
-		if (!_match.getRandomMatch() && !_match.getClosed() && _match.getMoveNum() == 1
-				&& _match.getTurn() == _userId && !_match.getAccepted()) {
+		if (!_match.getRandomMatch() && !_match.getClosed() && _match.getMoveNum() == 1 && _match.getTurn() == _userId && !_match.getAccepted()) {
 
 			buttonAccept.setOnClickListener(new OnClickListener() {
 				public void onClick(View view) {
@@ -207,8 +196,7 @@ public class MatchInfoActivity extends KumakoreSessionActivity implements Action
 		buttonSendChat.setOnClickListener(new OnClickListener() {
 			public void onClick(View view) {
 				Log.i(TAG, "Send Chat:");
-				_openMatch.sendChatMessage(_matchId, editTextChatMessage.getText().toString()).async(
-						MatchInfoActivity.this);
+				_openMatch.sendChatMessage(_matchId, editTextChatMessage.getText().toString()).async(MatchInfoActivity.this);
 			}
 		});
 
@@ -250,8 +238,8 @@ public class MatchInfoActivity extends KumakoreSessionActivity implements Action
 		 * _selectedItems.put("amazing_powerup",1);
 		 */
 
-		_openMatch.sendMove(_match.getMoveNum(), "test attack for move: " + _match.getMoveNum(),
-				_rewardItems, _attackItems, false, _selectedItems).async(MatchInfoActivity.this);
+		_openMatch.sendMove(_match.getMoveNum(), "test attack for move: " + _match.getMoveNum(), _rewardItems, _attackItems, false, _selectedItems)
+				.async(MatchInfoActivity.this);
 	}
 
 	@Override
@@ -275,7 +263,7 @@ public class MatchInfoActivity extends KumakoreSessionActivity implements Action
 	}
 
 	@Override
-	public void onActionMatchStatusGet(ActionMatchStatusGet action) {
+	public void onActionMatchGetStatus(ActionMatchGetStatus action) {
 		_match = _openMatch;
 		drawPlayerNames();
 
@@ -288,27 +276,27 @@ public class MatchInfoActivity extends KumakoreSessionActivity implements Action
 	}
 
 	@Override
-	public void onActionMatchMoves(ActionMatchMoves action) {
+	public void onActionMatchGetMoves(ActionMatchGetMoves action) {
 
 	}
 
 	@Override
-	public void onActionMatchSendMove(ActionMatchSendMove action) {
+	public void onActionMatchMove(ActionMatchMove action) {
 
 	}
 
 	@Override
-	public void onActionChatMessageGet(ActionChatMessageGet action) {		
+	public void onActionMatchGetChatMessage(ActionMatchGetChatMessage action) {
 		drawChatMessages();
 	}
 
 	@Override
-	public void onActionChatMessageSend(ActionChatMessageSend action) {
+	public void onActionMatchChatMessage(ActionMatchChatMessage action) {
 		_openMatch.getChatMessages().async(MatchInfoActivity.this);
 	}
 
 	@Override
-	public void onActionMatchSendNudge(ActionMatchSendNudge action) {
+	public void onActionMatchNudge(ActionMatchNudge action) {
 
 	}
 
@@ -353,7 +341,7 @@ public class MatchInfoActivity extends KumakoreSessionActivity implements Action
 	}
 
 	@Override
-	public void onActionMatchCurrentListGet(ActionOpenMatchMap action) {
+	public void onActionMatchCurrentListGet(ActionMatchGetOpen action) {
 		init();
 	}
 }

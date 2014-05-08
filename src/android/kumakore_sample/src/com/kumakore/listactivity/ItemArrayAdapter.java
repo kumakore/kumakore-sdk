@@ -21,7 +21,6 @@ public class ItemArrayAdapter extends ArrayAdapter<String> {
 
 	private int highlightedId = -1;
 
-
 	public ItemArrayAdapter(Context context, List<String> titles, List<String> descriptions, List<Product> products) {
 		super(context, R.layout.list_item_achievements, titles);
 		this.context = context;
@@ -44,9 +43,9 @@ public class ItemArrayAdapter extends ArrayAdapter<String> {
 		// Change the icon
 		ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
 
-		String type =products.get(position).getType();
-		
-		if(type == null)
+		String type = products.get(position).getCategory();
+
+		if (type == null)
 			imageView.setImageResource(R.drawable.kumakore_icon);
 		else if (type.equals("coin"))
 			imageView.setImageResource(R.drawable.coin);
@@ -54,7 +53,7 @@ public class ItemArrayAdapter extends ArrayAdapter<String> {
 			imageView.setImageResource(R.drawable.avatar);
 		else if (type.equals("powerup"))
 			imageView.setImageResource(R.drawable.powerup);
-		else if(type.isEmpty())
+		else if (type.isEmpty())
 			imageView.setImageResource(R.drawable.kumakore_icon);
 
 		if (highlightedId == position)

@@ -23,20 +23,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.kumakore.ActionClosedMatchMap;
-import com.kumakore.ActionMatchCreateNew;
+import com.kumakore.ActionMatchGetClosed;
+import com.kumakore.ActionMatchClose;
+import com.kumakore.ActionMatchCreate;
 import com.kumakore.ActionMatchCreateRandom;
-import com.kumakore.ActionMatchStatusGet;
-import com.kumakore.ActionOpenMatchMap;
+import com.kumakore.ActionMatchGetStatus;
+import com.kumakore.ActionMatchGetOpen;
 import com.kumakore.Match;
 import com.kumakore.OpenMatch;
 import com.kumakore.OpenMatchMap;
 import com.kumakore.StatusCodes;
 import com.kumakore.listactivity.MatchButton;
 
-public class MatchListActivity extends KumakoreSessionActivity implements ActionOpenMatchMap.IKumakore,
-		ActionClosedMatchMap.IKumakore, ActionMatchCreateNew.IKumakore, ActionMatchCreateRandom.IKumakore,
-		ActionMatchStatusGet.IKumakore {
+public class MatchListActivity extends KumakoreSessionActivity implements ActionMatchGetOpen.IKumakore, ActionMatchClose.IKumakore,
+		ActionMatchCreate.IKumakore, ActionMatchCreateRandom.IKumakore, ActionMatchGetClosed.IKumakore, ActionMatchGetStatus.IKumakore {
 	private static final String TAG = MatchListActivity.class.getName();
 
 	private LinearLayout _layoutMyTurn;
@@ -123,8 +123,8 @@ public class MatchListActivity extends KumakoreSessionActivity implements Action
 	private void updateCurrentMatchList() {
 
 		// Store variables
-		myTurnMatches = _openMatchMap.filters().myTurn();
-		theirTurnMatches = _openMatchMap.filters().theirTurn();
+		myTurnMatches = _openMatchMap.getMyTurn();
+		theirTurnMatches = _openMatchMap.getTheirTurn();
 		completedMatches = app().getUser().getClosedMatches();
 
 		_layoutMyTurn.removeAllViews();
@@ -139,8 +139,7 @@ public class MatchListActivity extends KumakoreSessionActivity implements Action
 
 	private void drawMyTurnMatches() {
 
-		LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
-				LayoutParams.WRAP_CONTENT);
+		LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 
 		// Title
 		TextView tv = new TextView(this);
@@ -163,8 +162,7 @@ public class MatchListActivity extends KumakoreSessionActivity implements Action
 
 	private void drawTheirTurnMatches() {
 
-		LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
-				LayoutParams.WRAP_CONTENT);
+		LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 
 		TextView tv = new TextView(this);
 		tv.setText("Their Turn");
@@ -200,8 +198,7 @@ public class MatchListActivity extends KumakoreSessionActivity implements Action
 
 		_layoutClosedMatches.removeAllViews();
 
-		LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
-				LayoutParams.WRAP_CONTENT);
+		LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 
 		TextView tv = new TextView(this);
 		tv.setText("Completed Matches");
@@ -230,7 +227,7 @@ public class MatchListActivity extends KumakoreSessionActivity implements Action
 	}
 
 	@Override
-	public void onActionMatchCompletedListGet(ActionClosedMatchMap action) {
+	public void onActionMatchClose(ActionMatchClose action) {
 		if (action.getStatusCode() == StatusCodes.SUCCESS) {
 			_finishedCompletedMatches = true;
 			updateAllMatches();
@@ -243,7 +240,7 @@ public class MatchListActivity extends KumakoreSessionActivity implements Action
 	}
 
 	@Override
-	public void onActionMatchCurrentListGet(ActionOpenMatchMap action) {
+	public void onActionMatchCurrentListGet(ActionMatchGetOpen action) {
 		if (action.getStatusCode() == StatusCodes.SUCCESS) {
 			_finishedCurrentMatches = true;
 			updateAllMatches();
@@ -256,7 +253,7 @@ public class MatchListActivity extends KumakoreSessionActivity implements Action
 	}
 
 	@Override
-	public void onActionMatchCreateNew(ActionMatchCreateNew action) {
+	public void onActionMatchCreate(ActionMatchCreate action) {
 		if (action.getStatusCode() == StatusCodes.SUCCESS) {
 			Log.i(TAG, "Match Created SUCCESS ");
 			downloadMatches();
@@ -280,14 +277,15 @@ public class MatchListActivity extends KumakoreSessionActivity implements Action
 	}
 
 	@Override
-	public void onActionMatchStatusGet(ActionMatchStatusGet action) {
+	public void onActionMatchGetStatus(ActionMatchGetStatus action) {
 
 		if (action.getStatusCode() == StatusCodes.SUCCESS) {
-			//Log.i(TAG, "current match: " + _openMatchMap.get(_selectedMatchId).getMatchId());
+			// Log.i(TAG, "current match: " +
+			// _openMatchMap.get(_selectedMatchId).getMatchId());
 
 			_finishedCompletedMatches = _finishedCurrentMatches = false;
-			
-			//start match info activity
+
+			// start match info activity
 			Intent intent = new Intent(MatchListActivity.this, MatchInfoActivity.class);
 			intent.putExtra("matchId", _selectedMatchId);
 			startActivity(intent);
@@ -315,5 +313,11 @@ public class MatchListActivity extends KumakoreSessionActivity implements Action
 	public void RequestMatchStatus(Match match) {
 		_selectedMatchId = match.getMatchId();
 		match.getStatus().async(MatchListActivity.this);
+	}
+
+	@Override
+	public void onActionMatchCompletedListGet(ActionMatchGetClosed action) {
+		// TODO Auto-generated method stub
+		
 	}
 }

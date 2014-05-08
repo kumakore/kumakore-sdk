@@ -2,14 +2,14 @@ package com.kumakore.sample.test;
 
 import android.util.Log;
 
-import com.kumakore.ActionOpenMatchMap;
-import com.kumakore.ActionMatchCreateNew;
-import com.kumakore.ActionClosedMatchMap;
+import com.kumakore.ActionMatchGetOpen;
+import com.kumakore.ActionMatchCreate;
+import com.kumakore.ActionMatchGetClosed;
 import com.kumakore.ActionMatchCreateRandom;
 import com.kumakore.KumakoreApp;
 
-public class TestMatches extends TestBase implements ActionOpenMatchMap.IKumakore, ActionMatchCreateNew.IKumakore,
-ActionClosedMatchMap.IKumakore, ActionMatchCreateRandom.IKumakore {
+public class TestMatches extends TestBase implements ActionMatchGetOpen.IKumakore, ActionMatchCreate.IKumakore,
+ActionMatchGetClosed.IKumakore, ActionMatchCreateRandom.IKumakore {
 	private static final String TAG = TestMatches.class.getName();
 
 	public TestMatches(KumakoreApp app) {
@@ -41,18 +41,18 @@ ActionClosedMatchMap.IKumakore, ActionMatchCreateRandom.IKumakore {
 	}
 
 	@Override
-	public void onActionMatchCurrentListGet(ActionOpenMatchMap action) {
+	public void onActionMatchCurrentListGet(ActionMatchGetOpen action) {
 		Log.i(TAG, "CURRENT MATCH LIST SUCCESS");
 	}
 
 	@Override
-	public void onActionMatchCompletedListGet(ActionClosedMatchMap action) {
+	public void onActionMatchCompletedListGet(ActionMatchGetClosed action) {
 		Log.i(TAG, "COMPLETED MATCH LIST SUCCESS");
 
 	}
 
 	@Override
-	public void onActionMatchCreateNew(ActionMatchCreateNew action) {
+	public void onActionMatchCreate(ActionMatchCreate action) {
 		Log.i(TAG, "NEW MATCH CREATED");
 	}
 

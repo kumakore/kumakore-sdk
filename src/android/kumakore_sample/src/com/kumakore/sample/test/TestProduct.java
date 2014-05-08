@@ -40,7 +40,7 @@ public class TestProduct extends TestBase {
 			@Override
 			public void onActionInventoryPurchase	(ActionInventoryPurchase action) {
 				for (ItemBundle item : app().getUser().inventory()) {
-					Log.i(TAG, item.getProductId() + "  " + item.getQuantity());
+					Log.i(TAG, item.getName() + "  " + item.getQuantity());
 				}
 
 			}
@@ -66,7 +66,7 @@ public class TestProduct extends TestBase {
 			@Override
 			public void onActionInventoryPurchase(ActionInventoryPurchase action) {
 				for (ItemBundle item : app().getUser().inventory()) {
-					Log.i(TAG, item.getProductId() + "  " + item.getQuantity());
+					Log.i(TAG, item.getName() + "  " + item.getQuantity());
 				}
 			}
 		});
