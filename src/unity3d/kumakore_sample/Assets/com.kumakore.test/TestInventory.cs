@@ -9,7 +9,7 @@ namespace com.kumakore.test
     public class TestInventory : TestBase
 	{
 		// valid item name
-		private static readonly String ITEM_NAME = "b1";
+		private static readonly String ITEM_NAME = "com_sinuouscode_red_ball";
 		
         public static void All()
         {

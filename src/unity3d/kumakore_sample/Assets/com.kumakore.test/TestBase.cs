@@ -33,17 +33,18 @@ namespace com.kumakore.test
 		protected static readonly String TEST_3 = "test03"; // Valid test user for the app
 		protected static readonly String PASSWORD = "password"; // Valid password for test users
 		protected static readonly String API_KEY = "292c9e31e5187c58b58f5f8588edc92d";
-		protected static readonly int DASHBOARDVERSION = 1399273323;
+		protected static readonly String APP_VERSION = "0.0";
+		protected static readonly int DASHBOARDVERSION = 1400132926;
 
 		[TestFixtureSetUp]
         public virtual void setup()
         {
-			_app1= new KumakoreApp(API_KEY,DASHBOARDVERSION);
+			_app1= new KumakoreApp(API_KEY, APP_VERSION, DASHBOARDVERSION);
 			
 			_app1.getDispatcher().immediateDispatch = true;
 			_app1.getDispatcher ().throwEx = true;
 
-			_app2 = new KumakoreApp(API_KEY,DASHBOARDVERSION);
+			_app2 = new KumakoreApp(API_KEY, APP_VERSION, DASHBOARDVERSION);
 
 			_app2.getDispatcher().immediateDispatch = true;
 			_app2.getDispatcher ().throwEx = true;

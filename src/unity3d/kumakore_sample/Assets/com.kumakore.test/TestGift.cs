@@ -11,7 +11,6 @@ namespace com.kumakore.test
 	{   
 
 		private static readonly String RED_BALL_PRODUCT_ID = "com_sinuouscode_red_ball";
-		private static readonly String BLUE_BALL_PRODUCT_ID = "sinuous_code_blue_ball";
 		private static readonly int GIFT_COUNT = 1;
 
 		public static void All()
@@ -35,40 +34,36 @@ namespace com.kumakore.test
 		[Test]
 		public void SyncGiftDeleteRedeemable()
 		{
-			Dictionary<string, Gift> gifts = new Dictionary<string, Gift> ();
-
 			app1().getUser().gifts().get().sync (delegate(ActionGiftGetRedeemable action)
 			{
 				Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
-				gifts =	action.getReceived();
-			});
+				GiftMap gifts =	app1().getUser().gifts();
 
-			//NOTE: gifts.Values or gifts.Keys would both work here =)
-			app1().getUser().gifts().delete().addGifts(gifts.Values).sync (delegate(ActionGiftDeleteRedeemable action)
-			{
-				Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
+				//NOTE: gifts.Values or gifts.Keys would both work here =)
+				app1().getUser().gifts().delete().addGifts(gifts.Values).sync (delegate(ActionGiftDeleteRedeemable action2)
+				{
+					Assert.AreEqual(StatusCodes.SUCCESS, action2.getCode());
+				});
 			});
 		}
 
 		[Test]
 		public void AsyncGiftDeleteRedeemable()
 		{
-			Dictionary<string, Gift> gifts = new Dictionary<string, Gift> ();
-
 			app1().getUser().gifts().get().sync (delegate(ActionGiftGetRedeemable action)
 			{
 				Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
-				gifts =	action.getReceived();
-			});
+				GiftMap gifts =	app1().getUser().gifts();
 
-			//NOTE: gifts.Values or gifts.Keys would both work here =)
-			app1().getUser().gifts().delete().addGifts(gifts.Values).async (delegate(ActionGiftDeleteRedeemable action)
-			{
-				Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
-				Release();
-			});
+				//NOTE: gifts.Values or gifts.Keys would both work here =)
+				app1().getUser().gifts().delete().addGifts(gifts.Values).sync (delegate(ActionGiftDeleteRedeemable action2)
+				{
+					Release();
+					Assert.AreEqual(StatusCodes.SUCCESS, action2.getCode());
+				});
 
-			Wait();
+				Wait();
+			});
 		}
 
 		[Test]
@@ -176,38 +171,36 @@ namespace com.kumakore.test
 		[Test]
 		public void SyncGiftDeleteRequestReceived()
 		{
-			Dictionary<string, GiftRequestReceived> gifts = new Dictionary<string, GiftRequestReceived> ();
 			app1().getUser().gifts().requestsReceived().get().sync (delegate(ActionGiftGetRequestReceived action)
 			{
 				Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
-				gifts = action.getReceived();
-			});
+				GiftRequestReceivedMap gifts = app1().getUser().gifts().requestsReceived();
 
-			//NOTE: gifts.Values or gifts.Keys would both work here =)
-			app1().getUser().gifts().requestsReceived().delete().addRequests(gifts.Values).sync (delegate(ActionGiftDeleteRequestReceived action)
-			{
-				Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
+				//NOTE: gifts.Values or gifts.Keys would both work here =)
+				app1().getUser().gifts().requestsReceived().delete().addRequests(gifts.Values).sync (delegate(ActionGiftDeleteRequestReceived action2)
+				{
+						Assert.AreEqual(StatusCodes.SUCCESS, action2.getCode());
+				});
 			});
 		}
 
 		[Test]
 		public void AsyncGiftDeleteRequestReceived()
-		{			
-			Dictionary<string, GiftRequestReceived> gifts = new Dictionary<string, GiftRequestReceived> ();
+		{		
 			app1().getUser().gifts().requestsReceived().get().sync (delegate(ActionGiftGetRequestReceived action)
 			{
 				Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
-				gifts = action.getReceived();
-			});
+				GiftRequestReceivedMap gifts = app1().getUser().gifts().requestsReceived();
 
-			//NOTE: gifts.Values or gifts.Keys would both work here =)
-			app1().getUser().gifts().requestsReceived().delete().addRequests(gifts.Values).async (delegate(ActionGiftDeleteRequestReceived action)
-			{
-				Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
-				Release();
+				//NOTE: gifts.Values or gifts.Keys would both work here =)
+				app1().getUser().gifts().requestsReceived().delete().addRequests(gifts.Values).async (delegate(ActionGiftDeleteRequestReceived action2)
+				{
+					Release();
+					Assert.AreEqual(StatusCodes.SUCCESS, action2.getCode());
+				});
+							
+				Wait();
 			});
-
-			Wait();
 		}
 
 		[Test]

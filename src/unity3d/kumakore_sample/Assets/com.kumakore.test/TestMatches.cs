@@ -8,63 +8,19 @@ namespace com.kumakore.test
 {
     [TestFixture]
 	public class TestMatches : TestBase
-    {
-		private readonly static String VALID_RIVAL = "carlos";
-		
-	    public static void All()
-        {
-            TestMatches matches = new TestMatches();
-            matches.setup();
-			
-			// test getOpenMatches
-			matches.SyncCreateNewMatch();
-			matches.SyncGetOpenMatchList();
-			matches.SyncCloseMatches();
-			
-			matches.AsyncCreateNewMatch();
-			matches.AsyncGetOpenMatchList();
-			matches.AsyncCloseMatches();
-			
-			matches.SyncCreateRandomMatch();
-			//matches.SyncGetStatus();
-			//matches.AsyncGetStatus();
-			matches.SyncGetMoves();
-			matches.AsyncGetMoves();
-			matches.SyncResignAll();
-			
-			matches.SyncCreateRandomMatch();
-			matches.AsyncResignAll();
-			
-			matches.SyncCreateRandomMatch();
-			matches.SyncRejectAll();
-			
-			matches.SyncCreateRandomMatch();
-			matches.AsyncRejectAll();
-			
-			/*matches.SyncCreateRandomMatch();
-			matches.SyncSendMoves();
-			matches.AsyncSendMoves();
-			matches.SyncSelectItems();
-			matches.AsyncSelectItems();*/
-			
-			matches.SyncGetClosedMatchList();
-			matches.AsyncGetClosedMatchList();
-			
-			matches.SyncCloseMatches();
-        }
+	{
 		
 		[TestFixtureSetUp]
 		public override void setup ()
 		{
 			base.setup ();
-			app1 ().signin(TEST_1,PASSWORD).sync ();
+			app1 ().signin (TEST_1, PASSWORD).sync ();
 		}
-		
 		
 		[Test]
         public void SyncCreateNewMatch()
         {
-			app1().getUser().getOpenMatches().createNewMatch(VALID_RIVAL).sync (delegate(ActionMatchCreate action) {
+			app1().getUser().getOpenMatches().createNewMatch(TEST_2).sync (delegate(ActionMatchCreate action) {
 				Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
 				Assert.GreaterOrEqual(app1 ().getUser().getOpenMatches().Count,1);
 			});
@@ -73,7 +29,7 @@ namespace com.kumakore.test
         [Test]
         public void AsyncCreateNewMatch()
         {
-            app1().getUser().getOpenMatches().createNewMatch(VALID_RIVAL).async (delegate(ActionMatchCreate action) {
+			app1().getUser().getOpenMatches().createNewMatch(TEST_2).async (delegate(ActionMatchCreate action) {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
 				Assert.GreaterOrEqual(app1 ().getUser().getOpenMatches().Count,1);
                 Release();
@@ -104,91 +60,109 @@ namespace com.kumakore.test
         }
 		
 		[Test]
-        public void SyncCloseMatches()
+        public void SyncCloseAll()
         {
-			List<String> list = new List<String>(app1 ().getUser().getOpenMatches().Keys);
-			foreach(String matchId in list) {
-				app1().getUser ().getOpenMatches()[matchId].close ().sync (delegate(ActionMatchClose action) {
+			SyncCreateRandomMatch ();
+
+			foreach(OpenMatch match in app1 ().getUser().getOpenMatches().Values) {
+				match.close ().sync (delegate(ActionMatchClose action) {
 					Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
 				});
 			}
-			SyncGetOpenMatchList();
+
+			SyncGetOpenMatchMap();
+
 			Assert.True (app1 ().getUser ().getOpenMatches().Count == 0);
         }
 
         [Test]
-        public void AsyncCloseMatches()
-        {
-			List<String> list = new List<String>(app1 ().getUser().getOpenMatches().Keys);
-			foreach(String matchId in list) {
-				app1().getUser ().getOpenMatches()[matchId].close ().async (delegate(ActionMatchClose action) {
+        public void AsyncCloseAll()
+		{
+			SyncCreateRandomMatch ();
+
+			foreach(OpenMatch match in app1 ().getUser().getOpenMatches().Values) {
+				match.close ().async (delegate(ActionMatchClose action) {
 					Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
 					Release ();
 				});
 				Wait ();
 			}
-			SyncGetOpenMatchList();
+
+			SyncGetOpenMatchMap();
+
 			Assert.True (app1 ().getUser ().getOpenMatches().Count == 0);
         }
 		
 		[Test]
         public void SyncResignAll()
-        {
-			List<String> list = new List<String>(app1 ().getUser().getOpenMatches().Keys);
-			foreach(String matchId in list) {
-				app1().getUser ().getOpenMatches()[matchId].resign ().sync (delegate(ActionMatchResign action) {
+		{
+			SyncCreateRandomMatch ();
+
+			foreach(OpenMatch match in app1 ().getUser().getOpenMatches().Values) {
+				match.resign ().sync (delegate(ActionMatchResign action) {
 					Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
 				});
 			}
-			SyncGetOpenMatchList();
+
+			SyncGetOpenMatchMap();
+
 			Assert.True (app1 ().getUser ().getOpenMatches().Count == 0);
         }
 
         [Test]
         public void AsyncResignAll()
-        {
-			List<String> list = new List<String>(app1 ().getUser().getOpenMatches().Keys);
-			foreach(String matchId in list) {
-				app1().getUser ().getOpenMatches()[matchId].resign ().async (delegate(ActionMatchResign action) {
+		{
+			SyncCreateRandomMatch ();
+
+			foreach(OpenMatch match in app1 ().getUser().getOpenMatches().Values) {
+				match.resign ().async (delegate(ActionMatchResign action) {
 					Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
 					Release ();
 				});
 				Wait ();
 			}
-			SyncGetOpenMatchList();
+
+			SyncGetOpenMatchMap();
+
 			Assert.True (app1 ().getUser ().getOpenMatches().Count == 0);
         }
 		
 		[Test]
         public void SyncRejectAll()
-        {
-			List<String> list = new List<String>(app1 ().getUser().getOpenMatches().Keys);
-			foreach(String matchId in list) {
-				app1().getUser ().getOpenMatches()[matchId].reject ().sync (delegate(ActionMatchReject action) {
+		{
+			SyncCreateRandomMatch ();
+
+			foreach(OpenMatch match in app1 ().getUser().getOpenMatches().Values) {
+				match.reject ().sync (delegate(ActionMatchReject action) {
 					Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
 				});
 			}
-			SyncGetOpenMatchList();
+
+			SyncGetOpenMatchMap();
+
 			Assert.True (app1 ().getUser ().getOpenMatches().Count == 0);
         }
 
         [Test]
         public void AsyncRejectAll()
-        {
-			List<String> list = new List<String>(app1 ().getUser().getOpenMatches().Keys);
-			foreach(String matchId in list) {
-				app1().getUser ().getOpenMatches()[matchId].reject ().async (delegate(ActionMatchReject action) {
+		{
+			SyncCreateRandomMatch ();
+
+			foreach(OpenMatch match in app1 ().getUser().getOpenMatches().Values) {
+				match.reject ().async (delegate(ActionMatchReject action) {
 					Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
 					Release ();
 				});
 				Wait ();
 			}
-			SyncGetOpenMatchList();
+
+			SyncGetOpenMatchMap();
+
 			Assert.True (app1 ().getUser ().getOpenMatches().Count == 0);
         }
 		
 		[Test]
-        public void SyncGetOpenMatchList()
+        public void SyncGetOpenMatchMap()
         {
 			app1().getUser().getOpenMatches().get ().sync (delegate(ActionMatchGetOpen action) {
 				Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
@@ -196,7 +170,7 @@ namespace com.kumakore.test
         }
 
         [Test]
-        public void AsyncGetOpenMatchList()
+        public void AsyncGetOpenMatchMap()
         {
             app1().getUser().getOpenMatches().get ().async (delegate(ActionMatchGetOpen action) {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
@@ -207,7 +181,7 @@ namespace com.kumakore.test
         }
 		
 		[Test]
-        public void SyncGetClosedMatchList()
+        public void SyncGetClosedMatchMap()
         {
 			app1().getUser().getClosedMatches().get ().sync (delegate(ActionMatchGetClosed action) {
 				Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
@@ -215,7 +189,7 @@ namespace com.kumakore.test
         }
 
         [Test]
-        public void AsyncGetClosedMatchList()
+        public void AsyncGetClosedMatchMap()
         {
             app1().getUser().getClosedMatches().get ().async (delegate(ActionMatchGetClosed action) {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
@@ -228,43 +202,46 @@ namespace com.kumakore.test
 		[Test]
         public void SyncGetStatus()
         {
-			List<String> list = new List<String>(app1 ().getUser().getOpenMatches().Keys);
-			foreach(String matchId in list) {
-				app1().getUser ().getOpenMatches()[matchId].getStatus ().sync (delegate(ActionMatchGetStatus action) {
+			SyncCreateRandomMatch ();
+
+			foreach(OpenMatch match in app1 ().getUser().getOpenMatches().Values) {
+				match.getStatus ().sync (delegate(ActionMatchGetStatus action) {
 					Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
 				});
 			}
-			if(app1 ().getUser ().getOpenMatches().Count == 0) Assert.Pass("No open matches found");
         }
 
         [Test]
         public void AsyncGetStatus()
-        {
-			List<String> list = new List<String>(app1 ().getUser().getOpenMatches().Keys);
-			foreach(String matchId in list) {
-				app1().getUser ().getOpenMatches()[matchId].getStatus ().async (delegate(ActionMatchGetStatus action) {
+		{
+			SyncCreateRandomMatch ();
+
+			foreach(OpenMatch match in app1 ().getUser().getOpenMatches().Values) {
+				match.getStatus ().async (delegate(ActionMatchGetStatus action) {
 					Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
 					Release ();
 				});
 				Wait();
 			}
-			if(app1 ().getUser ().getOpenMatches().Count == 0) Assert.Pass("No open matches found");
         }
 		
 		[Test]
         public void SyncGetMoves()
-        {
+		{
+			SyncCreateRandomMatch ();
+
 			foreach(OpenMatch match in app1 ().getUser().getOpenMatches().Values) {
 				match.getMoves (0).sync (delegate(ActionMatchGetMoves action) {
 					Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
 				});
 			}
-			if(app1 ().getUser ().getOpenMatches().Count == 0) Assert.Pass("No open matches found");
         }
 
         [Test]
         public void AsyncGetMoves()
-        {
+		{
+			SyncCreateRandomMatch ();
+
             foreach(OpenMatch match in app1 ().getUser().getOpenMatches().Values) {
 				match.getMoves (0).async (delegate(ActionMatchGetMoves action) {
 					Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
@@ -272,9 +249,61 @@ namespace com.kumakore.test
 				});
 				Wait ();
 			}
-			if(app1 ().getUser ().getOpenMatches().Count == 0) Assert.Pass("No open matches found");
         }
-		
+
+		[Test]
+		public void SyncSendChatMessage()
+		{
+			SyncCreateRandomMatch ();
+
+			foreach(OpenMatch match in app1 ().getUser().getOpenMatches().Values) {
+				match.sendChatMessage ("TEST").sync (delegate(ActionMatchChatMessage action) {
+					Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
+				});
+			}
+		}
+
+		[Test]
+		public void AsyncSendChatMessage()
+		{
+			SyncCreateRandomMatch ();
+
+			foreach(OpenMatch match in app1 ().getUser().getOpenMatches().Values) {
+				match.sendChatMessage ("TEST").async (delegate(ActionMatchChatMessage action) {
+					Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
+					Release ();
+				});
+				Wait();
+			}
+		}
+
+		[Test]
+		public void SyncGetChatMessage()
+		{
+			SyncSendChatMessage ();
+
+			foreach(OpenMatch match in app1 ().getUser().getOpenMatches().Values) {
+				match.actGetChatMessages().sync (delegate(ActionMatchGetChatMessage action) {
+					Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
+					Assert.True(match.getChatMessages().Count > 0);
+				});
+			}
+		}
+
+		[Test]
+		public void AsyncGetChatMessage()
+		{
+			SyncSendChatMessage ();
+
+			foreach(OpenMatch match in app1 ().getUser().getOpenMatches().Values) {
+				match.actGetChatMessages ().async (delegate(ActionMatchGetChatMessage action) {
+					Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
+					Assert.True(match.getChatMessages().Count > 0);
+					Release ();
+				});
+				Wait();
+			}
+		}
 		
 		/*[Test]
         public void SyncSendMoves()

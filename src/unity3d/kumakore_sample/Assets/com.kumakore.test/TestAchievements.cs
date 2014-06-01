@@ -41,7 +41,7 @@ namespace com.kumakore.test
             app1().getAchievements().get().sync(delegate(ActionAchievementGetApp action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
-				Assert.AreEqual (app1().getAchievements().Count,NUMBER_OF_ACHIEVEMENTS);
+				Assert.AreEqual (NUMBER_OF_ACHIEVEMENTS, app1().getAchievements().Count);
             });
         }
 
@@ -51,7 +51,7 @@ namespace com.kumakore.test
             app1().getAchievements().get().async(delegate(ActionAchievementGetApp action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
-				Assert.AreEqual (app1().getAchievements().Count,NUMBER_OF_ACHIEVEMENTS);
+				Assert.AreEqual (NUMBER_OF_ACHIEVEMENTS, app1().getAchievements().Count);
                 Release();
             });
 

@@ -57,9 +57,11 @@ namespace com.kumakore.test
 		[Test]
         public void SyncBuyProduct()
         {
+
 			int quantity = 1;
             app1().getProducts().buyItem(VALID_PRODUCT_ID,quantity).sync(delegate(ActionInventoryPurchase action)
-            {
+			{
+				//throw new Exception ("test");
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
 				Assert.GreaterOrEqual(app1 ().getUser().getInventory()[VALID_PRODUCT_ID].getQuantity(),quantity);
             });
@@ -70,10 +72,11 @@ namespace com.kumakore.test
         {
             int quantity = 1;
             app1().getProducts().buyItem(VALID_PRODUCT_ID,quantity).async(delegate(ActionInventoryPurchase action)
-            {
+			{ 
+				Release();
+				//throw new Exception ("test");
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
 				Assert.GreaterOrEqual(app1 ().getUser().getInventory()[VALID_PRODUCT_ID].getQuantity(),quantity);
-                Release();
             });
 
             Wait();

@@ -72,7 +72,7 @@ namespace com.kumakore.test
 		
 		public void LeaderboardUserMember(string lName, int index) {
 			Leaderboard leaderboard = GetLeaderboardByName(lName);
-			if(index < leaderboard.getMembers().Count) Assert.AreEqual(leaderboard.getMembers()[index].getMemberId(),app1().getUser().getId());
+			if(index < leaderboard.getMembers().Count) Assert.AreEqual(leaderboard.getMembers()[index].getUserName(),app1().getUser().getId());
 			else Assert.Fail("index higher than leaderboard.getMembers() count");
 			
 			Assert.IsNotNull(leaderboard);

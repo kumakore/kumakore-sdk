@@ -53,6 +53,10 @@ namespace com.kumakore.test
 			app.AsyncFacebookConnectAccount();
 			app.AsyncFacebookLogin();
 			app.AsyncFacebookDeauthorize();
+
+			//app objects
+			app.SyncGetAppObject();
+			app.SyncGetAllObjects();
 			
         }
 		
@@ -369,5 +373,55 @@ namespace com.kumakore.test
 
             Wait();
 		}
-	}
+
+		[Test]
+		public void SyncGetAppObject()
+		{
+            app1().getAppObjects().get("537331b0c8c48f1a4c000175").sync(delegate(ActionAppDatastore action) {
+				AppDatastore obj = app1().getAppObjects();
+				Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
+				Assert.AreEqual("poop", obj["537331b0c8c48f1a4c000175"].getData()["blah"]);
+			});
+		}
+
+		[Test]
+		public void SyncGetAllObjects()
+		{
+            app1().getAppObjects().get().sync(delegate(ActionAppDatastore action) {
+				AppDatastore obj = app1().getAppObjects();
+				Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
+				Assert.AreEqual("nice", obj["5373c9f25481ed2f38000175"].getData()["please"]);
+                Assert.AreEqual("poop", obj["537331b0c8c48f1a4c000175"].getData()["blah"]);
+			});
+		}
+
+        [Test]
+        public void AsyncGetAppObject()
+        {
+            app1().getAppObjects().get("537331b0c8c48f1a4c000175").async(delegate(ActionAppDatastore action) {
+                AppDatastore obj = app1().getAppObjects();
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
+                Assert.AreEqual("poop", obj["537331b0c8c48f1a4c000175"].getData()["blah"]);
+
+                Release();
+            });
+
+            Wait();
+        }
+
+        [Test]
+        public void AsyncGetAllObjects()
+        {
+            app1().getAppObjects().get().sync(delegate(ActionAppDatastore action) {
+                AppDatastore obj = app1().getAppObjects();
+                Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
+                Assert.AreEqual("nice", obj["5373c9f25481ed2f38000175"].getData()["please"]);
+                Assert.AreEqual("poop", obj["537331b0c8c48f1a4c000175"].getData()["blah"]);
+
+                Release();
+            });
+
+            Wait();
+        }
+    }
 }

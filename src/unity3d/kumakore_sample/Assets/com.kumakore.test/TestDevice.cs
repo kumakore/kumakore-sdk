@@ -8,9 +8,18 @@ namespace com.kumakore.test
     [TestFixture]
     public class TestDevice : TestBase
 	{
+		/*
 		// Valid DEVICE_UDID needed to pass register device related tests
 		private static string VALID_DEVICE_UDID = "";
-        
+
+		[TestFixtureSetUp]
+		public override void setup ()
+		{
+			base.setup ();
+			app1 ().signin(TEST_1,PASSWORD).sync ();
+		}
+
+
 		public static void All()
         {
             TestDevice device = new TestDevice();
@@ -23,22 +32,12 @@ namespace com.kumakore.test
 			device.SyncUnmuteDevice();
 			device.AsyncMuteDevice();
 			device.AsyncUnmuteDevice();
-			
-#if UNITY_IPHONE
+
 			device.SyncSetDeviceBadge();
 			device.AsyncSetDeviceBadge();
-#endif
 			
 			device.AsyncUnregisterDevice();
         }
-		
-		[TestFixtureSetUp]
-		public override void setup ()
-		{
-			base.setup ();
-			app1 ().signin(TEST_1,PASSWORD).sync ();
-		}
-		
 		
 		[Test]
         public void SyncMuteDevice()
@@ -129,12 +128,11 @@ namespace com.kumakore.test
 
             Wait();
         }
-		
-#if UNITY_IPHONE
+
 		[Test]
         public void SyncSetDeviceBadge()
         {
-            app().getUser().device().setDeviceBadge(1).sync (delegate(ActionDeviceSetBadge action)
+            app1().getUser().device().setDeviceBadge(1).sync (delegate(ActionDeviceSetBadge action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
             });
@@ -143,14 +141,13 @@ namespace com.kumakore.test
         [Test]
         public void AsyncSetDeviceBadge()
         {
-            app().getUser().device().setDeviceBadge(2).async (delegate(ActionDeviceSetBadge action)
+            app1().getUser().device().setDeviceBadge(2).async (delegate(ActionDeviceSetBadge action)
             {
                 Assert.AreEqual(StatusCodes.SUCCESS, action.getCode());
                 Release();
             });
 
             Wait();
-        }
-#endif
+        }*/
 	}
 }
