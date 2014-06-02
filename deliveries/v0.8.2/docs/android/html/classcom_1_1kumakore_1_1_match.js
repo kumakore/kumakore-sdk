@@ -1,0 +1,28 @@
+var classcom_1_1kumakore_1_1_match =
+[
+    [ "getAccepted", "classcom_1_1kumakore_1_1_match.html#ac8a53604d24a672786e0a7e10963111b", null ],
+    [ "getAppVersion", "classcom_1_1kumakore_1_1_match.html#a85a760ecb6f2e6b6d9fc1b7bc40d33f4", null ],
+    [ "getChatMessages", "classcom_1_1kumakore_1_1_match.html#ad5ce65095e50ea15afdbadc312a3dcee", null ],
+    [ "getChatMessages", "classcom_1_1kumakore_1_1_match.html#a02a38271eaba1dfd23c2b1e254fa5eb8", null ],
+    [ "getClosed", "classcom_1_1kumakore_1_1_match.html#a106b0b2cc4b2e4d11fc92dc1f0de98e5", null ],
+    [ "getCompleted", "classcom_1_1kumakore_1_1_match.html#abe991b8e66f7b5e9acd48e6c73784c05", null ],
+    [ "getCreatedUTC", "classcom_1_1kumakore_1_1_match.html#a64937c7e9da6dd27c40ba5462d448c2b", null ],
+    [ "getMatchId", "classcom_1_1kumakore_1_1_match.html#a16b9fa878eb33b0ec239f29454a5258f", null ],
+    [ "getMoveNum", "classcom_1_1kumakore_1_1_match.html#ad4f4305179c998349ca9ba1bfe9b53c3", null ],
+    [ "getMoves", "classcom_1_1kumakore_1_1_match.html#ab3de98ac0ef3d533e1d5977d1c52b481", null ],
+    [ "getMoves", "classcom_1_1kumakore_1_1_match.html#ac51ccd76c07d701fe9fb5bab5d3d3bc8", null ],
+    [ "getNewMessage", "classcom_1_1kumakore_1_1_match.html#a8f38c6d1b2dac8fd41ac924bb94cc4af", null ],
+    [ "getNudged", "classcom_1_1kumakore_1_1_match.html#a7d0ea12a200070b395f03b8431110dcb", null ],
+    [ "getOpponentAvatarId", "classcom_1_1kumakore_1_1_match.html#a32b9a7715172a53240e4adc15fb7508d", null ],
+    [ "getOpponentFBId", "classcom_1_1kumakore_1_1_match.html#ae017a5b567259928377cd25e8e175769", null ],
+    [ "getOpponentId", "classcom_1_1kumakore_1_1_match.html#a053fd5fdf7871130a09afc973c895d24", null ],
+    [ "getOpponentUsername", "classcom_1_1kumakore_1_1_match.html#a97c7c59431ce2110323e1188f0029a3c", null ],
+    [ "getRandomMatch", "classcom_1_1kumakore_1_1_match.html#aded89559ab3adb931b07d2409c0eff02", null ],
+    [ "getRejected", "classcom_1_1kumakore_1_1_match.html#af65169ffbfa0fadc89cf6d7f9ffae80e", null ],
+    [ "getResigned", "classcom_1_1kumakore_1_1_match.html#ac914518a2bef569a225055ce25cf944c", null ],
+    [ "getStatus", "classcom_1_1kumakore_1_1_match.html#afc76521df51fa21bcf50eb005d5cb567", null ],
+    [ "getTurn", "classcom_1_1kumakore_1_1_match.html#aada042a3b18c0a39c856cf28bc085682", null ],
+    [ "getUpdatedUTC", "classcom_1_1kumakore_1_1_match.html#a4b9581904b1d15947c1c96a7a55491a6", null ],
+    [ "sendChatMessage", "classcom_1_1kumakore_1_1_match.html#a6bc3677987902b5cc55dce28139fa011", null ],
+    [ "sendChatMessage", "classcom_1_1kumakore_1_1_match.html#ac92fb07b160558ddcb6ad02c9eed8d4f", null ]
+];

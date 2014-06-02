@@ -127,7 +127,7 @@ namespace com.kumakore.sample {
 			if(match.getChatMessages().Count > 0) {
 				for(int ii=0; ii<match.getChatMessages().Count; ii++) {
 					ChatMessage msg = match.getChatMessages()[ii];
-					GUI.Label (new Rect(Screen.width*0.1f,830 + ii*30,Screen.width*0.8f,30),"user:"+msg.getUserId() + ",message:"+msg.getMsg() + ",date:"+ msg.getDate());
+					GUI.Label (new Rect(Screen.width*0.1f,830 + ii*30,Screen.width*0.8f,30),"user:"+msg.getUserId() + ",message:"+msg.getMsg() + ",date:"+ msg.getCreatedAt());
 				}
 			}
 			GUI.EndScrollView();
