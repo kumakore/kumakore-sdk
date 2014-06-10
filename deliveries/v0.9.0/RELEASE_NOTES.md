@@ -30,6 +30,7 @@
 * Android push was moved into a new com.kumakore.plugins project (source included)
 * matches had a significant refactoring of it's implementation. The interfaces are stable.
 * added smart flag to load (default). This will prevent overwriting the dashboardVersion during load if the dashboardVersion form the filesystem is less than the dashboardVersion in current memory.
+* default path for saved state is now "kumakoredata" instead of the API key. e.g., load() === load(DATA_PATH + DEFAULT_DATA_FILENAME) === load(Application.persistentDataPath + "//" + "kumakoredata")
 
 ## FEATURES
 * samples restructured. Still needs cleanup and more work, but removed a ton of duplicate code.

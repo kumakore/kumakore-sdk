@@ -2,71 +2,43 @@ using System;
 using com.kumakore;
 using NUnit.Framework;
 using System.Threading;
+using System.Security.Cryptography;
 
 namespace com.kumakore.test
 {
     [TestFixture]
 	public class TestApp : TestBase
-    {
-		// You need a valid TEST_FACEBOOK_TOKEN (not linked to any account) for the facebook-related tests to pass -see TestBase
-	    public static void All()
-        {
-            TestApp app = new TestApp();
-            app.setup();
-			
-			app.SyncPlatform();
-			app.AsyncPlatform();
-			//// sync log
-            app.SyncLogInfo();
-            app.SyncLogDebug();
-            app.SyncLogWarning();
-            app.SyncLogError();
-            app.SyncLogCritical();
+    {	
+		private static readonly String TEST_DATA = "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()`~[]{}";
 
-            //// async log
-            app.AsyncLogInfo();
-            app.AsyncLogDebug();
-            app.AsyncLogWarning();
-            app.AsyncLogError();
-            app.AsyncLogCritical();
-
-            ////user
-            app.SyncSignupViaEmail();
-            app.AsyncSignupViaEmail();
-            app.SyncSignupViaUserName();
-            app.AsyncSignupViaUserName();
-
-            app.SyncGetUserId();
-            app.AsyncGetUserId();
-            app.SyncPasswordReset();
-            app.AsyncPasswordReset();
-			
-			app.SyncSignin();
-			app.AsyncSignin();
-			
-			app.SyncGetAppRewards();
-			app.AsyncGetAppRewards();
-			
-			app.SyncFacebookConnectAccount();
-			app.SyncFacebookLogin();
-			app.SyncFacebookDeauthorize();
-			app.AsyncFacebookConnectAccount();
-			app.AsyncFacebookLogin();
-			app.AsyncFacebookDeauthorize();
-
-			//app objects
-			app.SyncGetAppObject();
-			app.SyncGetAllObjects();
-			
-        }
-		
 		[TestFixtureSetUp]
 		public override void setup ()
 		{
 			base.setup ();
-			app1 ().signin(TEST_1,PASSWORD).sync ();
+			app1 ().signin(TEST_1, PASSWORD).sync ();
+		}
+
+		[Test]
+		public void LoadSave()
+		{
+
 		}
 		
+		[Test]
+		public void EncryptDecrypt()
+		{ 	
+			using (RijndaelManaged rijndael = new RijndaelManaged())
+			{
+				rijndael.GenerateKey();
+				rijndael.GenerateIV();
+
+				string encrypted = KumakoreUtil.encryptAES(TEST_DATA, rijndael.Key, rijndael.IV);
+				string unencrypted = KumakoreUtil.decryptAES(encrypted, rijndael.Key, rijndael.IV);
+
+				Assert.AreEqual(TEST_DATA, unencrypted, "TEST_DATA should match unencrypted");
+        	}
+		}
+
 		[Test]
         public void SyncPlatform()
         {

@@ -3,9 +3,6 @@ var hierarchy =
     [ "com.kumakore.AppAchievement", "classcom_1_1kumakore_1_1_app_achievement.html", null ],
     [ "com.kumakore.AppDatastoreObject", "classcom_1_1kumakore_1_1_app_datastore_object.html", null ],
     [ "com.kumakore.ChatMessage", "classcom_1_1kumakore_1_1_chat_message.html", null ],
-    [ "com.kumakore.CommandBase< T >", "classcom_1_1kumakore_1_1_command_base_3_01_t_01_4.html", [
-      [ "com.kumakore.Command< T, U >", "classcom_1_1kumakore_1_1_command_3_01_t_00_01_u_01_4.html", null ]
-    ] ],
     [ "com.kumakore.DatastoreObject", "classcom_1_1kumakore_1_1_datastore_object.html", null ],
     [ "com.kumakore.Device", "classcom_1_1kumakore_1_1_device.html", null ],
     [ "Dictionary< String, AppAchievement >", null, [
@@ -57,6 +54,7 @@ var hierarchy =
     [ "com.kumakore.GiftRequest", "classcom_1_1kumakore_1_1_gift_request.html", null ],
     [ "com.kumakore.GiftRequester", "classcom_1_1kumakore_1_1_gift_requester.html", null ],
     [ "com.kumakore.GiftRequestReceived", "classcom_1_1kumakore_1_1_gift_request_received.html", null ],
+    [ "com.kumakore.ICertValidator", "interfacecom_1_1kumakore_1_1_i_cert_validator.html", null ],
     [ "com.kumakore.IInvokable", "interfacecom_1_1kumakore_1_1_i_invokable.html", [
       [ "com.kumakore.KumakoreDispatcher", "classcom_1_1kumakore_1_1_kumakore_dispatcher.html", null ]
     ] ],
@@ -96,6 +94,9 @@ var hierarchy =
     ] ],
     [ "KumakoreAction< ActionDeviceMute.IKumakore >", null, [
       [ "com.kumakore.ActionDeviceMute", "classcom_1_1kumakore_1_1_action_device_mute.html", null ]
+    ] ],
+    [ "KumakoreAction< ActionDevicePushUser.IKumakore >", null, [
+      [ "com.kumakore.ActionDevicePushUser", "classcom_1_1kumakore_1_1_action_device_push_user.html", null ]
     ] ],
     [ "KumakoreAction< ActionDeviceRegister.IKumakore >", null, [
       [ "com.kumakore.ActionDeviceRegister", "classcom_1_1kumakore_1_1_action_device_register.html", null ]
@@ -260,6 +261,10 @@ var hierarchy =
       ] ]
     ] ],
     [ "com.kumakore.KumakoreApp", "classcom_1_1kumakore_1_1_kumakore_app.html", null ],
+    [ "com.kumakore.KumakoreCommandBase< T >", "classcom_1_1kumakore_1_1_kumakore_command_base_3_01_t_01_4.html", [
+      [ "com.kumakore.KumakoreCommand< T, U >", "classcom_1_1kumakore_1_1_kumakore_command_3_01_t_00_01_u_01_4.html", null ]
+    ] ],
+    [ "com.kumakore.KumakoreHttpClient", "classcom_1_1kumakore_1_1_kumakore_http_client.html", null ],
     [ "com.kumakore.KumakoreUtil", "classcom_1_1kumakore_1_1_kumakore_util.html", null ],
     [ "com.kumakore.Leaderboard", "classcom_1_1kumakore_1_1_leaderboard.html", null ],
     [ "com.kumakore.LeaderboardMember", "classcom_1_1kumakore_1_1_leaderboard_member.html", null ],

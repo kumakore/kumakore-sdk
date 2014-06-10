@@ -125,14 +125,345 @@ static DateTime&#160;</td><td class="memItemRight" valign="bottom"><b>fromUnixEp
 <tr class="memitem:a924fda25410080d37eb03a7998f1441f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a924fda25410080d37eb03a7998f1441f"></a>
 static DateTime&#160;</td><td class="memItemRight" valign="bottom"><b>fromUnixTimeStamp</b> (string value, string cultureInfo=&quot;en-us&quot;)</td></tr>
 <tr class="separator:a924fda25410080d37eb03a7998f1441f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeae7a8ec306820ab761b3bf897a7cfd3"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1kumakore_1_1_kumakore_util.html#aeae7a8ec306820ab761b3bf897a7cfd3">encryptAES</a> (String unencrypted, byte[] key, byte[] initVector, bool suppress=false)</td></tr>
+<tr class="memdesc:aeae7a8ec306820ab761b3bf897a7cfd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypt the specified unencrypted, key and iv.  <a href="#aeae7a8ec306820ab761b3bf897a7cfd3">More...</a><br/></td></tr>
+<tr class="separator:aeae7a8ec306820ab761b3bf897a7cfd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1c08a23d04a29ae902db8e94abe4e8e"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1kumakore_1_1_kumakore_util.html#ad1c08a23d04a29ae902db8e94abe4e8e">decryptAES</a> (string encrypted, byte[] key, byte[] initVector, bool suppress=false)</td></tr>
+<tr class="memdesc:ad1c08a23d04a29ae902db8e94abe4e8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrypt the specified encrypted, key and iv.  <a href="#ad1c08a23d04a29ae902db8e94abe4e8e">More...</a><br/></td></tr>
+<tr class="separator:ad1c08a23d04a29ae902db8e94abe4e8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1990db8f55503e5b099e5f0e42634f36"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1kumakore_1_1_kumakore_util.html#a1990db8f55503e5b099e5f0e42634f36">encrypt</a> (string unencrypted, ICryptoTransform encryptor)</td></tr>
+<tr class="memdesc:a1990db8f55503e5b099e5f0e42634f36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypt the specified unencrypted and encryptor.  <a href="#a1990db8f55503e5b099e5f0e42634f36">More...</a><br/></td></tr>
+<tr class="separator:a1990db8f55503e5b099e5f0e42634f36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a892bfc4c975844685f9de7229c491c44"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1kumakore_1_1_kumakore_util.html#a892bfc4c975844685f9de7229c491c44">encrypt</a> (string unencrypted, ICryptoTransform encryptor, Encoding encoder)</td></tr>
+<tr class="memdesc:a892bfc4c975844685f9de7229c491c44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypt the specified unencrypted, encryptor and encoder.  <a href="#a892bfc4c975844685f9de7229c491c44">More...</a><br/></td></tr>
+<tr class="separator:a892bfc4c975844685f9de7229c491c44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af84424508e3199417293466570571a09"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1kumakore_1_1_kumakore_util.html#af84424508e3199417293466570571a09">decrypt</a> (string encrypted, ICryptoTransform decryptor)</td></tr>
+<tr class="memdesc:af84424508e3199417293466570571a09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrypt the specified encrypted and decryptor.  <a href="#af84424508e3199417293466570571a09">More...</a><br/></td></tr>
+<tr class="separator:af84424508e3199417293466570571a09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a155be35d1cda2a308fe68e26c49ecee4"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1kumakore_1_1_kumakore_util.html#a155be35d1cda2a308fe68e26c49ecee4">decrypt</a> (string encrypted, ICryptoTransform decryptor, Encoding encoder)</td></tr>
+<tr class="memdesc:a155be35d1cda2a308fe68e26c49ecee4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrypt the specified encrypted, decryptor and encoder.  <a href="#a155be35d1cda2a308fe68e26c49ecee4">More...</a><br/></td></tr>
+<tr class="separator:a155be35d1cda2a308fe68e26c49ecee4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="af84424508e3199417293466570571a09"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static string com.kumakore.KumakoreUtil.decrypt </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>encrypted</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ICryptoTransform&#160;</td>
+          <td class="paramname"><em>decryptor</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Decrypt the specified encrypted and decryptor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">encrypted</td><td>Encrypted.</td></tr>
+    <tr><td class="paramname">decryptor</td><td>Decryptor.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a155be35d1cda2a308fe68e26c49ecee4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static string com.kumakore.KumakoreUtil.decrypt </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>encrypted</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ICryptoTransform&#160;</td>
+          <td class="paramname"><em>decryptor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Encoding&#160;</td>
+          <td class="paramname"><em>encoder</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Decrypt the specified encrypted, decryptor and encoder. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">encrypted</td><td>Encrypted.</td></tr>
+    <tr><td class="paramname">decryptor</td><td>Decryptor.</td></tr>
+    <tr><td class="paramname">encoder</td><td>Encoder.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ad1c08a23d04a29ae902db8e94abe4e8e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static String com.kumakore.KumakoreUtil.decryptAES </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>encrypted</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">byte[]&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">byte[]&#160;</td>
+          <td class="paramname"><em>initVector</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>suppress</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Decrypt the specified encrypted, key and iv. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">encrypted</td><td>Encrypted.</td></tr>
+    <tr><td class="paramname">key</td><td>AES Key (128, 192, or 256 bits).</td></tr>
+    <tr><td class="paramname">iv</td><td>Iv (128 bits).</td></tr>
+    <tr><td class="paramname">suppress</td><td>suppress exceptions</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">ArgumentException</td><td>key or iv null</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a1990db8f55503e5b099e5f0e42634f36"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static string com.kumakore.KumakoreUtil.encrypt </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>unencrypted</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ICryptoTransform&#160;</td>
+          <td class="paramname"><em>encryptor</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Encrypt the specified unencrypted and encryptor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">unencrypted</td><td>Unencrypted.</td></tr>
+    <tr><td class="paramname">encryptor</td><td>Encryptor.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a892bfc4c975844685f9de7229c491c44"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static string com.kumakore.KumakoreUtil.encrypt </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>unencrypted</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ICryptoTransform&#160;</td>
+          <td class="paramname"><em>encryptor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Encoding&#160;</td>
+          <td class="paramname"><em>encoder</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Encrypt the specified unencrypted, encryptor and encoder. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">unencrypted</td><td>Unencrypted.</td></tr>
+    <tr><td class="paramname">encryptor</td><td>Encryptor.</td></tr>
+    <tr><td class="paramname">encoder</td><td>Encoder.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aeae7a8ec306820ab761b3bf897a7cfd3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static String com.kumakore.KumakoreUtil.encryptAES </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>unencrypted</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">byte[]&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">byte[]&#160;</td>
+          <td class="paramname"><em>initVector</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>suppress</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Encrypt the specified unencrypted, key and iv. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">unencrypted</td><td>Unencrypted.</td></tr>
+    <tr><td class="paramname">key</td><td>AES Key (128, 192, or 256 bits).</td></tr>
+    <tr><td class="paramname">iv</td><td>Iv (128 bits).</td></tr>
+    <tr><td class="paramname">suppress</td><td>suppress exceptions</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">ArgumentException</td><td>key or iv null</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacecom.html">com</a></li><li class="navelem"><a class="el" href="namespacecom_1_1kumakore.html">kumakore</a></li><li class="navelem"><a class="el" href="classcom_1_1kumakore_1_1_kumakore_util.html">KumakoreUtil</a></li>
-    <li class="footer">Generated on Sat May 31 2014 23:32:15 for .NET by
+    <li class="footer">Generated on Mon Jun 9 2014 23:55:57 for .NET by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.5 </li>
   </ul>

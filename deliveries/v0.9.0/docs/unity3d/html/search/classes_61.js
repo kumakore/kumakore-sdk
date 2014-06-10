@@ -12,6 +12,7 @@ var searchData=
   ['actiondatastoreget',['ActionDatastoreGet',['../classcom_1_1kumakore_1_1_action_datastore_get.html',1,'com::kumakore']]],
   ['actiondatastoreupdate',['ActionDatastoreUpdate',['../classcom_1_1kumakore_1_1_action_datastore_update.html',1,'com::kumakore']]],
   ['actiondevicemute',['ActionDeviceMute',['../classcom_1_1kumakore_1_1_action_device_mute.html',1,'com::kumakore']]],
+  ['actiondevicepushuser',['ActionDevicePushUser',['../classcom_1_1kumakore_1_1_action_device_push_user.html',1,'com::kumakore']]],
   ['actiondeviceregister',['ActionDeviceRegister',['../classcom_1_1kumakore_1_1_action_device_register.html',1,'com::kumakore']]],
   ['actiondevicesetbadge',['ActionDeviceSetBadge',['../classcom_1_1kumakore_1_1_action_device_set_badge.html',1,'com::kumakore']]],
   ['actiondeviceunmute',['ActionDeviceUnmute',['../classcom_1_1kumakore_1_1_action_device_unmute.html',1,'com::kumakore']]],

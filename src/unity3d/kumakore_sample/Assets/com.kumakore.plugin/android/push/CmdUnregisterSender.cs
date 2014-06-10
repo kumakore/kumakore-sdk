@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using com.kumakore.plugin.util;
 
 namespace com.kumakore.plugin.android.push {
 
@@ -23,33 +24,6 @@ namespace com.kumakore.plugin.android.push {
 
 		public delegate void IPlugin(CmdUnregisterSender cmd);
 
-		private static AndroidJavaClass _notificationClass;
-		private static AndroidJavaObject _notificationObj;
-		private static AndroidJavaObject _currentActivity;
-
-		static CmdUnregisterSender() {
-
-			if (Application.platform != RuntimePlatform.Android) {
-				Kumakore.LOGW (TAG, "Android Running in editor mode");		
-				return;
-			}
-
-			try
-			{
-				AndroidJavaClass player = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-
-				_currentActivity = player.GetStatic<AndroidJavaObject>("currentActivity"); 
-
-				_notificationClass = new AndroidJavaClass("com.kumakore.Notification");
-					
-				_notificationObj = _notificationClass.CallStatic<AndroidJavaObject>("getInstance");
-			} catch (Exception ex) {
-				String error = "Failed to initialize Notification; " + ex.Message;
-				Kumakore.LOGE (TAG, error);		
-				throw new InvalidOperationException(error);
-			}
-		}
-
 		public CmdUnregisterSender(IInvokable dispatcher = null) : base(StatusCodes.Unknown, dispatcher) {
 
 		}
@@ -61,12 +35,29 @@ namespace com.kumakore.plugin.android.push {
 				return StatusCodes.ServiceNotReady;
 			}
 
-			StatusCodes code = (StatusCodes)_notificationObj.Call<int>("init", _currentActivity, true);
+			try
+			{
+				AndroidJNI.AttachCurrentThread();
+				
+				AndroidJavaClass player = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+				
+				AndroidJavaObject currentActivity = player.GetStatic<AndroidJavaObject>("currentActivity"); 
+				
+				AndroidJavaClass notificationClass = new AndroidJavaClass("com.kumakore.Notification");
+				
+				AndroidJavaObject notificationObj = notificationClass.CallStatic<AndroidJavaObject>("getInstance");
 
-			if (code == StatusCodes.Success)
-				_notificationObj.Call ("unregister");
+				setCode((StatusCodes)notificationObj.Call<int>("init", currentActivity, true));
+				
+				if (getCode() == StatusCodes.Success)
+					notificationObj.Call ("unregister");
+			} catch (Exception ex) {
+				String error = "Failed to initialize Notification; " + ex.Message;
+				Kumakore.LOGE (TAG, error);		
+				throw new InvalidOperationException(error);
+			}
 
-			return code;
+			return getCode();
 		}
 
 		protected override void onExecuted ()

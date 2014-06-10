@@ -14,6 +14,7 @@ var searchData=
   ['actiondatastoreget',['ActionDatastoreGet',['../classcom_1_1kumakore_1_1_action_datastore_get.html',1,'com::kumakore']]],
   ['actiondatastoreupdate',['ActionDatastoreUpdate',['../classcom_1_1kumakore_1_1_action_datastore_update.html',1,'com::kumakore']]],
   ['actiondevicemute',['ActionDeviceMute',['../classcom_1_1kumakore_1_1_action_device_mute.html',1,'com::kumakore']]],
+  ['actiondevicepushuser',['ActionDevicePushUser',['../classcom_1_1kumakore_1_1_action_device_push_user.html',1,'com::kumakore']]],
   ['actiondeviceregister',['ActionDeviceRegister',['../classcom_1_1kumakore_1_1_action_device_register.html',1,'com::kumakore']]],
   ['actiondevicesetbadge',['ActionDeviceSetBadge',['../classcom_1_1kumakore_1_1_action_device_set_badge.html',1,'com::kumakore']]],
   ['actiondeviceunmute',['ActionDeviceUnmute',['../classcom_1_1kumakore_1_1_action_device_unmute.html',1,'com::kumakore']]],
@@ -91,5 +92,5 @@ var searchData=
   ['appachievementmap',['AppAchievementMap',['../classcom_1_1kumakore_1_1_app_achievement_map.html',1,'com::kumakore']]],
   ['appdatastore',['AppDatastore',['../classcom_1_1kumakore_1_1_app_datastore.html',1,'com::kumakore']]],
   ['appdatastoreobject',['AppDatastoreObject',['../classcom_1_1kumakore_1_1_app_datastore_object.html',1,'com::kumakore']]],
-  ['async',['async',['../classcom_1_1kumakore_1_1_command_3_01_t_00_01_u_01_4.html#a9c6b83761a1ecfb3cd8373d318cde4ac',1,'com.kumakore.Command&lt; T, U &gt;.async(T target)'],['../classcom_1_1kumakore_1_1_command_3_01_t_00_01_u_01_4.html#afb73cbe0b3a90d0d2931b4b87564d9a8',1,'com.kumakore.Command&lt; T, U &gt;.async(T target, bool reset)'],['../classcom_1_1kumakore_1_1_command_base_3_01_t_01_4.html#a4587523f879b14b454b4ac3938cbe3dd',1,'com.kumakore.CommandBase&lt; T &gt;.async()'],['../classcom_1_1kumakore_1_1_command_base_3_01_t_01_4.html#ae41a4814ef5c83788fdca904b4f672ff',1,'com.kumakore.CommandBase&lt; T &gt;.async(bool reset)']]]
+  ['async',['async',['../classcom_1_1kumakore_1_1_kumakore_command_3_01_t_00_01_u_01_4.html#afd549079f253301725da297e62d64f9b',1,'com.kumakore.KumakoreCommand&lt; T, U &gt;.async(T target)'],['../classcom_1_1kumakore_1_1_kumakore_command_3_01_t_00_01_u_01_4.html#abff508e003d7958cc78e523b08f76558',1,'com.kumakore.KumakoreCommand&lt; T, U &gt;.async(T target, bool reset)'],['../classcom_1_1kumakore_1_1_kumakore_command_base_3_01_t_01_4.html#ad7842417895e6a21e2300940dd5f9a22',1,'com.kumakore.KumakoreCommandBase&lt; T &gt;.async()'],['../classcom_1_1kumakore_1_1_kumakore_command_base_3_01_t_01_4.html#a87f05367dd219568a3849079b578167d',1,'com.kumakore.KumakoreCommandBase&lt; T &gt;.async(bool reset)']]]
 ];

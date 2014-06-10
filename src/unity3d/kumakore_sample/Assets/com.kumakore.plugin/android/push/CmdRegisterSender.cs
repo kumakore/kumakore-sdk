@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using com.kumakore.plugin.util;
 
 namespace com.kumakore.plugin.android.push {
 
@@ -23,35 +24,8 @@ namespace com.kumakore.plugin.android.push {
 
 		public delegate void IPlugin(CmdRegisterSender cmd);
 
-		private static AndroidJavaClass _notificationClass;
-		private static AndroidJavaObject _notificationObj;
-		private static AndroidJavaObject _currentActivity;
-
 		private string _senderId = String.Empty;
 		private string _token = String.Empty;
-
-		static CmdRegisterSender() {
-			
-			if (Application.platform != RuntimePlatform.Android) {
-				Kumakore.LOGW (TAG, "Android Running in editor mode");		
-				return;
-			}
-
-			try
-			{
-				AndroidJavaClass player = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-
-				_currentActivity = player.GetStatic<AndroidJavaObject>("currentActivity"); 
-
-				_notificationClass = new AndroidJavaClass("com.kumakore.Notification");
-					
-				_notificationObj = _notificationClass.CallStatic<AndroidJavaObject>("getInstance");
-			} catch (Exception ex) {
-				String error = "Failed to initialize Notification; " + ex.Message;
-				Kumakore.LOGE (TAG, error);		
-				throw new InvalidOperationException(error);
-			}
-		}
 
 		public CmdRegisterSender(String senderId, IInvokable dispatcher = null) : base(StatusCodes.Unknown, dispatcher) {
 			_senderId = senderId;
@@ -77,12 +51,30 @@ namespace com.kumakore.plugin.android.push {
 				return StatusCodes.ServiceNotReady;
 			}
 
-			StatusCodes code = (StatusCodes)_notificationObj.Call<int>("init", _currentActivity, true);
+			try
+			{
+				AndroidJNI.AttachCurrentThread();
+				
+				AndroidJavaClass player = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+				
+				AndroidJavaObject currentActivity = player.GetStatic<AndroidJavaObject>("currentActivity"); 
+				
+				AndroidJavaClass notificationClass = new AndroidJavaClass("com.kumakore.Notification");
+				
+				AndroidJavaObject notificationObj = notificationClass.CallStatic<AndroidJavaObject>("getInstance");
 
-			if (code == StatusCodes.Success)
-				_token = _notificationObj.Call<String>("register", _senderId);
+				setCode ((StatusCodes)notificationObj.Call<int>("init", currentActivity, true));
+				
+				if (getCode() == StatusCodes.Success)
+					_token = notificationObj.Call<String>("register", _senderId);
 
-			return code;
+			} catch (Exception ex) {
+				String error = "Failed to initialize Notification; " + ex.Message;
+				Kumakore.LOGE (TAG, error);		
+				throw new InvalidOperationException(error);
+			}
+
+			return getCode();
 		}
 
 		protected override void onExecuted ()

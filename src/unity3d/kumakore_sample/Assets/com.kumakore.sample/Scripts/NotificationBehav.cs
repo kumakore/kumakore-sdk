@@ -15,24 +15,28 @@ namespace com.kumakore.sample
 
 		private string _info = "";
 
+		protected override void Start ()
+		{
+			base.Start ();
+
+#if UNITY_ANDROID
+			//allow for for async push
+			PushPlugin.setDispatcher (app.getDispatcher ());
+#endif
+		}
+
 		public void setEnabled(bool enabled) {
 			// required, otherwise notifications will be dropped
 			// use this to dynamically turn on and off
 			// Notifications instead of unregistering
 #if UNITY_ANDROID
-			new CmdPushEnabledStatus (enabled).sync ();
+			PushPlugin.setEnabled(enabled);
 #endif
 		}
 		
 		public bool getEnabled() {
 #if UNITY_ANDROID
-			bool ret = false;
-			new CmdPushEnabledStatus().sync (delegate(CmdPushEnabledStatus cmd) {
-				if (cmd.getCode() == CmdPushEnabledStatus.StatusCodes.Success) {
-					ret = cmd.getEnabled ();
-				}
-			});
-			return ret;
+			return PushPlugin.getEnabled();
 #else
 			return false;
 #endif
@@ -58,7 +62,7 @@ namespace com.kumakore.sample
 
 		private void register(string senderId) {
 #if UNITY_ANDROID
-			new CmdRegisterSender (senderId, app.getDispatcher ()).async (delegate(CmdRegisterSender cmd) {
+			PushPlugin.register(senderId).async (delegate(CmdRegisterSender cmd) {
 				if (cmd.getCode() == CmdRegisterSender.StatusCodes.Success) {
 					registerToken(cmd.getToken());
 					return;

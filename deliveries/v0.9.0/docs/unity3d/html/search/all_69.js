@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['icertvalidator',['ICertValidator',['../interfacecom_1_1kumakore_1_1_i_cert_validator.html',1,'com::kumakore']]],
   ['iinvokable',['IInvokable',['../interfacecom_1_1kumakore_1_1_i_invokable.html',1,'com::kumakore']]],
   ['inventorymap',['InventoryMap',['../classcom_1_1kumakore_1_1_inventory_map.html',1,'com::kumakore']]],
   ['isactive',['isActive',['../classcom_1_1kumakore_1_1_match.html#a528b145f5050de08f2346522e54864c3',1,'com::kumakore::Match']]],
