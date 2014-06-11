@@ -16,43 +16,43 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\..\..\..\..\dotNet\kumakore_test\bin\Debug\</OutputPath>
+    <OutputPath>..\..\..\..\..\..\dotNet\kumakore_test\bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>true</UseVSHostingProcess>
-    <BaseIntermediateOutputPath>..\..\..\..\..\..\..\dotNet\kumakore_test\obj\</BaseIntermediateOutputPath>
+    <BaseIntermediateOutputPath>..\..\..\..\..\..\dotNet\kumakore_test\obj\</BaseIntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\..\..\..\..\dotNet\kumakore_test\bin\Release\</OutputPath>
+    <OutputPath>..\..\..\..\..\..\dotNet\kumakore_test\bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <BaseIntermediateOutputPath>..\..\..\..\..\..\..\dotNet\kumakore_test\obj\</BaseIntermediateOutputPath>
+    <BaseIntermediateOutputPath>..\..\..\..\..\..\dotNet\kumakore_test\obj\</BaseIntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'unity3d_Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>..\..\..\..\..\..\..\dotNet\kumakore_test\bin\unity3d_Debug\</OutputPath>
+    <OutputPath>..\..\..\..\..\..\dotNet\kumakore_test\bin\unity3d_Debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG;UNITY3D</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <BaseIntermediateOutputPath>..\..\..\..\..\..\..\dotNet\kumakore_test\obj\</BaseIntermediateOutputPath>
+    <BaseIntermediateOutputPath>..\..\..\..\..\..\dotNet\kumakore_test\obj\</BaseIntermediateOutputPath>
     <WarningLevel>4</WarningLevel>
     <Optimize>false</Optimize>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'unity3d_Release|AnyCPU' ">
-    <OutputPath>..\..\..\..\..\..\..\dotNet\kumakore_test\bin\unity3d_Release\</OutputPath>
+    <OutputPath>..\..\..\..\..\..\dotNet\kumakore_test\bin\unity3d_Release\</OutputPath>
     <DefineConstants>TRACE;UNITY3D</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <BaseIntermediateOutputPath>..\..\..\..\..\..\..\dotNet\kumakore_test\obj\</BaseIntermediateOutputPath>
+    <BaseIntermediateOutputPath>..\..\..\..\..\..\dotNet\kumakore_test\obj\</BaseIntermediateOutputPath>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
