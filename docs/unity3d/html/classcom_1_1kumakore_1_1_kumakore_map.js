@@ -5,6 +5,7 @@ var classcom_1_1kumakore_1_1_kumakore_map =
     [ "KumakoreMap", "classcom_1_1kumakore_1_1_kumakore_map.html#a5ec0f4c1d9ce3215e322306102b158f6", null ],
     [ "get", "classcom_1_1kumakore_1_1_kumakore_map.html#a20d665176211e93577e91e397a417df0", null ],
     [ "get", "classcom_1_1kumakore_1_1_kumakore_map.html#a929879e41067dded6922fc308a24fac9", null ],
+    [ "get", "classcom_1_1kumakore_1_1_kumakore_map.html#afa6bf3f53439efac9e38daf5f47d854a", null ],
     [ "get", "classcom_1_1kumakore_1_1_kumakore_map.html#a96d3aab8d6457a38e92ecc5ada246594", null ],
     [ "get", "classcom_1_1kumakore_1_1_kumakore_map.html#ad661c8bb254b4903abfc2ae4e44baf75", null ],
     [ "get", "classcom_1_1kumakore_1_1_kumakore_map.html#a89d5a9c30dc8dcedb5f0cc21302c1cbb", null ],

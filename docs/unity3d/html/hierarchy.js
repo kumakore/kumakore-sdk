@@ -1,14 +1,27 @@
 var hierarchy =
 [
     [ "com.kumakore.AppAchievement", "classcom_1_1kumakore_1_1_app_achievement.html", null ],
+    [ "com.kumakore.AppDatastoreObject", "classcom_1_1kumakore_1_1_app_datastore_object.html", null ],
     [ "com.kumakore.ChatMessage", "classcom_1_1kumakore_1_1_chat_message.html", null ],
     [ "com.kumakore.DatastoreObject", "classcom_1_1kumakore_1_1_datastore_object.html", null ],
     [ "com.kumakore.Device", "classcom_1_1kumakore_1_1_device.html", null ],
     [ "Dictionary< String, AppAchievement >", null, [
       [ "com.kumakore.AppAchievementMap", "classcom_1_1kumakore_1_1_app_achievement_map.html", null ]
     ] ],
+    [ "Dictionary< String, AppDatastoreObject >", null, [
+      [ "com.kumakore.AppDatastore", "classcom_1_1kumakore_1_1_app_datastore.html", null ]
+    ] ],
     [ "Dictionary< String, DatastoreObject >", null, [
+      [ "com.kumakore.DatastoreTypeMap", "classcom_1_1kumakore_1_1_datastore_type_map.html", null ]
+    ] ],
+    [ "Dictionary< String, DatastoreTypeMap >", null, [
       [ "com.kumakore.Datastore", "classcom_1_1kumakore_1_1_datastore.html", null ]
+    ] ],
+    [ "Dictionary< String, Gift >", null, [
+      [ "com.kumakore.GiftMap", "classcom_1_1kumakore_1_1_gift_map.html", null ]
+    ] ],
+    [ "Dictionary< String, GiftRequestReceived >", null, [
+      [ "com.kumakore.GiftRequestReceivedMap", "classcom_1_1kumakore_1_1_gift_request_received_map.html", null ]
     ] ],
     [ "Dictionary< String, ItemBundle >", null, [
       [ "com.kumakore.InventoryMap", "classcom_1_1kumakore_1_1_inventory_map.html", null ]
@@ -36,8 +49,14 @@ var hierarchy =
     [ "com.kumakore.FriendFacebookList", "classcom_1_1kumakore_1_1_friend_facebook_list.html", null ],
     [ "com.kumakore.FriendInvitation", "classcom_1_1kumakore_1_1_friend_invitation.html", null ],
     [ "com.kumakore.FriendList", "classcom_1_1kumakore_1_1_friend_list.html", null ],
-    [ "com.kumakore.IKumakoreInvokable", "interfacecom_1_1kumakore_1_1_i_kumakore_invokable.html", [
-      [ "com.kumakore.KumakoreInvokable", "structcom_1_1kumakore_1_1_kumakore_invokable.html", null ]
+    [ "com.kumakore.Gift", "classcom_1_1kumakore_1_1_gift.html", null ],
+    [ "com.kumakore.Gifter", "classcom_1_1kumakore_1_1_gifter.html", null ],
+    [ "com.kumakore.GiftRequest", "classcom_1_1kumakore_1_1_gift_request.html", null ],
+    [ "com.kumakore.GiftRequester", "classcom_1_1kumakore_1_1_gift_requester.html", null ],
+    [ "com.kumakore.GiftRequestReceived", "classcom_1_1kumakore_1_1_gift_request_received.html", null ],
+    [ "com.kumakore.ICertValidator", "interfacecom_1_1kumakore_1_1_i_cert_validator.html", null ],
+    [ "com.kumakore.IInvokable", "interfacecom_1_1kumakore_1_1_i_invokable.html", [
+      [ "com.kumakore.KumakoreDispatcher", "classcom_1_1kumakore_1_1_kumakore_dispatcher.html", null ]
     ] ],
     [ "com.kumakore.ItemBundle", "classcom_1_1kumakore_1_1_item_bundle.html", null ],
     [ "KumakoreAction< ActionAchievementGetApp.IKumakore >", null, [
@@ -48,6 +67,9 @@ var hierarchy =
     ] ],
     [ "KumakoreAction< ActionAchievementSetUser.IKumakore >", null, [
       [ "com.kumakore.ActionAchievementSetUser", "classcom_1_1kumakore_1_1_action_achievement_set_user.html", null ]
+    ] ],
+    [ "KumakoreAction< ActionAppDatastore.IKumakore >", null, [
+      [ "com.kumakore.ActionAppDatastore", "classcom_1_1kumakore_1_1_action_app_datastore.html", null ]
     ] ],
     [ "KumakoreAction< ActionAppGetRewardMap.IKumakore >", null, [
       [ "com.kumakore.ActionAppGetRewardMap", "classcom_1_1kumakore_1_1_action_app_get_reward_map.html", null ]
@@ -72,6 +94,9 @@ var hierarchy =
     ] ],
     [ "KumakoreAction< ActionDeviceMute.IKumakore >", null, [
       [ "com.kumakore.ActionDeviceMute", "classcom_1_1kumakore_1_1_action_device_mute.html", null ]
+    ] ],
+    [ "KumakoreAction< ActionDevicePushUser.IKumakore >", null, [
+      [ "com.kumakore.ActionDevicePushUser", "classcom_1_1kumakore_1_1_action_device_push_user.html", null ]
     ] ],
     [ "KumakoreAction< ActionDeviceRegister.IKumakore >", null, [
       [ "com.kumakore.ActionDeviceRegister", "classcom_1_1kumakore_1_1_action_device_register.html", null ]
@@ -115,6 +140,33 @@ var hierarchy =
     [ "KumakoreAction< ActionFriendRemove.IKumakore >", null, [
       [ "com.kumakore.ActionFriendRemove", "classcom_1_1kumakore_1_1_action_friend_remove.html", null ]
     ] ],
+    [ "KumakoreAction< ActionGameCenterConnect.IKumakore >", null, [
+      [ "com.kumakore.ActionGameCenterConnect", "classcom_1_1kumakore_1_1_action_game_center_connect.html", null ]
+    ] ],
+    [ "KumakoreAction< ActionGameCenterSignin.IKumakore >", null, [
+      [ "com.kumakore.ActionGameCenterSignin", "classcom_1_1kumakore_1_1_action_game_center_signin.html", null ]
+    ] ],
+    [ "KumakoreAction< ActionGiftDeleteRedeemable.IKumakore >", null, [
+      [ "com.kumakore.ActionGiftDeleteRedeemable", "classcom_1_1kumakore_1_1_action_gift_delete_redeemable.html", null ]
+    ] ],
+    [ "KumakoreAction< ActionGiftDeleteRequestReceived.IKumakore >", null, [
+      [ "com.kumakore.ActionGiftDeleteRequestReceived", "classcom_1_1kumakore_1_1_action_gift_delete_request_received.html", null ]
+    ] ],
+    [ "KumakoreAction< ActionGiftGetRedeemable.IKumakore >", null, [
+      [ "com.kumakore.ActionGiftGetRedeemable", "classcom_1_1kumakore_1_1_action_gift_get_redeemable.html", null ]
+    ] ],
+    [ "KumakoreAction< ActionGiftGetRequestReceived.IKumakore >", null, [
+      [ "com.kumakore.ActionGiftGetRequestReceived", "classcom_1_1kumakore_1_1_action_gift_get_request_received.html", null ]
+    ] ],
+    [ "KumakoreAction< ActionGiftGive.IKumakore >", null, [
+      [ "com.kumakore.ActionGiftGive", "classcom_1_1kumakore_1_1_action_gift_give.html", null ]
+    ] ],
+    [ "KumakoreAction< ActionGiftRedeem.IKumakore >", null, [
+      [ "com.kumakore.ActionGiftRedeem", "classcom_1_1kumakore_1_1_action_gift_redeem.html", null ]
+    ] ],
+    [ "KumakoreAction< ActionGiftRequest.IKumakore >", null, [
+      [ "com.kumakore.ActionGiftRequest", "classcom_1_1kumakore_1_1_action_gift_request.html", null ]
+    ] ],
     [ "KumakoreAction< ActionInventoryGetProducts.IKumakore >", null, [
       [ "com.kumakore.ActionInventoryGetProducts", "classcom_1_1kumakore_1_1_action_inventory_get_products.html", null ]
     ] ],
@@ -142,11 +194,26 @@ var hierarchy =
     [ "KumakoreAction< ActionMatchClose.IKumakore >", null, [
       [ "com.kumakore.ActionMatchClose", "classcom_1_1kumakore_1_1_action_match_close.html", null ]
     ] ],
+    [ "KumakoreAction< ActionMatchCreate.IKumakore >", null, [
+      [ "com.kumakore.ActionMatchCreate", "classcom_1_1kumakore_1_1_action_match_create.html", null ]
+    ] ],
+    [ "KumakoreAction< ActionMatchCreateRandom.IKumakore >", null, [
+      [ "com.kumakore.ActionMatchCreateRandom", "classcom_1_1kumakore_1_1_action_match_create_random.html", null ]
+    ] ],
     [ "KumakoreAction< ActionMatchGetChatMessage.IKumakore >", null, [
       [ "com.kumakore.ActionMatchGetChatMessage", "classcom_1_1kumakore_1_1_action_match_get_chat_message.html", null ]
     ] ],
+    [ "KumakoreAction< ActionMatchGetClosed.IKumakore >", null, [
+      [ "com.kumakore.ActionMatchGetClosed", "classcom_1_1kumakore_1_1_action_match_get_closed.html", null ]
+    ] ],
     [ "KumakoreAction< ActionMatchGetMoves.IKumakore >", null, [
       [ "com.kumakore.ActionMatchGetMoves", "classcom_1_1kumakore_1_1_action_match_get_moves.html", null ]
+    ] ],
+    [ "KumakoreAction< ActionMatchGetOpen.IKumakore >", null, [
+      [ "com.kumakore.ActionMatchGetOpen", "classcom_1_1kumakore_1_1_action_match_get_open.html", null ]
+    ] ],
+    [ "KumakoreAction< ActionMatchGetStatus.IKumakore >", null, [
+      [ "com.kumakore.ActionMatchGetStatus", "classcom_1_1kumakore_1_1_action_match_get_status.html", null ]
     ] ],
     [ "KumakoreAction< ActionMatchMove.IKumakore >", null, [
       [ "com.kumakore.ActionMatchMove", "classcom_1_1kumakore_1_1_action_match_move.html", null ]
@@ -191,19 +258,14 @@ var hierarchy =
         [ "com.kumakore.ActionInventoryGet", "classcom_1_1kumakore_1_1_action_inventory_get.html", null ],
         [ "com.kumakore.ActionInventoryGooglePurchase", "classcom_1_1kumakore_1_1_action_inventory_google_purchase.html", null ],
         [ "com.kumakore.ActionInventoryRemove", "classcom_1_1kumakore_1_1_action_inventory_remove.html", null ]
-      ] ],
-      [ "com.kumakore.ActionMatchCreateBase< T >", "classcom_1_1kumakore_1_1_action_match_create_base_3_01_t_01_4.html", [
-        [ "com.kumakore.ActionMatchCreate", "classcom_1_1kumakore_1_1_action_match_create.html", null ],
-        [ "com.kumakore.ActionMatchCreateRandom", "classcom_1_1kumakore_1_1_action_match_create_random.html", null ],
-        [ "com.kumakore.ActionMatchGetStatus", "classcom_1_1kumakore_1_1_action_match_get_status.html", null ]
-      ] ],
-      [ "com.kumakore.ActionMatchListBase< T >", "classcom_1_1kumakore_1_1_action_match_list_base_3_01_t_01_4.html", [
-        [ "com.kumakore.ActionMatchGetClosed", "classcom_1_1kumakore_1_1_action_match_get_closed.html", null ],
-        [ "com.kumakore.ActionMatchGetOpen", "classcom_1_1kumakore_1_1_action_match_get_open.html", null ]
       ] ]
     ] ],
     [ "com.kumakore.KumakoreApp", "classcom_1_1kumakore_1_1_kumakore_app.html", null ],
-    [ "com.kumakore.KumakoreDispatcher", "classcom_1_1kumakore_1_1_kumakore_dispatcher.html", null ],
+    [ "com.kumakore.KumakoreCommandBase< T >", "classcom_1_1kumakore_1_1_kumakore_command_base_3_01_t_01_4.html", [
+      [ "com.kumakore.KumakoreCommand< T, U >", "classcom_1_1kumakore_1_1_kumakore_command_3_01_t_00_01_u_01_4.html", null ]
+    ] ],
+    [ "com.kumakore.KumakoreHttpClient", "classcom_1_1kumakore_1_1_kumakore_http_client.html", null ],
+    [ "com.kumakore.KumakoreUtil", "classcom_1_1kumakore_1_1_kumakore_util.html", null ],
     [ "com.kumakore.Leaderboard", "classcom_1_1kumakore_1_1_leaderboard.html", null ],
     [ "com.kumakore.LeaderboardMember", "classcom_1_1kumakore_1_1_leaderboard_member.html", null ],
     [ "List< User >", null, [
@@ -213,11 +275,6 @@ var hierarchy =
       [ "com.kumakore.OpenMatch", "classcom_1_1kumakore_1_1_open_match.html", null ]
     ] ],
     [ "com.kumakore.MatchMove", "classcom_1_1kumakore_1_1_match_move.html", null ],
-    [ "com.kumakore.NotificationBase", "classcom_1_1kumakore_1_1_notification_base.html", [
-      [ "com.kumakore.Notification", "classcom_1_1kumakore_1_1_notification.html", null ],
-      [ "com.kumakore.Notification", "classcom_1_1kumakore_1_1_notification.html", null ]
-    ] ],
-    [ "com.kumakore.NotificationPackage", "classcom_1_1kumakore_1_1_notification_package.html", null ],
     [ "com.kumakore.Opponent", "classcom_1_1kumakore_1_1_opponent.html", null ],
     [ "com.kumakore.Product", "classcom_1_1kumakore_1_1_product.html", null ],
     [ "com.kumakore.RewardMap", "classcom_1_1kumakore_1_1_reward_map.html", null ],

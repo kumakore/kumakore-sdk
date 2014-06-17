@@ -1,6 +1,6 @@
 var classcom_1_1kumakore_1_1_leaderboard =
 [
-    [ "getCreatedAt", "classcom_1_1kumakore_1_1_leaderboard.html#a2d336dc02f5dbd0fb87355465b1c4d7d", null ],
+    [ "getCreatedAt", "classcom_1_1kumakore_1_1_leaderboard.html#adcb922ea0ba2b3e2bde8b17b5873b962", null ],
     [ "getDescription", "classcom_1_1kumakore_1_1_leaderboard.html#a922233163b7076db53c1b5ae3bc42208", null ],
     [ "getFBFriends", "group___a_c_t_i_o_n_s___l_e_a_d_e_r_b_o_a_r_d.html#gaa7fbcfcc276e42c3b37f30ebb74eefad", null ],
     [ "getFBFriends", "group___a_c_t_i_o_n_s___l_e_a_d_e_r_b_o_a_r_d.html#ga677f2b8b5f3513ef446206ede93abe50", null ],
@@ -23,8 +23,9 @@ var classcom_1_1kumakore_1_1_leaderboard =
     [ "getName", "classcom_1_1kumakore_1_1_leaderboard.html#aa83ed0905e9cbe58785af4560c485390", null ],
     [ "getOpponents", "group___a_c_t_i_o_n_s___l_e_a_d_e_r_b_o_a_r_d.html#gaf1c3d25727b22a12ddd28a97ffdcdc9a", null ],
     [ "getOpponents", "group___a_c_t_i_o_n_s___l_e_a_d_e_r_b_o_a_r_d.html#ga5a7244e44af6c9657118a360043ce8b8", null ],
+    [ "getResetAt", "classcom_1_1kumakore_1_1_leaderboard.html#ae40c2404f68cfca58c38401c224056b1", null ],
     [ "getReverseMark", "classcom_1_1kumakore_1_1_leaderboard.html#ac149cd036c42523373933246a42424f0", null ],
-    [ "getUpdatedAt", "classcom_1_1kumakore_1_1_leaderboard.html#a71e56d5d884c02e24b1c8b32fb6638eb", null ],
+    [ "getUpdatedAt", "classcom_1_1kumakore_1_1_leaderboard.html#a849cec6100a0b0b13fea5a90b7e5729c", null ],
     [ "getUserRank", "group___a_c_t_i_o_n_s___l_e_a_d_e_r_b_o_a_r_d.html#ga624922b249110a6936e7507b5febf96b", null ],
     [ "getUserRank", "group___a_c_t_i_o_n_s___l_e_a_d_e_r_b_o_a_r_d.html#ga56f803970b8fe03e0f502da23b74e228", null ],
     [ "setUserScore", "group___a_c_t_i_o_n_s___l_e_a_d_e_r_b_o_a_r_d.html#gacbb093cda60b3d82b7759be25604b163", null ],

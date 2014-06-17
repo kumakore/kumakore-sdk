@@ -40,6 +40,7 @@ var group___a_c_t_i_o_n_s___u_s_e_r =
     ] ],
     [ "ActionUserSignup", "classcom_1_1kumakore_1_1_action_user_signup.html", [
       [ "ActionUserSignup", "classcom_1_1kumakore_1_1_action_user_signup.html#afcdaed15c65132a473c8c6481e308af9", null ],
+      [ "ActionUserSignup", "classcom_1_1kumakore_1_1_action_user_signup.html#acaf885b147807f925b8522789bb8af32", null ],
       [ "getEmail", "classcom_1_1kumakore_1_1_action_user_signup.html#a253364a9153527309828f9c2b055e364", null ],
       [ "getName", "classcom_1_1kumakore_1_1_action_user_signup.html#ace94a3b901392e8b160cbc74558f8db7", null ],
       [ "getSessionId", "classcom_1_1kumakore_1_1_action_user_signup.html#ad3f1d3f5209dcf5129a173b1d1afc750", null ],
@@ -78,6 +79,7 @@ var group___a_c_t_i_o_n_s___u_s_e_r =
     [ "signin", "group___a_c_t_i_o_n_s___u_s_e_r.html#ga7affb9b78543750db1dd429e108ca231", null ],
     [ "signout", "group___a_c_t_i_o_n_s___u_s_e_r.html#ga05a10c47c4a402f4949398ed4e90ef3c", null ],
     [ "signup", "group___a_c_t_i_o_n_s___u_s_e_r.html#ga6e7bf7506c9ad482e4cf32ae340f6bd5", null ],
+    [ "signupAsGuest", "group___a_c_t_i_o_n_s___u_s_e_r.html#gaba7f031219e32e52ac0621df507e1421", null ],
     [ "update", "group___a_c_t_i_o_n_s___u_s_e_r.html#ga6c79f6a305426cff2bb7dc7314231343", null ],
     [ "update", "group___a_c_t_i_o_n_s___u_s_e_r.html#ga705ab757ed39b272d5a123a90186c3a8", null ],
     [ "update", "group___a_c_t_i_o_n_s___u_s_e_r.html#ga6ddc6d6ba936e6ed8e2ccf770e94b814", null ],

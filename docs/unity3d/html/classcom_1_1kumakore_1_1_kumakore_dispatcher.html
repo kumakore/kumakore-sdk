@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="kumakore-logo.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Unity3D
-   &#160;<span id="projectnumber">v0.7.1</span>
+   &#160;<span id="projectnumber">v0.9.0</span>
    </div>
    <div id="projectbrief">Every Platform. One Solution.</div>
   </td>
@@ -114,24 +114,36 @@ $(document).ready(function(){initNavTree('classcom_1_1kumakore_1_1_kumakore_disp
 <div class="title">com.kumakore.KumakoreDispatcher Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="dynheader">
+Inheritance diagram for com.kumakore.KumakoreDispatcher:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classcom_1_1kumakore_1_1_kumakore_dispatcher.png" usemap="#com.kumakore.KumakoreDispatcher_map" alt=""/>
+  <map id="com.kumakore.KumakoreDispatcher_map" name="com.kumakore.KumakoreDispatcher_map">
+<area href="interfacecom_1_1kumakore_1_1_i_invokable.html" alt="com.kumakore.IInvokable" shape="rect" coords="0,0,214,24"/>
+</map>
+ </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a74caf9acf4bc0f21daeee15793ac1c3a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a74caf9acf4bc0f21daeee15793ac1c3a"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>dispatch</b> ()</td></tr>
 <tr class="separator:a74caf9acf4bc0f21daeee15793ac1c3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20ea498a999103f8a385508da13a376d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a20ea498a999103f8a385508da13a376d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>invoke</b> (bool force, Delegate del, params object[] args)</td></tr>
-<tr class="separator:a20ea498a999103f8a385508da13a376d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb80bac0285b3cf60eb0ff0f136e3948"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adb80bac0285b3cf60eb0ff0f136e3948"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>invoke</b> (bool force, <a class="el" href="interfacecom_1_1kumakore_1_1_i_kumakore_invokable.html">IKumakoreInvokable</a> invokable)</td></tr>
-<tr class="separator:adb80bac0285b3cf60eb0ff0f136e3948"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2426944ecea7821433f73b4b41a7b7f4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2426944ecea7821433f73b4b41a7b7f4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>invoke</b> (Action invokable, bool force=false)</td></tr>
+<tr class="separator:a2426944ecea7821433f73b4b41a7b7f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56aaeb83c956111d59e02f04a079cb17"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a56aaeb83c956111d59e02f04a079cb17"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>invoke</b> (bool force, Action invokable)</td></tr>
+<tr class="separator:a56aaeb83c956111d59e02f04a079cb17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:ab3f18f60085eacc1563c77c7b00150cd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab3f18f60085eacc1563c77c7b00150cd"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>immediateDispatch</b><code> [get, set]</code></td></tr>
 <tr class="separator:ab3f18f60085eacc1563c77c7b00150cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e080b5332f82889a127440f13fec143"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4e080b5332f82889a127440f13fec143"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>throwEx</b><code> [get, set]</code></td></tr>
+<tr class="separator:a4e080b5332f82889a127440f13fec143"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -139,7 +151,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>immediateDispatch</b>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacecom.html">com</a></li><li class="navelem"><a class="el" href="namespacecom_1_1kumakore.html">kumakore</a></li><li class="navelem"><a class="el" href="classcom_1_1kumakore_1_1_kumakore_dispatcher.html">KumakoreDispatcher</a></li>
-    <li class="footer">Generated on Sun Mar 16 2014 22:08:29 for Unity3D by
+    <li class="footer">Generated on Thu Jun 12 2014 19:57:12 for Unity3D by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.5 </li>
   </ul>
