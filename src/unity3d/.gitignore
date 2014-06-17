@@ -1,7 +1,0 @@
-bin/
-obj/
-*.suo
-*.csproj.user
-*TestResult.xml
-*VisualState.xml
-test-results/

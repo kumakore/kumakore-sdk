@@ -1,0 +1,26 @@
+var classcom_1_1kumakore_1_1_gift_map =
+[
+    [ "delete", "group___a_c_t_i_o_n_s___g_i_f_t_s.html#ga0a73a9028d9bd2bc96bd362a18aa94d6", null ],
+    [ "delete", "group___a_c_t_i_o_n_s___g_i_f_t_s.html#ga6c535d71926e24fdedbd0744bf124393", null ],
+    [ "delete", "group___a_c_t_i_o_n_s___g_i_f_t_s.html#ga291c57b4b991958e3d9e4b92cf72ab80", null ],
+    [ "delete", "group___a_c_t_i_o_n_s___g_i_f_t_s.html#gaeb4555b4e12b95a785e27a44bb38dc19", null ],
+    [ "delete", "group___a_c_t_i_o_n_s___g_i_f_t_s.html#ga9beb0c7a8bb4a707dbc6f31d956ddccc", null ],
+    [ "get", "group___a_c_t_i_o_n_s___g_i_f_t_s.html#gac5587acce7e9a2feb2de70e9ba8b7336", null ],
+    [ "giveRequestId", "group___a_c_t_i_o_n_s___g_i_f_t_s.html#gaafc0d042cecf14823fe7dd1b16cedf6e", null ],
+    [ "giveRequestId", "group___a_c_t_i_o_n_s___g_i_f_t_s.html#ga82103e76e8fc2f78ecac263b92fb003c", null ],
+    [ "giveUserId", "group___a_c_t_i_o_n_s___g_i_f_t_s.html#ga01ef0e5825330078c1a94a4a14d027fc", null ],
+    [ "giveUserId", "group___a_c_t_i_o_n_s___g_i_f_t_s.html#gae6c2a2f05c297541b8b7c968dba98761", null ],
+    [ "giveUserName", "group___a_c_t_i_o_n_s___g_i_f_t_s.html#ga45a2416ccd8a88ee1f4a7cec5224f24b", null ],
+    [ "giveUserName", "group___a_c_t_i_o_n_s___g_i_f_t_s.html#gac4a129de9d7b7b7dca93bb02f805f35a", null ],
+    [ "redeem", "group___a_c_t_i_o_n_s___g_i_f_t_s.html#ga8411f52364b817a880f558bf7a255249", null ],
+    [ "redeem", "group___a_c_t_i_o_n_s___g_i_f_t_s.html#ga6e1f521e04656a84132b0914ddab39a7", null ],
+    [ "redeem", "group___a_c_t_i_o_n_s___g_i_f_t_s.html#gaf801daebb20c2e3cef99057ed7901283", null ],
+    [ "redeem", "group___a_c_t_i_o_n_s___g_i_f_t_s.html#ga2b0895d7cf44a670dc5dc533ca8c92c8", null ],
+    [ "redeem", "group___a_c_t_i_o_n_s___g_i_f_t_s.html#ga923a840927a824460a08bebdacdff858", null ],
+    [ "request", "group___a_c_t_i_o_n_s___g_i_f_t_s.html#ga167c2bfad934c1d636f27df646971fcb", null ],
+    [ "requestItem", "group___a_c_t_i_o_n_s___g_i_f_t_s.html#ga701c85f041ca801cb6f9b6dd79a8b818", null ],
+    [ "requestItems", "group___a_c_t_i_o_n_s___g_i_f_t_s.html#ga5faa5927bd8cb4183b0a10c7f48922aa", null ],
+    [ "requestsReceived", "classcom_1_1kumakore_1_1_gift_map.html#afc0223edff3971ef490916b98b9fb7c4", null ],
+    [ "requestTypes", "group___a_c_t_i_o_n_s___g_i_f_t_s.html#ga781d7158d0164d2e6acc23a0d4917d05", null ],
+    [ "requestTypes", "group___a_c_t_i_o_n_s___g_i_f_t_s.html#gaa688b7d3ff0186e74e6a9e802e963660", null ]
+];
