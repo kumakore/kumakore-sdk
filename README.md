@@ -3,21 +3,6 @@ The Kumakore SDK for Android, iOS, .NET, and Unity®.
 
 The Kumakore Service is a web service that provides RESTful API's to handle all the backend services; e.g., leaderboards, achievements, application, users, facebook, friends, inventory, matches, push, and datastore. The Kumakore SDK makes it easier to use the Kumakore Services both synchronously or asynchronously through the Kumakore SDK.
 
-
-## Kumakore SDK - 2014 Q1 roadmap
-
-###All
-* add support for gifts
-
-###.NET SDK
-* enchance samples and tests for full coverage of Actions
-
-###Android SDK
-* refactor Actions to match .NET SDK
-* improve KumakoreHttp Action lifecycle
-* enchance samples and tests for full coverage of Actions
-
-
 ## Basic synchronous action w/ callbacks 
 > delegates for .NET/iOS, interfaces for Android
 
