@@ -1,1 +1,0 @@
-See http://docs.kumakore.com/
