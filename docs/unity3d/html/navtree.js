@@ -3,7 +3,11 @@ var NAVTREE =
   [ "Unity3D", "index.html", [
     [ "Modules", "modules.html", "modules" ],
     [ "Namespaces", null, [
-      [ "Namespace List", "namespaces.html", "namespaces" ]
+      [ "Namespace List", "namespaces.html", "namespaces" ],
+      [ "Namespace Members", "namespacemembers.html", [
+        [ "All", "namespacemembers.html", null ],
+        [ "Enumerations", "namespacemembers_enum.html", null ]
+      ] ]
     ] ],
     [ "Classes", null, [
       [ "Class List", "annotated.html", "annotated" ],
@@ -21,9 +25,9 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "classcom_1_1kumakore_1_1_action_inventory_google_purchase.html#a0706764339edfdd29f16d37d270f07a9",
-"classcom_1_1kumakore_1_1_gifter.html#a455576b4d0ba03d3ea157e01f0fe4887",
-"functions_func_0x63.html",
-"group___a_c_t_i_o_n_s___i_n_v_e_n_t_o_r_y.html#gaa065ac4153fba5227cb7ae8e21c23067"
+"classcom_1_1kumakore_1_1_gift_request_received_map.html",
+"functions_0x6c.html",
+"group___a_c_t_i_o_n_s___g_i_f_t_s.html#gafddc78bf864a8e55fba7d1a8bd497331"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
