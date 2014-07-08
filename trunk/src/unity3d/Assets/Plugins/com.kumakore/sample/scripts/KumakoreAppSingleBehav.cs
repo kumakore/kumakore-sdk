@@ -2,9 +2,6 @@
 using System.Collections;
 using System;
 using com.kumakore.plugin.util;
-#if UNITY_ANDROID
-using com.kumakore.plugin.android.http;
-#endif
 
 namespace com.kumakore.sample {
 
